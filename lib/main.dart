@@ -22,8 +22,6 @@ Future<void> main() async {
   await serviceLocator<DatabaseManager>().openBox();
   await serviceLocator<AppBloc>().init();
 
-
-
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('en', 'US'), Locale('ar', 'IQ')],
