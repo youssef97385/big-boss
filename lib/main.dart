@@ -22,7 +22,7 @@ Future<void> main() async {
   await serviceLocator<DatabaseManager>().openBox();
   await serviceLocator<AppBloc>().init();
 
-  final bool isConnected = serviceLocator<AppSettings>().hasConnection ?? false;
+
 
   runApp(
     EasyLocalization(
