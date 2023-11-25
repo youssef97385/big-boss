@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
 
 import '../../../app/logic/app_settings.dart';
 import '../../../injection.dart';
@@ -81,14 +80,8 @@ class ImageBuilder extends StatelessWidget {
   Widget loadingImage({double height = 80, double width = 80}) {
     return SizedBox(
       height: 200.0,
-      child:
-      Shimmer.fromColors(
-        baseColor: serviceLocator<AppSettings>().selectedThemeModeData.isDarkMode? const Color(0xffa6a6a6):const Color(0xffe2e2e2),
-        highlightColor: serviceLocator<AppSettings>().selectedThemeModeData.isDarkMode?const Color(0xffc2c2c2): Colors.white,
-        child: const Card(
-          color: Colors.grey,
-        ),
-      ),
+    
+      
     );
 
 

@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../core/utils/managers/http/domain_lookup.dart';
 
@@ -20,8 +19,6 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   StreamController connectionChangeController = StreamController.broadcast();
 
-  final Connectivity _connectivity = Connectivity();
-
   Future<void> init() async {
     // _connectivity.onConnectivityChanged.listen(_connectionChange);
     await setURL();
@@ -29,15 +26,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   Stream get connectionChange => connectionChangeController.stream;
 
-  void _connectionChange(ConnectivityResult result) {
-    setURL();
-  }
-
   Future<void> setURL() async {
     serviceLocator<AppSettings>().apiBaseUrl = kIqBaseUrl;
     final bool previousConnection =
         serviceLocator<AppSettings>().hasConnection ?? false;
-
 
     // serviceLocator<AppSettings>().hasConnection =
     //     await domainLookup.check('google.com');

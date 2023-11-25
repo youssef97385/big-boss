@@ -6,7 +6,6 @@ import '../../app/routes/router.gr.dart';
 import '../../core/common/widgets/app_bar_view.dart';
 import '../../core/constants/const.dart';
 
-
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
 
@@ -29,21 +28,20 @@ class _MainPageState extends State<MainPage> {
         if (currentIndex == 0) {
           return true;
         } else {
-          context.router.navigateNamed('main');
+          context.router.navigate(MainAppRouter());
           return false;
         }
       },
       child: AutoTabsScaffold(
-
         extendBody: false,
         routes: const [
           HomePageAppRouter(),
+          OrderPageAppRouter(),
           CartPageAppRouter(),
-          // HomePageAppRouter(),
         ],
         appBarBuilder: (_, tabsRouter) => const PreferredSize(
           preferredSize: Size(double.infinity, 60),
-          child:  AppBarView(
+          child: AppBarView(
             appBarTitle: '',
           ),
         ),
@@ -57,7 +55,6 @@ class _MainPageState extends State<MainPage> {
                   Radius.circular(12),
                 ),
                 child: BottomNavigationBar(
-
                   currentIndex: currentIndex = tabsRouter.activeIndex,
                   onTap: tabsRouter.setActiveIndex,
                   items: [
@@ -65,21 +62,20 @@ class _MainPageState extends State<MainPage> {
                       icon: const Icon(Icons.home),
                       label: "Home".tr(),
                       tooltip: '',
-                      activeIcon:   const Icon(Icons.home),
+                      activeIcon: const Icon(Icons.home),
+                    ),
+                    BottomNavigationBarItem(
+                      icon: const Icon(Icons.shopify_sharp),
+                      label: 'Orders'.tr(),
+                      tooltip: '',
+                      activeIcon: const Icon(Icons.shopify_sharp),
                     ),
                     BottomNavigationBarItem(
                       icon: const Icon(Icons.shopping_cart),
                       label: 'Cart'.tr(),
                       tooltip: '',
-                      activeIcon:  const Icon(Icons.search),
+                      activeIcon: const Icon(Icons.shopping_cart),
                     ),
-                    // BottomNavigationBarItem(
-                    //   icon: const Icon(Icons.settings),
-                    //   label: 'Settings'.tr(),
-                    //   tooltip: '',
-                    //   activeIcon: const Icon(Icons.settings),
-                    // ),
-
                   ],
                 ),
               ),

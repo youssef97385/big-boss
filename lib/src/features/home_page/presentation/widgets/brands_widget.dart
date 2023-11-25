@@ -56,7 +56,7 @@ class BrandsWidget extends StatelessWidget {
                                   SizedBox(
                                       height: 120,
                                       child: Image.network(
-                                        "https://bigboss-ecommerce.s3.amazonaws.com/vegetables.png",
+                                        "${brands[index].image}",
                                         fit: BoxFit.fill,
                                       )),
                                   const SizedBox(

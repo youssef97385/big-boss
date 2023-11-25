@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bigboss/src/features/orders_page/presentation/order_page.dart';
 import '../../features/home_page/presentation/widgets/home_page.dart';
 import '../../features/intro/intro_page.dart';
 import '../../features/login/presentation/widgets/login_page.dart';
@@ -63,6 +64,11 @@ import '../../features/sub_categories/presentation/sub_categories_page.dart';
           name: 'CartPageAppRouter',
           page: CartPage,
         ),
+        AutoRoute(
+            path: 'OrderPage',
+            name: 'OrderPageAppRouter',
+            page: OrderPage,
+            maintainState: false),
       ],
     )
   ],

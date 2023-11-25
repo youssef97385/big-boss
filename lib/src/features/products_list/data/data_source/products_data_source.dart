@@ -6,10 +6,10 @@ import '../../../../core/utils/managers/http/http_manager.dart';
 import '../../../../core/utils/managers/http/http_methods.dart';
 
 abstract class ProductsDataSource {
-  Future<List<ProductModel>?> getProducts(
-      {required String path});
-  Future<List<ProductModel>?> getProductsBySubCategoryId(
-      {required int id,});
+  Future<List<ProductModel>?> getProducts({required String path});
+  Future<List<ProductModel>?> getProductsBySubCategoryId({
+    required int id,
+  });
 }
 
 class ProductsDataSourceImpl implements ProductsDataSource {
@@ -20,7 +20,9 @@ class ProductsDataSourceImpl implements ProductsDataSource {
   });
 
   @override
-  Future<List<ProductModel>?> getProducts( {required String path,}) async {
+  Future<List<ProductModel>?> getProducts({
+    required String path,
+  }) async {
     final Response response = await httpManager.request(
       path: "/Ecommerce/$path",
       method: HttpMethods.Get,
@@ -34,7 +36,8 @@ class ProductsDataSourceImpl implements ProductsDataSource {
   }
 
   @override
-  Future<List<ProductModel>?> getProductsBySubCategoryId({required int id})  async {
+  Future<List<ProductModel>?> getProductsBySubCategoryId(
+      {required int id}) async {
     final Response response = await httpManager.request(
       path: "/Ecommerce/EproductsBySubCategoryId?subCategoryId=$id",
       method: HttpMethods.Get,

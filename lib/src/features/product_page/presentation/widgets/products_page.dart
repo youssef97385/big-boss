@@ -41,7 +41,8 @@ class _ProductScreenState extends State<ProductScreen> {
   int selectedColor = -1;
   int selectedNumber = 1;
   bool isProductAdded = false;
-TextEditingController countEditingController = TextEditingController(text: "1");
+  TextEditingController countEditingController =
+      TextEditingController(text: "1");
   @override
   void initState() {
     super.initState();
@@ -49,7 +50,6 @@ TextEditingController countEditingController = TextEditingController(text: "1");
 
   @override
   Widget build(BuildContext context) {
-
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: PreferredSize(
@@ -321,10 +321,9 @@ TextEditingController countEditingController = TextEditingController(text: "1");
                       SizedBox(
                         width: 90,
                         height: 60,
-                        child:
-                        TextFormFieldView(
+                        child: TextFormFieldView(
                           onSave: (String? content) {
-                            selectedNumber = int.parse(content??"1");
+                            selectedNumber = int.parse(content ?? "1");
                           },
                           textEditingController: countEditingController,
                           textFormFieldTypes: TextFormFieldTypes.text,
@@ -368,26 +367,32 @@ TextEditingController countEditingController = TextEditingController(text: "1");
                             icon: Icons.shopping_cart,
                             buttonType: ButtonType.soldButton,
                             onClick: () {
-
                               double finPrice = 0;
 
-                              for(PriceModel price in widget.productEntity?.pricesList ??[]){
-
-                                if(int.parse(countEditingController.text)
-                                    < (price.toQTY ?? 10000)){
-                                  finPrice = price.price ??0;
+                              for (PriceModel price
+                                  in widget.productEntity?.pricesList ?? []) {
+                                if (int.parse(countEditingController.text) <=
+                                    (price.toQTY ?? 1000000)) {
+                                  finPrice = price.price ?? 0;
                                   break;
+                                } else {
+                                  finPrice = price.price ?? 0;
                                 }
-
                               }
+
+                              int count =
+                                  int.parse(countEditingController.text);
+
+                              print(
+                                  "TESTT =============> count: ${count} || price: ${finPrice * count} ");
 
                               BlocProvider.of<CartCubit>(context).addItemToCart(
                                   cartItem: CartItemEntity(
                                       id: widget.productEntity?.id ?? 0,
                                       name: widget.productEntity?.name ?? "",
                                       image: widget.productEntity?.image ?? "",
-                                      price:finPrice,
-                                      count: int.parse(countEditingController.text)));
+                                      price: finPrice * count,
+                                      count: count));
                               setState(() {
                                 isProductAdded = true;
                               });
