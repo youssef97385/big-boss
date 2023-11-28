@@ -54,16 +54,26 @@ android {
         versionName "1.0.6"
     }
 
+    signingConfigs {
+        release {
+            keyAlias "key"
+            keyPassword "12345678"
+            storeFile file("/Users/apple/Desktop/big-boss/key.jks")
+            storePassword "12345678"
+        }
+}
+
     buildTypes {
         release {
             shrinkResources false
             minifyEnabled false
-//            signingConfig signingConfigs.release
+              signingConfig signingConfigs.release
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
         }
     }
+      
 }
 
 flutter {

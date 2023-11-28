@@ -49,7 +49,7 @@ class _MainPageState extends State<MainPage> {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 24),
             child: SizedBox(
-              height: 74,
+              height: 90,
               child: ClipRRect(
                 borderRadius: const BorderRadius.all(
                   Radius.circular(12),

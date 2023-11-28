@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bigboss/src/app/routes/router.gr.dart';
 import 'package:bigboss/src/core/common/domain/entites/generic_entity.dart';
 import 'package:bigboss/src/core/common/widgets/card_view.dart';
+import 'package:bigboss/src/core/common/widgets/image_view.dart';
 import 'package:bigboss/src/core/common/widgets/text_view.dart';
 import 'package:bigboss/src/features/home_page/presentation/logic/brands_bloc/brands_cubit.dart';
 import 'package:bigboss/src/features/home_page/presentation/logic/brands_bloc/brands_state.dart';
@@ -44,9 +45,8 @@ class CategoriesWidget extends StatelessWidget {
                     return InkWell(
                       onTap: () {
                         context.router.push(SubCategoriesPageAppRouter(
-                            subCats:
-                            categories[index].genericEntityList ??
-                                [],catName: categories[index].name??""));
+                            subCats: categories[index].genericEntityList ?? [],
+                            catName: categories[index].name ?? ""));
                       },
                       child: SizedBox(
                         width: 140,
@@ -56,18 +56,16 @@ class CategoriesWidget extends StatelessWidget {
                             children: [
                               SizedBox(
                                   height: 120,
-                                  child: Image.network(
-                                    categories[index].image ?? "",
-                                    fit: BoxFit.fill,
+                                  child: ImageBuilder(
+                                    imageUrl: categories[index].image ?? "",
                                   )),
                               const SizedBox(
                                 height: 12,
                               ),
                               TextView(
                                   text: "${categories[index].name}",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleMedium),
+                                  style:
+                                      Theme.of(context).textTheme.titleMedium),
                             ],
                           ),
                         ),

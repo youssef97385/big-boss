@@ -1,5 +1,3 @@
-
-
 enum ImageName {
   logo,
 }
@@ -9,8 +7,7 @@ class ImageNameHelper {
   static String getValue(ImageName path) {
     switch (path) {
       case ImageName.logo:
-        return 'assets/images/logo.png';
-
+        return 'assets/images/big-boss-splash-logo.png';
     }
   }
 }

@@ -79,7 +79,8 @@ class OrdersBody extends StatelessWidget {
                                           width: 12,
                                         ),
                                         TextView(
-                                            text: "\$${orders[index].netTotal}",
+                                            text:
+                                                "IQD ${orders[index].netTotal}",
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .titleMedium!

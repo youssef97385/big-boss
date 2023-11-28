@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:bigboss/src/core/common/widgets/image_view.dart';
 import 'package:bigboss/src/features/products_list/domain/entiities/product_endtity.dart';
 import 'package:bigboss/src/features/sub_categories/presentation/logic/sub_category_cubit/sub_category_cubit.dart';
 import 'package:bigboss/src/features/sub_categories/presentation/logic/sub_category_cubit/sub_category_state.dart';
@@ -58,7 +59,8 @@ class _SubCategoryBodyState extends State<SubCategoryBody> {
                   setState(() {
                     chosenIndex = index;
                     BlocProvider.of<SubCategoryCubit>(context)
-                        .getProductsBySubCategory(id: widget.subCats[index].id ?? 0);
+                        .getProductsBySubCategory(
+                            id: widget.subCats[index].id ?? 0);
                   });
                 },
                 child: Card(
@@ -93,7 +95,6 @@ class _SubCategoryBodyState extends State<SubCategoryBody> {
           }, loading: () {
             return LoadingView();
           }, success: (List<ProductEntity> products) {
-            print("object PRO $products");
             return Expanded(
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -105,8 +106,9 @@ class _SubCategoryBodyState extends State<SubCategoryBody> {
                 itemCount: products.length, // total number of items
                 itemBuilder: (context, index) {
                   return InkWell(
-                    onTap: (){
-                      context.router.push(ProductScreenAppRouter(productEntity: products[index]));
+                    onTap: () {
+                      context.router.push(ProductScreenAppRouter(
+                          productEntity: products[index]));
                     },
                     child: Card(
                         child: Padding(
@@ -115,7 +117,8 @@ class _SubCategoryBodyState extends State<SubCategoryBody> {
                         children: [
                           SizedBox(
                               height: 150,
-                              child: Image.network(products[index].image ?? "")),
+                              child: ImageBuilder(
+                                  imageUrl: products[index].image ?? "")),
                           const SizedBox(
                             height: 12,
                           ),

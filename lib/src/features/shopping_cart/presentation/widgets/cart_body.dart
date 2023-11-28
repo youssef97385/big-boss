@@ -70,7 +70,8 @@ class CartBody extends StatelessWidget {
                               height: 10,
                             ),
                             TextView(
-                              text: items[index].price.toString() + "\$" ?? "",
+                              text:
+                                  items[index].price.toString() + " IQD" ?? "",
                               style: Theme.of(context)
                                   .textTheme
                                   .titleLarge!

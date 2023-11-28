@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bigboss/src/core/common/domain/entites/generic_entity.dart';
 import 'package:bigboss/src/core/common/widgets/card_view.dart';
+import 'package:bigboss/src/core/common/widgets/image_view.dart';
 import 'package:bigboss/src/core/common/widgets/text_view.dart';
 import 'package:bigboss/src/features/home_page/presentation/logic/brands_bloc/brands_cubit.dart';
 import 'package:bigboss/src/features/home_page/presentation/logic/brands_bloc/brands_state.dart';
@@ -55,9 +56,8 @@ class BrandsWidget extends StatelessWidget {
                                 children: [
                                   SizedBox(
                                       height: 120,
-                                      child: Image.network(
-                                        "${brands[index].image}",
-                                        fit: BoxFit.fill,
+                                      child: ImageBuilder(
+                                        imageUrl: "${brands[index].image}",
                                       )),
                                   const SizedBox(
                                     height: 12,

@@ -56,7 +56,7 @@ class _CartPageState extends State<CartPage> {
                         total += item.price;
                       }
                       return TextView(
-                        text: "$total\$",
+                        text: "$total IQD",
                         style: Theme.of(context).textTheme.titleLarge!.copyWith(
                             color: Theme.of(context).colorScheme.primary),
                       );

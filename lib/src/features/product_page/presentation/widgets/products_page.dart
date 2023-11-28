@@ -300,7 +300,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                     padding: const EdgeInsets.all(8.0),
                                     child: TextView(
                                       text:
-                                          "${widget.productEntity?.pricesList?[index].price}\$",
+                                          "${widget.productEntity?.pricesList?[index].price}IQD",
                                       style: Theme.of(context)
                                           .textTheme
                                           .titleMedium!
