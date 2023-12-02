@@ -33,6 +33,9 @@ class LoginRepositoryImpl implements LoginRepository {
       serviceLocator<DatabaseManager>()
           .saveData("ISPHONECONFIRMED", loginModel.isPhoneNumberConfirmed);
 
+      serviceLocator<DatabaseManager>()
+          .saveData("USERNAME", params?.value["username"]);
+
       return Right(SuccessModel());
     } on DioError catch (error, stackTrace) {
       print("ERROR DDD $error");
@@ -57,15 +60,24 @@ class LoginRepositoryImpl implements LoginRepository {
       serviceLocator<DatabaseManager>().saveData("USERID", loginModel.userId);
       serviceLocator<DatabaseManager>().saveData("ISPHONECONFIRMED", false);
 
-      final vResponse = await loginDataSource.login({
-        'username': userName,
-        'password': password
-      });
+      final vResponse = await loginDataSource
+          .login({'username': userName, 'password': password});
 
       final LoginModel loginModel2 = LoginModel.fromJson(vResponse);
 
       serviceLocator<AppSettings>().token = loginModel2.token;
+      serviceLocator<DatabaseManager>().saveData("USERNAME", userName);
+      return Right(SuccessModel());
+    } on DioError catch (error, stackTrace) {
+      print("ERROR DDD $error");
+      return Left(errorParse(error, stackTrace));
+    }
+  }
 
+  @override
+  Future<Either<ErrorModel, SuccessModel>> deleteAccount() async {
+    try {
+      final response = await loginDataSource.deleteAccount();
       return Right(SuccessModel());
     } on DioError catch (error, stackTrace) {
       print("ERROR DDD $error");

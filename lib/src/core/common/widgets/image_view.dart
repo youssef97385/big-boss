@@ -9,8 +9,13 @@ import 'logo_view.dart';
 
 class ImageBuilder extends StatelessWidget {
   late final String? imageUrl;
-
-  ImageBuilder({this.imageUrl});
+  final double? width;
+  final BoxFit? fit;
+  ImageBuilder({
+    this.imageUrl,
+    this.width,
+    this.fit,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -45,15 +50,14 @@ class ImageBuilder extends StatelessWidget {
 
   Widget imageProviderForMobile() {
     return CachedNetworkImage(
+      width: width,
       imageUrl: imageUrl ?? '',
-      imageBuilder: (context, imageProvider) =>
-
-          Container(
+      imageBuilder: (context, imageProvider) => Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(2.0),
           image: DecorationImage(
             image: imageProvider,
-            fit: BoxFit.cover,
+            fit: BoxFit.fill,
           ),
         ),
       ),
@@ -64,13 +68,7 @@ class ImageBuilder extends StatelessWidget {
 
   Widget errorPlaceholder() {
     return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment(-2, -2),
-          end: Alignment(2, 2),
-          colors: [kBlueColorLight, kBlueColorDark],
-        ),
-      ),
+      decoration: const BoxDecoration(),
       child: Center(
         child: LogoView(),
       ),
@@ -80,12 +78,6 @@ class ImageBuilder extends StatelessWidget {
   Widget loadingImage({double height = 80, double width = 80}) {
     return SizedBox(
       height: 200.0,
-    
-      
     );
-
-
-
-
   }
 }

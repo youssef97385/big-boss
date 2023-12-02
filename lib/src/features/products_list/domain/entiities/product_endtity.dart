@@ -25,7 +25,6 @@ class ProductEntity extends Equatable {
     this.description,
     this.shippingDetails,
     this.inStock,
-
     required String stringColors,
     required String stringSizes,
     required List<PriceModel> prices,
@@ -35,12 +34,12 @@ class ProductEntity extends Equatable {
       priceLabel = "";
       highestPrice = "";
     } else if (prices.length == 1) {
-      priceLabel = "${prices[0].price}\$";
-      highestPrice = "${prices[0].price}\$";
+      priceLabel = "${prices[0].price} IQD";
+      highestPrice = "${prices[0].price} IQD";
     } else {
       priceLabel =
-          "${prices[prices.length - 1].price}\$ - ${prices[0].price}\$";
-      highestPrice = "${prices[0].price}\$";
+          "${prices[prices.length - 1].price} IQD - ${prices[0].price} IQD";
+      highestPrice = "${prices[0].price} IQD";
     }
 
     if (stringColors.isNotEmpty) {
@@ -74,7 +73,6 @@ class ProductEntity extends Equatable {
       List<String> stringList =
           json.decode(stringSizes).whereType<String>().toList();
       sizes = stringList;
-
     } else {
       sizes = [];
     }

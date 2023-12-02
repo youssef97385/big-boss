@@ -34,6 +34,7 @@ import 'features/login/data/repository/login_repository_impl.dart';
 import 'features/login/domain/repository/login_repository.dart';
 import 'features/login/domain/use_cases/login_use_case.dart';
 import 'features/login/presentation/logic/login_cubit.dart';
+import 'features/menu_page/presentation/logic/delete_account_bloc/delete_account_cubit.dart';
 import 'features/order_feature/data/order_repository.dart';
 import 'features/register/presentation/bloc/register_cubit.dart';
 import 'features/shopping_cart/presentation/logic/cart_cubit.dart';
@@ -132,6 +133,11 @@ void initInjections(GetIt serviceLocator) {
   serviceLocator.registerFactory<LoginCubit>(
     () => LoginCubit(
       login: serviceLocator(),
+    ),
+  );
+  serviceLocator.registerFactory<DeleteAccounCubit>(
+    () => DeleteAccounCubit(
+      repository: serviceLocator(),
     ),
   );
 

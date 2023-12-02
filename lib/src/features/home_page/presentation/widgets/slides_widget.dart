@@ -1,5 +1,6 @@
 import 'package:bigboss/src/core/common/data/models/error_model/error_model.dart';
 import 'package:bigboss/src/core/common/widgets/error_view.dart';
+import 'package:bigboss/src/core/common/widgets/image_view.dart';
 import 'package:bigboss/src/core/common/widgets/loading_view.dart';
 import 'package:bigboss/src/features/home_page/presentation/logic/slides_bloc/slides_cubit.dart';
 import 'package:bigboss/src/features/home_page/presentation/logic/slides_bloc/slides_state.dart';
@@ -31,8 +32,10 @@ class SlidesWidget extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius:
                           const BorderRadius.all(Radius.circular(5.0)),
-                      child: Image.network(item.image ?? "",
-                          fit: BoxFit.fill, width: 1000.0),
+                      child: ImageBuilder(
+                          imageUrl: item.image ?? "",
+                          fit: BoxFit.fill,
+                          width: 1000.0),
                     ),
                   ))
               .toList(),

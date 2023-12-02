@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bigboss/src/app/routes/router.gr.dart';
+import 'package:bigboss/src/core/common/widgets/image_view.dart';
 import 'package:bigboss/src/core/common/widgets/text_view.dart';
 import 'package:bigboss/src/features/products_list/domain/entiities/product_endtity.dart';
 import 'package:bigboss/src/features/products_list/presentation/logic/products_list_cubit.dart';
@@ -54,8 +55,9 @@ class _ProductsPageBodyState extends State<ProductsPageBody> {
           itemCount: products.length, // total number of items
           itemBuilder: (context, index) {
             return InkWell(
-              onTap: (){
-                context.router.push(ProductScreenAppRouter(productEntity: products[index]));
+              onTap: () {
+                context.router.push(
+                    ProductScreenAppRouter(productEntity: products[index]));
               },
               child: Card(
                   child: Padding(
@@ -64,7 +66,8 @@ class _ProductsPageBodyState extends State<ProductsPageBody> {
                   children: [
                     SizedBox(
                         height: 135,
-                        child: Image.network(products[index].image ?? "")),
+                        child: ImageBuilder(
+                            imageUrl: products[index].image ?? "")),
                     const SizedBox(
                       height: 12,
                     ),
@@ -84,10 +87,10 @@ class _ProductsPageBodyState extends State<ProductsPageBody> {
                     ),
                     TextView(
                       text: products[index].priceLabel,
-                      style: Theme.of(context)
-                          .textTheme
-                          .displaySmall!
-                          .copyWith(fontSize:14,fontWeight: FontWeight.bold,color: Theme.of(context).colorScheme.primary),
+                      style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.primary),
                       textAlignment: TextAlign.center,
                     ),
                   ],

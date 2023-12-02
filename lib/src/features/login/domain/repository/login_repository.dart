@@ -8,6 +8,9 @@ abstract class LoginRepository {
   Future<Either<ErrorModel, SuccessModel>> login(
     Params? params,
   );
+  Future<Either<ErrorModel, SuccessModel>> deleteAccount(
+
+  );
   Future<Either<ErrorModel, SuccessModel>> register(
       String userName, String email, String password, String phone
   );

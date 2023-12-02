@@ -146,15 +146,40 @@ class _LoginBodyState extends State<LoginBody> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 10,),
-
-                      Row(children: [
-                        TextView(text: "Don't have an accont yet",style: Theme.of(context).textTheme.bodyLarge,),
-                        ButtonView(buttonType: ButtonType.textButton, onClick: (){
-                          context.router.push(RegisterPageAppRouter());
-
-                        },title: "Create account",)
-                      ],)
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        children: [
+                          TextView(
+                            text: "Don't have an accont yet",
+                            style: Theme.of(context).textTheme.bodyLarge,
+                          ),
+                          ButtonView(
+                            buttonType: ButtonType.textButton,
+                            onClick: () {
+                              context.router.push(RegisterPageAppRouter());
+                            },
+                            title: "Create account",
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      Center(
+                        child: ButtonView(
+                          buttonType: ButtonType.textButton,
+                          buttonStyle: const ButtonStyle(
+                            textStyle: MaterialStatePropertyAll<TextStyle>(
+                                TextStyle(fontSize: 20)),
+                          ),
+                          onClick: () {
+                            context.router.replaceNamed("main");
+                          },
+                          title: "Continue as Guest",
+                        ),
+                      )
                     ],
                   ),
                 ),

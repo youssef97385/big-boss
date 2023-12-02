@@ -8,6 +8,7 @@ abstract class LoginDataSource {
   Future<Map<String, dynamic>> login(Map<String, dynamic> data);
   Future<Map<String, dynamic>> register(Map<String, dynamic> data);
   Future<Map<String, dynamic>> verifyPhoneNumber(String userID );
+  Future<Map<String, dynamic>> deleteAccount( );
 }
 
 class LoginDataSourceImpl implements LoginDataSource {
@@ -43,6 +44,15 @@ class LoginDataSourceImpl implements LoginDataSource {
   Future<Map<String, dynamic>> verifyPhoneNumber(String userID) async {
     final Response response = await httpManager.request(
       path: "/Authenticate/VerifyPhoneNumber?userId=$userID",
+      method: HttpMethods.Post,
+    );
+    return json.decode(response.data as String) as Map<String, dynamic>;
+  }
+
+  @override
+  Future<Map<String, dynamic>> deleteAccount() async {
+    final Response response = await httpManager.request(
+      path: "/Authenticate/DeleteAccount",
       method: HttpMethods.Post,
     );
     return json.decode(response.data as String) as Map<String, dynamic>;

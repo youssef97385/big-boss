@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bigboss/src/core/common/domain/entites/generic_entity.dart';
 import 'package:bigboss/src/core/common/widgets/card_view.dart';
+import 'package:bigboss/src/core/common/widgets/image_view.dart';
 import 'package:bigboss/src/core/common/widgets/text_view.dart';
 import 'package:bigboss/src/features/home_page/presentation/logic/accounts_cubit/accounts_cubit.dart';
 import 'package:bigboss/src/features/home_page/presentation/logic/accounts_cubit/accounts_state.dart';
@@ -44,7 +45,7 @@ class AccountsWidget extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: SizedBox(
-                        width: 140,
+                        width: 150,
                         child: CardView(
                             onTap: () {
                               context.router.push(ProductsPageAppRouter(
@@ -55,18 +56,18 @@ class AccountsWidget extends StatelessWidget {
                               children: [
                                 SizedBox(
                                     height: 120,
-                                    child: Image.network(
-                                      accounts[index].image ?? "",
-                                      fit: BoxFit.fill,
+                                    child: ImageBuilder(
+                                      imageUrl: accounts[index].image ?? "",
                                     )),
                                 const SizedBox(
                                   height: 12,
                                 ),
                                 TextView(
-                                    text: "${accounts[index].name}",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium,textAlignment: TextAlign.center,),
+                                  text: "${accounts[index].name}",
+                                  style:
+                                      Theme.of(context).textTheme.titleMedium,
+                                  textAlignment: TextAlign.center,
+                                ),
                               ],
                             )),
                       ),

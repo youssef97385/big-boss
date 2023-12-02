@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bigboss/src/core/common/widgets/card_view.dart';
 import 'package:bigboss/src/core/common/widgets/text_view.dart';
 import 'package:bigboss/src/features/shopping_cart/domain/entities/cart_item_entity.dart';
@@ -19,74 +21,87 @@ class CartBody extends StatelessWidget {
       }, loading: () {
         return LoadingView();
       }, cartItems: (List<CartItemEntity> items) {
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 8.0),
-          child: ListView.builder(
-              shrinkWrap: true,
-              physics: ScrollPhysics(),
-              itemCount: items.length,
-              itemBuilder: (context, index) {
-                return Card(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: 150,
-                        height: 150,
-                        child: Image.network(
-                          items[index].image,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
+        log("items ${items}");
+        return items.isEmpty
+            ? Center(
+              child: TextView(
+                  text: "Your Shopping Cart is Empty",
+                  style: Theme.of(context).textTheme.headlineLarge,
+                ),
+            )
+            : Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: ListView.builder(
+                    shrinkWrap: true,
+                    physics: ScrollPhysics(),
+                    itemCount: items.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(
-                              width: 300,
-                              child: TextView(
-                                text: "${items[index].name}",
-                                style: Theme.of(context).textTheme.titleMedium,
+                              width: 150,
+                              height: 150,
+                              child: Image.network(
+                                items[index].image,
+                                fit: BoxFit.fill,
                               ),
                             ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Card(
-                              color: Theme.of(context).colorScheme.secondary,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextView(
-                                  text: "${items[index].count}",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleMedium!
-                                      .copyWith(color: Colors.white),
-                                ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    width: 300,
+                                    child: TextView(
+                                      text: "${items[index].name}",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Card(
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: TextView(
+                                        text: "${items[index].count}",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium!
+                                            .copyWith(color: Colors.white),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  TextView(
+                                    text: items[index].price.toString() +
+                                            " IQD" ??
+                                        "",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleLarge!
+                                        .copyWith(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary),
+                                  ),
+                                ],
                               ),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            TextView(
-                              text: items[index].price.toString() + "\$" ?? "",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge!
-                                  .copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .primary),
-                            ),
+                            )
                           ],
                         ),
-                      )
-                    ],
-                  ),
-                );
-              }),
-        );
+                      );
+                    }),
+              );
       });
     });
   }

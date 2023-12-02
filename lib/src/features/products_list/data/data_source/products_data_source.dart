@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:bigboss/src/features/products_list/data/models/product_model.dart';
 import 'package:dio/dio.dart';
 
@@ -42,6 +43,8 @@ class ProductsDataSourceImpl implements ProductsDataSource {
       path: "/Ecommerce/EproductsBySubCategoryId?subCategoryId=$id",
       method: HttpMethods.Get,
     );
+
+log("RESPONSE## $response" );
     List<dynamic> jsonData = json.decode(response.data);
 
     List<ProductModel> model = jsonData

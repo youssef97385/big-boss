@@ -5,6 +5,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../app/routes/router.gr.dart';
 import '../../core/common/widgets/app_bar_view.dart';
 import '../../core/constants/const.dart';
+import '../../core/utils/managers/database/database_manager.dart';
+import '../../injection.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -39,17 +41,32 @@ class _MainPageState extends State<MainPage> {
           OrderPageAppRouter(),
           CartPageAppRouter(),
         ],
-        appBarBuilder: (_, tabsRouter) => const PreferredSize(
-          preferredSize: Size(double.infinity, 60),
+        appBarBuilder: (_, tabsRouter) => PreferredSize(
+          preferredSize: Size(double.infinity, 64),
           child: AppBarView(
             appBarTitle: '',
+            customeOption:
+                serviceLocator<DatabaseManager>().getData("token") == null
+                    ? null
+                    : InkWell(
+                        onTap: () {
+                          context.router.navigate(MenuPageAppRouter());
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Icon(
+                            (Icons.person),
+                            size: 32,
+                          ),
+                        ),
+                      ),
           ),
         ),
         bottomNavigationBuilder: (_, tabsRouter) {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 24),
             child: SizedBox(
-              height: 74,
+              height: 95,
               child: ClipRRect(
                 borderRadius: const BorderRadius.all(
                   Radius.circular(12),

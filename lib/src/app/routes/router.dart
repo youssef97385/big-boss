@@ -4,6 +4,7 @@ import '../../features/home_page/presentation/widgets/home_page.dart';
 import '../../features/intro/intro_page.dart';
 import '../../features/login/presentation/widgets/login_page.dart';
 import '../../features/main/main_page.dart';
+import '../../features/menu_page/presentation/widgets/menu_page.dart';
 import '../../features/product_page/presentation/widgets/products_page.dart';
 import '../../features/products_list/presentation/widgets/products_page.dart';
 import '../../features/register/presentation/widgets/register_page.dart';
@@ -50,6 +51,11 @@ import '../../features/sub_categories/presentation/sub_categories_page.dart';
       page: ProductScreen,
     ),
     AutoRoute(
+        path: 'MenuPage',
+        name: 'MenuPageAppRouter',
+        page: MenuPage,
+       ),
+    AutoRoute(
       path: 'main',
       name: 'mainAppRouter',
       page: MainPage,
@@ -69,6 +75,7 @@ import '../../features/sub_categories/presentation/sub_categories_page.dart';
             name: 'OrderPageAppRouter',
             page: OrderPage,
             maintainState: false),
+
       ],
     )
   ],
