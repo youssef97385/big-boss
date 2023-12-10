@@ -16,6 +16,9 @@ import 'package:bigboss/src/features/orders_page/presentation/bloc/orders_bloc.d
 import 'package:bigboss/src/features/products_list/data/data_source/products_data_source.dart';
 import 'package:bigboss/src/features/products_list/data/repository/products_repository.dart';
 import 'package:bigboss/src/features/products_list/presentation/logic/products_list_cubit.dart';
+import 'package:bigboss/src/features/search_page/cubit/search_cubit.dart';
+import 'package:bigboss/src/features/search_page/data_source/search_product_data_source.dart';
+import 'package:bigboss/src/features/search_page/data_source/search_repo.dart';
 import 'package:bigboss/src/features/shopping_cart/data/repository/cart_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -106,6 +109,12 @@ void initInjections(GetIt serviceLocator) {
 
   ///login feature
 
+  serviceLocator.registerFactory<SearchDataSource>(
+    () => SearchDataSourceImpl(
+      httpManager: serviceLocator(),
+    ),
+  );
+
   serviceLocator.registerFactory<LoginDataSource>(
     () => LoginDataSourceImpl(
       httpManager: serviceLocator(),
@@ -114,6 +123,11 @@ void initInjections(GetIt serviceLocator) {
 
   //* repositories
 
+  serviceLocator.registerFactory<SearchRepo>(
+    () => SearchRepoImpl(
+      dataSource: serviceLocator(),
+    ),
+  );
   serviceLocator.registerFactory<LoginRepository>(
     () => LoginRepositoryImpl(
       loginDataSource: serviceLocator(),
@@ -130,6 +144,11 @@ void initInjections(GetIt serviceLocator) {
 
   //* bloc/cubit
 
+  serviceLocator.registerFactory<SearchCubit>(
+    () => SearchCubit(
+      repository: serviceLocator(),
+    ),
+  );
   serviceLocator.registerFactory<LoginCubit>(
     () => LoginCubit(
       login: serviceLocator(),

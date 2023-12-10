@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/common/data/models/error_model/error_model.dart';
 
-
 class SubCategoryCubit extends Cubit<SubCategoryState> {
   ProductRepository repository;
 
@@ -15,17 +14,33 @@ class SubCategoryCubit extends Cubit<SubCategoryState> {
 
   Future<void> getProductsBySubCategory({
     required int id,
+    required int page,
   }) async {
-    emit(const SubCategoryState.loading());
+    if (page == 1) {
+      emit(const SubCategoryState.loading());
+    }
 
-    final result = await repository.getProductsBySubCategoryId(id);
+    final result = await repository.getProductsBySubCategoryId(id, page);
     result.fold(
-          (ErrorModel error) => emit(
-        SubCategoryState.error(error.error ?? ""),
-      ),
-          (List<ProductEntity> products) => emit(
-        SubCategoryState.success(products),
-      ),
-    );
+        (ErrorModel error) => emit(
+              SubCategoryState.error(error.error ?? ""),
+            ), (ProductsEntity productsEntity) {
+      List<ProductEntity> list = [];
+      if (page > 1) {
+        state.maybeWhen(
+            orElse: () {},
+            success: (prods,page,total) {
+              list = prods.toList();
+              list.addAll(productsEntity.products ?? []);
+              emit(SubCategoryState.success(list ?? [],
+                  productsEntity.pageNumber??0, productsEntity.totalPages??0));
+            });
+        return;
+      }
+      emit(
+        SubCategoryState.success(productsEntity.products ?? [],
+            productsEntity.pageNumber ?? 0, productsEntity.totalPages ?? 0),
+      );
+    });
   }
 }

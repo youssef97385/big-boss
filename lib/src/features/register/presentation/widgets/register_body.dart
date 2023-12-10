@@ -51,7 +51,7 @@ class _RegisterBodyState extends State<RegisterBody> {
                       barrierColor: Colors.black.withOpacity(0.6),
                       builder: (_) {
                         return AlertDialogView(
-                          content: errorModel.error ?? '',
+                          content: errorModel.message ?? '',
                         );
                       });
 

@@ -37,7 +37,7 @@ class CountriesWidget extends StatelessWidget {
               height: 16,
             ),
             SizedBox(
-              height: 135,
+              height: 104,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
@@ -53,21 +53,24 @@ class CountriesWidget extends StatelessWidget {
                       child: Column(
                         children: [
                           Container(
-                              height: 100.0,
-                              width: 100.0,
-                              margin:
-                                  const EdgeInsets.only(left: 5.0, right: 5.0),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(100.0),
-                                  border: Border.all(
-                                      width: 1.0,
-                                      style: BorderStyle.solid,
-                                      color: Color.fromARGB(255, 0, 0, 0)),
-                                  image: DecorationImage(
-                                      fit: BoxFit.fill,
-                                      image: NetworkImage(
-                                        entity[index].image ?? "",
-                                      )))),
+                            height: 80.0,
+                            width: 80.0,
+                            margin:
+                                const EdgeInsets.only(left: 5.0, right: 5.0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100.0),
+                              border: Border.all(
+                                  width: 1.0,
+                                  style: BorderStyle.solid,
+                                  color: Colors.black),
+                              image: DecorationImage(
+                                fit: BoxFit.fill,
+                                image: NetworkImage(
+                                  entity[index].image ?? "",
+                                ),
+                              ),
+                            ),
+                          ),
                           const SizedBox(
                             height: 8,
                           ),

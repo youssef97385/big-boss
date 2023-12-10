@@ -21,7 +21,7 @@ class CartBody extends StatelessWidget {
       }, loading: () {
         return LoadingView();
       }, cartItems: (List<CartItemEntity> items) {
-        log("items ${items}");
+   
         return items.isEmpty
             ? Center(
               child: TextView(
@@ -41,7 +41,7 @@ class CartBody extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(
-                              width: 150,
+                              width: 110,
                               height: 150,
                               child: Image.network(
                                 items[index].image,
@@ -96,7 +96,18 @@ class CartBody extends StatelessWidget {
                                   ),
                                 ],
                               ),
+                            ),
+                            Spacer(),
+                            InkWell(
+                              onTap: (){
+                                BlocProvider.of<CartCubit>(context).deleteItemFromCart(cartItem: items[index]);
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Icon(Icons.delete,color: Colors.grey,),
+                              ),
                             )
+
                           ],
                         ),
                       );

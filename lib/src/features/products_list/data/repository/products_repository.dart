@@ -8,11 +8,11 @@ import '../../domain/entiities/product_endtity.dart';
 import '../models/products_categories_enum.dart';
 
 abstract class ProductRepository {
-  Future<Either<ErrorModel, List<ProductEntity>>> getProducts(
-      ProductCatsEnum productCatsEnum, int id);
+  Future<Either<ErrorModel, ProductsEntity>> getProducts(
+      ProductCatsEnum productCatsEnum, int id, int pageNumber);
 
-  Future<Either<ErrorModel, List<ProductEntity>>> getProductsBySubCategoryId(
-      int id);
+  Future<Either<ErrorModel,ProductsEntity>> getProductsBySubCategoryId(
+      int id,int page);
 }
 
 class ProductRepositoryImpl implements ProductRepository {
@@ -21,27 +21,29 @@ class ProductRepositoryImpl implements ProductRepository {
   ProductRepositoryImpl({required this.productsDataSource});
 
   @override
-  Future<Either<ErrorModel, List<ProductEntity>>> getProducts(
-      productCatsEnum, id) async {
+  Future<Either<ErrorModel, ProductsEntity>> getProducts(productCatsEnum, id,
+      int pageNumber) async {
     try {
+      print("TTTTTTT====== $pageNumber");
       String path = "";
       if (productCatsEnum == ProductCatsEnum.account) {
-        path = "EproductsByAccountId?accountId=$id";
+        path =
+        "EproductsByAccountIdP?PageNumber=$pageNumber&PageSize=20&accountId=$id";
       }
       if (productCatsEnum == ProductCatsEnum.subcategory) {
         path = "EproductsBySubCategoryId?subCategoryId=$id";
       }
       if (productCatsEnum == ProductCatsEnum.brand) {
-        path = "EproductsByBrandId?brandId=$id";
+        path = "EproductsByBrandIdP?PageNumber=$pageNumber&PageSize=20&brandId=$id";
       }
       if (productCatsEnum == ProductCatsEnum.country) {
-        path = "EproductsByCountryId?countryId=$id";
+        path = "EproductsByCountryIdP?PageNumber=$pageNumber&PageSize=20&countryId=$id";
       }
 
       final result = await productsDataSource.getProducts(path: path);
 
       List<ProductEntity> products = [];
-      for (ProductModel model in result ?? []) {
+      for (ProductModel model in result?.data ?? []) {
         String link = "";
         if (model.link?.isNotEmpty ?? false) {
           link = model.link?[0] ?? "";
@@ -57,8 +59,12 @@ class ProductRepositoryImpl implements ProductRepository {
           stringSizes: model.sizes ?? "",
         ));
       }
+      ProductsEntity productsEntity = ProductsEntity(products: products,
+          pageNumber: result?.pageNumber ?? 0,
+          totalPages: result?.totalPages ?? 0);
 
-      return Right(products);
+
+      return Right(productsEntity);
     } catch (e, stackTrace) {
       print("ERROR Prod $e");
       return Left(errorParse(e, stackTrace));
@@ -66,14 +72,14 @@ class ProductRepositoryImpl implements ProductRepository {
   }
 
   @override
-  Future<Either<ErrorModel, List<ProductEntity>>> getProductsBySubCategoryId(
-      int id) async {
+  Future<Either<ErrorModel, ProductsEntity>> getProductsBySubCategoryId(
+      int id,int page) async {
     try {
       final result =
-          await productsDataSource.getProductsBySubCategoryId(id: id);
+      await productsDataSource.getProductsBySubCategoryId(id: id,page: page);
 
       List<ProductEntity> products = [];
-      for (ProductModel model in result ?? []) {
+      for (ProductModel model in result?.data ?? []) {
         String link = "";
         if (model.link?.isNotEmpty ?? false) {
           link = model.link?[0] ?? "";
@@ -89,8 +95,10 @@ class ProductRepositoryImpl implements ProductRepository {
           stringSizes: model.sizes ?? "",
         ));
       }
-
-      return Right(products);
+      ProductsEntity productsEntity = ProductsEntity(products: products,
+          pageNumber: result?.pageNumber ?? 0,
+          totalPages: result?.totalPages ?? 0);
+      return Right(productsEntity);
     } catch (e, stackTrace) {
       print("ERROR Prod $e");
       return Left(errorParse(e, stackTrace));

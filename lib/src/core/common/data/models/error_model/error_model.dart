@@ -5,11 +5,15 @@ part 'error_model.g.dart';
 
 @JsonSerializable()
 class ErrorModel extends Equatable {
- const ErrorModel({
+  const ErrorModel({
     this.error,
+    this.message,
+    this.title,
   });
 
   final String? error;
+  final String? message;
+  final String? title;
 
   factory ErrorModel.fromJson(Map<String, dynamic> json) =>
       _$ErrorModelFromJson(json);
@@ -19,9 +23,10 @@ class ErrorModel extends Equatable {
   @override
   List<Object?> get props => [
         error,
+        title,
+        message,
       ];
 }
-
 
 @JsonSerializable()
 class Error extends Equatable {
@@ -46,11 +51,10 @@ class Error extends Equatable {
 
   @override
   List<Object?> get props => [
-    code,
-    title,
-    message,
-    path,
-    originalError,
-  ];
+        code,
+        title,
+        message,
+        path,
+        originalError,
+      ];
 }
-

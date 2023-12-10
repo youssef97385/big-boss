@@ -15,5 +15,5 @@ abstract class ProductsListState with _$ProductsListState {
   const factory ProductsListState.error(String message) = _Error;
 
   const factory ProductsListState.success(
-      List<ProductEntity> accounts) = _Success;
+      List<ProductEntity> accounts, int pageNumber,int totalPages) = _Success;
 }

@@ -7,7 +7,6 @@ import 'package:bigboss/src/features/products_list/presentation/logic/products_l
 import 'package:bigboss/src/features/products_list/presentation/logic/products_list_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../core/common/widgets/error_view.dart';
 import '../../../../core/common/widgets/loading_view.dart';
 import '../../data/models/products_categories_enum.dart';
@@ -27,11 +26,30 @@ class ProductsPageBody extends StatefulWidget {
 }
 
 class _ProductsPageBodyState extends State<ProductsPageBody> {
+  ScrollController _scrollController = ScrollController();
+  List<ProductEntity> productEntityList = [];
+  int page = 1;
+
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<ProductsListCubit>(context)
-        .getProducts(id: widget.id, productCatsEnum: widget.productCatsEnum);
+    BlocProvider.of<ProductsListCubit>(context).getProducts(
+        id: widget.id,
+        productCatsEnum: widget.productCatsEnum,
+        pageNumber: 1,
+       );
+    _scrollController.addListener(_loadMoreData);
+  }
+
+  void _loadMoreData() {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      BlocProvider.of<ProductsListCubit>(context).getProducts(
+          id: widget.id,
+          productCatsEnum: widget.productCatsEnum,
+          pageNumber: page + 1,
+         );
+    }
   }
 
   @override
@@ -44,15 +62,20 @@ class _ProductsPageBodyState extends State<ProductsPageBody> {
         return ErrorView(error: error, onRefresh: () {});
       }, loading: () {
         return LoadingView();
-      }, success: (List<ProductEntity> products) {
+      }, success: (List<ProductEntity> products, pageNumber, totalPages) {
+        productEntityList = products;
+        page = pageNumber;
         return GridView.builder(
+          controller: _scrollController,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2, // number of items in each row
             mainAxisSpacing: 8.0, // spacing between rows
             crossAxisSpacing: 8.0, // spacing between columns
           ),
-          padding: const EdgeInsets.all(8.0), // padding around the grid
-          itemCount: products.length, // total number of items
+          padding: const EdgeInsets.all(8.0),
+          // padding around the grid
+          itemCount: products.length,
+          // total number of items
           itemBuilder: (context, index) {
             return InkWell(
               onTap: () {

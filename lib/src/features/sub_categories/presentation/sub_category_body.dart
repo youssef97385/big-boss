@@ -25,17 +25,29 @@ class SubCategoryBody extends StatefulWidget {
 }
 
 class _SubCategoryBodyState extends State<SubCategoryBody> {
+  ScrollController _scrollController = ScrollController();
   int chosenIndex = 0;
-
+int pageNumber = 1;
   @override
   void initState() {
     super.initState();
     if (widget.subCats.isNotEmpty) {
       BlocProvider.of<SubCategoryCubit>(context)
-          .getProductsBySubCategory(id: widget.subCats[0].id ?? 0);
+          .getProductsBySubCategory(id: widget.subCats[0].id ?? 0,page: 1);
+    }
+    _scrollController.addListener(_loadMoreData);
+  }
+  void _loadMoreData() {
+
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      BlocProvider.of<SubCategoryCubit>(context).getProductsBySubCategory(
+        id: widget.subCats[chosenIndex].id ??0,
+        page: pageNumber+1,
+
+      );
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -47,6 +59,7 @@ class _SubCategoryBodyState extends State<SubCategoryBody> {
         SizedBox(
           height: 60,
           child: ListView.builder(
+
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.all(8.0),
             // padding around the grid
@@ -58,9 +71,10 @@ class _SubCategoryBodyState extends State<SubCategoryBody> {
                 onTap: () {
                   setState(() {
                     chosenIndex = index;
+                    pageNumber = 1;
                     BlocProvider.of<SubCategoryCubit>(context)
                         .getProductsBySubCategory(
-                            id: widget.subCats[index].id ?? 0);
+                            id: widget.subCats[index].id ?? 0,page: 1);
                   });
                 },
                 child: Card(
@@ -94,9 +108,11 @@ class _SubCategoryBodyState extends State<SubCategoryBody> {
             return ErrorView(error: error, onRefresh: () {});
           }, loading: () {
             return LoadingView();
-          }, success: (List<ProductEntity> products) {
+          }, success: (List<ProductEntity> products,page,total) {
+            pageNumber = page;
             return Expanded(
               child: GridView.builder(
+                controller: _scrollController,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, // number of items in each row
                   mainAxisSpacing: 8.0, // spacing between rows

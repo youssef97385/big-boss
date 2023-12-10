@@ -19,7 +19,7 @@ class OrdersBloc extends Cubit<OrdersState> {
     final result = await repository.getAllOrders();
     result.fold(
       (ErrorModel error) => emit(
-        OrdersState.error(error.error ?? ""),
+        OrdersState.error(error.message  ?? error.title??""),
       ),
       (List<OrderModel> orders) => emit(
         OrdersState.success(orders),

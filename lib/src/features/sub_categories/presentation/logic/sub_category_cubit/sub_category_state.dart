@@ -15,5 +15,5 @@ abstract class SubCategoryState with _$SubCategoryState {
   const factory SubCategoryState.error(String message) = _Error;
 
   const factory SubCategoryState.success(
-      List<ProductEntity> accounts) = _Success;
+      List<ProductEntity> accounts,int pageNumber,int totalPages) = _Success;
 }

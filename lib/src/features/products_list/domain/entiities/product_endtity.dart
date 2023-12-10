@@ -5,6 +5,23 @@ import 'package:flutter/material.dart';
 
 import '../../data/models/price_model.dart';
 
+class ProductsEntity extends Equatable {
+  final List<ProductEntity>? products;
+  final int? pageNumber;
+  final int? totalPages;
+
+  ProductsEntity(
+      {required this.products,
+      required this.pageNumber,
+      required this.totalPages});
+
+  @override
+  List<Object?> get props => [
+        products,
+        pageNumber,
+      ];
+}
+
 class ProductEntity extends Equatable {
   final int? id;
   final String? name;

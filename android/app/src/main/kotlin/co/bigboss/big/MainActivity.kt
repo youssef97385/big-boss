@@ -1,4 +1,4 @@
-package co.big2.bigboss3
+package co.bigboss.big
 
 import io.flutter.embedding.android.FlutterActivity
 

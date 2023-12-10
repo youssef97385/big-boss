@@ -40,6 +40,7 @@ class _MainPageState extends State<MainPage> {
           HomePageAppRouter(),
           OrderPageAppRouter(),
           CartPageAppRouter(),
+          SearchPageAppRouter(),
         ],
         appBarBuilder: (_, tabsRouter) => PreferredSize(
           preferredSize: Size(double.infinity, 64),
@@ -63,38 +64,45 @@ class _MainPageState extends State<MainPage> {
           ),
         ),
         bottomNavigationBuilder: (_, tabsRouter) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 24),
-            child: SizedBox(
-              height: 95,
-              child: ClipRRect(
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(12),
-                ),
-                child: BottomNavigationBar(
-                  currentIndex: currentIndex = tabsRouter.activeIndex,
-                  onTap: tabsRouter.setActiveIndex,
-                  items: [
-                    BottomNavigationBarItem(
-                      icon: const Icon(Icons.home),
-                      label: "Home".tr(),
-                      tooltip: '',
-                      activeIcon: const Icon(Icons.home),
-                    ),
-                    BottomNavigationBarItem(
-                      icon: const Icon(Icons.shopify_sharp),
-                      label: 'Orders'.tr(),
-                      tooltip: '',
-                      activeIcon: const Icon(Icons.shopify_sharp),
-                    ),
-                    BottomNavigationBarItem(
-                      icon: const Icon(Icons.shopping_cart),
-                      label: 'Cart'.tr(),
-                      tooltip: '',
-                      activeIcon: const Icon(Icons.shopping_cart),
-                    ),
-                  ],
-                ),
+          return Container(
+
+            height: 95,
+            child: ClipRRect(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(12),
+              ),
+              child: BottomNavigationBar(
+                  selectedIconTheme:IconThemeData(color:Theme.of(context).colorScheme.primary ),
+                unselectedIconTheme: IconThemeData(color:Colors.grey[700] ),
+                selectedItemColor: Theme.of(context).colorScheme.primary,
+                currentIndex: currentIndex = tabsRouter.activeIndex,
+                onTap: tabsRouter.setActiveIndex,
+                items: [
+                  BottomNavigationBarItem(
+                    icon:  Icon(Icons.home,),
+                    label: "Home".tr(),
+                    tooltip: '',
+                    activeIcon:  Icon(Icons.home,),
+                  ),
+                  BottomNavigationBarItem(
+                    icon:  Icon(Icons.shopify_sharp),
+                    label: 'Orders'.tr(),
+                    tooltip: '',
+                    activeIcon:  Icon(Icons.shopify_sharp,),
+                  ),
+                  BottomNavigationBarItem(
+                    icon:  Icon(Icons.shopping_cart,),
+                    label: 'Cart'.tr(),
+                    tooltip: '',
+                    activeIcon:  Icon(Icons.shopping_cart,),
+                  ),
+                  BottomNavigationBarItem(
+                    icon:  Icon(Icons.search,),
+                    label: 'Search'.tr(),
+                    tooltip: '',
+                    activeIcon:  Icon(Icons.search,),
+                  ),
+                ],
               ),
             ),
           );

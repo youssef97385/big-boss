@@ -29,7 +29,9 @@ class OrdersBody extends StatelessWidget {
               return state.maybeWhen(orElse: () {
                 return SizedBox();
               }, error: (String error) {
-                return ErrorView(error: error, onRefresh: () {});
+                return ErrorView(error: error, onRefresh: () {
+                  BlocProvider.of<OrdersBloc>(context).getOrders();
+                });
               }, loading: () {
                 return LoadingView();
               }, success: (List<OrderModel> orders) {

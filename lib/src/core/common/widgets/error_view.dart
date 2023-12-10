@@ -27,7 +27,7 @@ class ErrorView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          LogoView(logoSize:logoSize ?? 40),
+          Icon(Icons.error,size: 120,color: Theme.of(context).colorScheme.primary,),
           const SizedBox(height: 18.0),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -44,14 +44,7 @@ class ErrorView extends StatelessWidget {
             onClick: onRefresh,
             icon: Icons.refresh,
           ),
-          const SizedBox(height: 4.0),
-          ButtonView(
-            buttonType: ButtonType.textButton,
-            title: "Contact_Us_Tab".tr(),
-            onClick: () {
-              context.router.pushNamed('contactus');
-            },
-          ),
+
         ],
       ),
     );

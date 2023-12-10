@@ -21,7 +21,9 @@ mixin _$SubCategoryState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(List<ProductEntity> accounts) success,
+    required TResult Function(
+            List<ProductEntity> accounts, int pageNumber, int totalPages)
+        success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +31,9 @@ mixin _$SubCategoryState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(List<ProductEntity> accounts)? success,
+    TResult? Function(
+            List<ProductEntity> accounts, int pageNumber, int totalPages)?
+        success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +41,9 @@ mixin _$SubCategoryState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(List<ProductEntity> accounts)? success,
+    TResult Function(
+            List<ProductEntity> accounts, int pageNumber, int totalPages)?
+        success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -127,7 +133,9 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(List<ProductEntity> accounts) success,
+    required TResult Function(
+            List<ProductEntity> accounts, int pageNumber, int totalPages)
+        success,
   }) {
     return initial();
   }
@@ -138,7 +146,9 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(List<ProductEntity> accounts)? success,
+    TResult? Function(
+            List<ProductEntity> accounts, int pageNumber, int totalPages)?
+        success,
   }) {
     return initial?.call();
   }
@@ -149,7 +159,9 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(List<ProductEntity> accounts)? success,
+    TResult Function(
+            List<ProductEntity> accounts, int pageNumber, int totalPages)?
+        success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -241,7 +253,9 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(List<ProductEntity> accounts) success,
+    required TResult Function(
+            List<ProductEntity> accounts, int pageNumber, int totalPages)
+        success,
   }) {
     return loading();
   }
@@ -252,7 +266,9 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(List<ProductEntity> accounts)? success,
+    TResult? Function(
+            List<ProductEntity> accounts, int pageNumber, int totalPages)?
+        success,
   }) {
     return loading?.call();
   }
@@ -263,7 +279,9 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(List<ProductEntity> accounts)? success,
+    TResult Function(
+            List<ProductEntity> accounts, int pageNumber, int totalPages)?
+        success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -381,7 +399,9 @@ class _$ErrorImpl implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(List<ProductEntity> accounts) success,
+    required TResult Function(
+            List<ProductEntity> accounts, int pageNumber, int totalPages)
+        success,
   }) {
     return error(message);
   }
@@ -392,7 +412,9 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(List<ProductEntity> accounts)? success,
+    TResult? Function(
+            List<ProductEntity> accounts, int pageNumber, int totalPages)?
+        success,
   }) {
     return error?.call(message);
   }
@@ -403,7 +425,9 @@ class _$ErrorImpl implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(List<ProductEntity> accounts)? success,
+    TResult Function(
+            List<ProductEntity> accounts, int pageNumber, int totalPages)?
+        success,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -465,7 +489,7 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<ProductEntity> accounts});
+  $Res call({List<ProductEntity> accounts, int pageNumber, int totalPages});
 }
 
 /// @nodoc
@@ -480,12 +504,22 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? accounts = null,
+    Object? pageNumber = null,
+    Object? totalPages = null,
   }) {
     return _then(_$SuccessImpl(
       null == accounts
           ? _value._accounts
           : accounts // ignore: cast_nullable_to_non_nullable
               as List<ProductEntity>,
+      null == pageNumber
+          ? _value.pageNumber
+          : pageNumber // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == totalPages
+          ? _value.totalPages
+          : totalPages // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -493,7 +527,8 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(final List<ProductEntity> accounts)
+  const _$SuccessImpl(
+      final List<ProductEntity> accounts, this.pageNumber, this.totalPages)
       : _accounts = accounts;
 
   final List<ProductEntity> _accounts;
@@ -505,8 +540,13 @@ class _$SuccessImpl implements _Success {
   }
 
   @override
+  final int pageNumber;
+  @override
+  final int totalPages;
+
+  @override
   String toString() {
-    return 'SubCategoryState.success(accounts: $accounts)';
+    return 'SubCategoryState.success(accounts: $accounts, pageNumber: $pageNumber, totalPages: $totalPages)';
   }
 
   @override
@@ -514,12 +554,16 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            const DeepCollectionEquality().equals(other._accounts, _accounts));
+            const DeepCollectionEquality().equals(other._accounts, _accounts) &&
+            (identical(other.pageNumber, pageNumber) ||
+                other.pageNumber == pageNumber) &&
+            (identical(other.totalPages, totalPages) ||
+                other.totalPages == totalPages));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_accounts));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_accounts), pageNumber, totalPages);
 
   @JsonKey(ignore: true)
   @override
@@ -533,9 +577,11 @@ class _$SuccessImpl implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(List<ProductEntity> accounts) success,
+    required TResult Function(
+            List<ProductEntity> accounts, int pageNumber, int totalPages)
+        success,
   }) {
-    return success(accounts);
+    return success(accounts, pageNumber, totalPages);
   }
 
   @override
@@ -544,9 +590,11 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(List<ProductEntity> accounts)? success,
+    TResult? Function(
+            List<ProductEntity> accounts, int pageNumber, int totalPages)?
+        success,
   }) {
-    return success?.call(accounts);
+    return success?.call(accounts, pageNumber, totalPages);
   }
 
   @override
@@ -555,11 +603,13 @@ class _$SuccessImpl implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(List<ProductEntity> accounts)? success,
+    TResult Function(
+            List<ProductEntity> accounts, int pageNumber, int totalPages)?
+        success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(accounts);
+      return success(accounts, pageNumber, totalPages);
     }
     return orElse();
   }
@@ -603,9 +653,12 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements SubCategoryState {
-  const factory _Success(final List<ProductEntity> accounts) = _$SuccessImpl;
+  const factory _Success(final List<ProductEntity> accounts,
+      final int pageNumber, final int totalPages) = _$SuccessImpl;
 
   List<ProductEntity> get accounts;
+  int get pageNumber;
+  int get totalPages;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;

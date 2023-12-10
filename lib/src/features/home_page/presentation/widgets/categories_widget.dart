@@ -35,7 +35,7 @@ class CategoriesWidget extends StatelessWidget {
               height: 16,
             ),
             SizedBox(
-              height: 160,
+              height: 135,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
@@ -49,13 +49,14 @@ class CategoriesWidget extends StatelessWidget {
                             catName: categories[index].name ?? ""));
                       },
                       child: SizedBox(
-                        width: 140,
+                        width: 130,
                         child: Padding(
                           padding: const EdgeInsets.all(4.0),
                           child: Column(
                             children: [
                               SizedBox(
-                                  height: 120,
+                                  height: 80,
+                                  width: 80,
                                   child: ImageBuilder(
                                     imageUrl: categories[index].image ?? "",
                                   )),
@@ -64,6 +65,7 @@ class CategoriesWidget extends StatelessWidget {
                               ),
                               TextView(
                                   text: "${categories[index].name}",
+                                  textAlignment: TextAlign.center,
                                   style:
                                       Theme.of(context).textTheme.titleMedium),
                             ],
