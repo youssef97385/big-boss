@@ -391,7 +391,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                       id: widget.productEntity?.id ?? 0,
                                       name: widget.productEntity?.name ?? "",
                                       image: widget.productEntity?.image ?? "",
-                                      price: finPrice * count,
+                                      price: finPrice,
                                       count: count));
                               setState(() {
                                 isProductAdded = true;

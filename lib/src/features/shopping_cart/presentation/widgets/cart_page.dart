@@ -61,7 +61,7 @@ class _CartPageState extends State<CartPage> {
                         }, cartItems: (List<CartItemEntity> items) {
                           double total = 0;
                           for (CartItemEntity item in items) {
-                            total += item.price;
+                            total += (item.price*item.count);
                           }
                           return TextView(
                             text: "$total IQD",

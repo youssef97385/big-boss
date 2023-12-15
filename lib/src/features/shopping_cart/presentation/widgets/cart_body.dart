@@ -83,7 +83,7 @@ class CartBody extends StatelessWidget {
                                     height: 10,
                                   ),
                                   TextView(
-                                    text: items[index].price.toString() +
+                                    text: (items[index].price*items[index].count).toString() +
                                             " IQD" ??
                                         "",
                                     style: Theme.of(context)

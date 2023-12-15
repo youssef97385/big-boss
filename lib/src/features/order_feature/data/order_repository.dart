@@ -44,7 +44,7 @@ class OrderRepoImpl implements OrderRepo {
           "price": cartItemEntity.price,
           "remark": "string"
         });
-        netTotal += cartItemEntity.price ?? 0;
+        netTotal +=(cartItemEntity.price*cartItemEntity.count) ?? 0;
       }
 
       var data = {
