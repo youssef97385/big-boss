@@ -9,6 +9,7 @@ part of 'login_model.dart';
 LoginModel _$LoginModelFromJson(Map<String, dynamic> json) => LoginModel(
       token: json['token'] as String?,
       userId: json['userId'] as String?,
+      phone: json['phone'] as String?,
       isPhoneNumberConfirmed: json['isPhoneNumberConfirmed'] as bool?,
     );
 
@@ -16,5 +17,6 @@ Map<String, dynamic> _$LoginModelToJson(LoginModel instance) =>
     <String, dynamic>{
       'token': instance.token,
       'userId': instance.userId,
+      'phone': instance.phone,
       'isPhoneNumberConfirmed': instance.isPhoneNumberConfirmed,
     };

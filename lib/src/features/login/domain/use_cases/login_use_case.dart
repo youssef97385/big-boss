@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 import '../../../../core/common/data/models/error_model/error_model.dart';
 import '../../../../core/common/data/models/success_model/success_model.dart';
 import '../entities/login_entity_form.dart';
+import '../entities/login_response_entity.dart';
 import '../repository/login_repository.dart';
 
 class Login {
@@ -12,7 +13,7 @@ class Login {
   final LoginRepository repository;
 
   @override
-  Future<Either<ErrorModel, SuccessModel>> call(
+  Future<Either<ErrorModel, LoginResponseEntity>> call(
     Params? params,
   ) {
     return repository.login(params);

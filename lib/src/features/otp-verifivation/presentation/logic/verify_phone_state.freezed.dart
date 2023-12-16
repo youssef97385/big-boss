@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'login_state.dart';
+part of 'verify_phone_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,10 +15,10 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$LoginState {
+mixin _$VerifyPhoneState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String phone, bool isVerified) successLogin,
+    required TResult Function() success,
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(ErrorModel errorModel) error,
@@ -26,7 +26,7 @@ mixin _$LoginState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String phone, bool isVerified)? successLogin,
+    TResult? Function()? success,
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(ErrorModel errorModel)? error,
@@ -34,7 +34,7 @@ mixin _$LoginState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String phone, bool isVerified)? successLogin,
+    TResult Function()? success,
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(ErrorModel errorModel)? error,
@@ -43,7 +43,7 @@ mixin _$LoginState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SuccessLogin value) successLogin,
+    required TResult Function(_Success value) success,
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
@@ -51,7 +51,7 @@ mixin _$LoginState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SuccessLogin value)? successLogin,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
@@ -59,7 +59,7 @@ mixin _$LoginState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SuccessLogin value)? successLogin,
+    TResult Function(_Success value)? success,
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
@@ -69,16 +69,16 @@ mixin _$LoginState {
 }
 
 /// @nodoc
-abstract class $LoginStateCopyWith<$Res> {
-  factory $LoginStateCopyWith(
-          LoginState value, $Res Function(LoginState) then) =
-      _$LoginStateCopyWithImpl<$Res, LoginState>;
+abstract class $VerifyPhoneStateCopyWith<$Res> {
+  factory $VerifyPhoneStateCopyWith(
+          VerifyPhoneState value, $Res Function(VerifyPhoneState) then) =
+      _$VerifyPhoneStateCopyWithImpl<$Res, VerifyPhoneState>;
 }
 
 /// @nodoc
-class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
-    implements $LoginStateCopyWith<$Res> {
-  _$LoginStateCopyWithImpl(this._value, this._then);
+class _$VerifyPhoneStateCopyWithImpl<$Res, $Val extends VerifyPhoneState>
+    implements $VerifyPhoneStateCopyWith<$Res> {
+  _$VerifyPhoneStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -87,108 +87,73 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
 }
 
 /// @nodoc
-abstract class _$$SuccessLoginImplCopyWith<$Res> {
-  factory _$$SuccessLoginImplCopyWith(
-          _$SuccessLoginImpl value, $Res Function(_$SuccessLoginImpl) then) =
-      __$$SuccessLoginImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String phone, bool isVerified});
+abstract class _$$SuccessImplCopyWith<$Res> {
+  factory _$$SuccessImplCopyWith(
+          _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
+      __$$SuccessImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SuccessLoginImplCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res, _$SuccessLoginImpl>
-    implements _$$SuccessLoginImplCopyWith<$Res> {
-  __$$SuccessLoginImplCopyWithImpl(
-      _$SuccessLoginImpl _value, $Res Function(_$SuccessLoginImpl) _then)
+class __$$SuccessImplCopyWithImpl<$Res>
+    extends _$VerifyPhoneStateCopyWithImpl<$Res, _$SuccessImpl>
+    implements _$$SuccessImplCopyWith<$Res> {
+  __$$SuccessImplCopyWithImpl(
+      _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? phone = null,
-    Object? isVerified = null,
-  }) {
-    return _then(_$SuccessLoginImpl(
-      null == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String,
-      null == isVerified
-          ? _value.isVerified
-          : isVerified // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$SuccessLoginImpl implements _SuccessLogin {
-  const _$SuccessLoginImpl(this.phone, this.isVerified);
-
-  @override
-  final String phone;
-  @override
-  final bool isVerified;
+class _$SuccessImpl implements _Success {
+  const _$SuccessImpl();
 
   @override
   String toString() {
-    return 'LoginState.successLogin(phone: $phone, isVerified: $isVerified)';
+    return 'VerifyPhoneState.success()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SuccessLoginImpl &&
-            (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.isVerified, isVerified) ||
-                other.isVerified == isVerified));
+        (other.runtimeType == runtimeType && other is _$SuccessImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, phone, isVerified);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SuccessLoginImplCopyWith<_$SuccessLoginImpl> get copyWith =>
-      __$$SuccessLoginImplCopyWithImpl<_$SuccessLoginImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String phone, bool isVerified) successLogin,
+    required TResult Function() success,
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(ErrorModel errorModel) error,
   }) {
-    return successLogin(phone, isVerified);
+    return success();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String phone, bool isVerified)? successLogin,
+    TResult? Function()? success,
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(ErrorModel errorModel)? error,
   }) {
-    return successLogin?.call(phone, isVerified);
+    return success?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String phone, bool isVerified)? successLogin,
+    TResult Function()? success,
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(ErrorModel errorModel)? error,
     required TResult orElse(),
   }) {
-    if (successLogin != null) {
-      return successLogin(phone, isVerified);
+    if (success != null) {
+      return success();
     }
     return orElse();
   }
@@ -196,50 +161,43 @@ class _$SuccessLoginImpl implements _SuccessLogin {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SuccessLogin value) successLogin,
+    required TResult Function(_Success value) success,
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
   }) {
-    return successLogin(this);
+    return success(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SuccessLogin value)? successLogin,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
   }) {
-    return successLogin?.call(this);
+    return success?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SuccessLogin value)? successLogin,
+    TResult Function(_Success value)? success,
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
-    if (successLogin != null) {
-      return successLogin(this);
+    if (success != null) {
+      return success(this);
     }
     return orElse();
   }
 }
 
-abstract class _SuccessLogin implements LoginState {
-  const factory _SuccessLogin(final String phone, final bool isVerified) =
-      _$SuccessLoginImpl;
-
-  String get phone;
-  bool get isVerified;
-  @JsonKey(ignore: true)
-  _$$SuccessLoginImplCopyWith<_$SuccessLoginImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class _Success implements VerifyPhoneState {
+  const factory _Success() = _$SuccessImpl;
 }
 
 /// @nodoc
@@ -251,7 +209,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$VerifyPhoneStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -265,7 +223,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'LoginState.initial()';
+    return 'VerifyPhoneState.initial()';
   }
 
   @override
@@ -280,7 +238,7 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String phone, bool isVerified) successLogin,
+    required TResult Function() success,
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(ErrorModel errorModel) error,
@@ -291,7 +249,7 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String phone, bool isVerified)? successLogin,
+    TResult? Function()? success,
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(ErrorModel errorModel)? error,
@@ -302,7 +260,7 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String phone, bool isVerified)? successLogin,
+    TResult Function()? success,
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(ErrorModel errorModel)? error,
@@ -317,7 +275,7 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SuccessLogin value) successLogin,
+    required TResult Function(_Success value) success,
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
@@ -328,7 +286,7 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SuccessLogin value)? successLogin,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
@@ -339,7 +297,7 @@ class _$InitialImpl implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SuccessLogin value)? successLogin,
+    TResult Function(_Success value)? success,
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
@@ -352,7 +310,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements LoginState {
+abstract class _Initial implements VerifyPhoneState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -365,7 +323,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$VerifyPhoneStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
@@ -379,7 +337,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'LoginState.loading()';
+    return 'VerifyPhoneState.loading()';
   }
 
   @override
@@ -394,7 +352,7 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String phone, bool isVerified) successLogin,
+    required TResult Function() success,
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(ErrorModel errorModel) error,
@@ -405,7 +363,7 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String phone, bool isVerified)? successLogin,
+    TResult? Function()? success,
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(ErrorModel errorModel)? error,
@@ -416,7 +374,7 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String phone, bool isVerified)? successLogin,
+    TResult Function()? success,
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(ErrorModel errorModel)? error,
@@ -431,7 +389,7 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SuccessLogin value) successLogin,
+    required TResult Function(_Success value) success,
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
@@ -442,7 +400,7 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SuccessLogin value)? successLogin,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
@@ -453,7 +411,7 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SuccessLogin value)? successLogin,
+    TResult Function(_Success value)? success,
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
@@ -466,7 +424,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements LoginState {
+abstract class _Loading implements VerifyPhoneState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -481,7 +439,7 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$VerifyPhoneStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
@@ -511,7 +469,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'LoginState.error(errorModel: $errorModel)';
+    return 'VerifyPhoneState.error(errorModel: $errorModel)';
   }
 
   @override
@@ -535,7 +493,7 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String phone, bool isVerified) successLogin,
+    required TResult Function() success,
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(ErrorModel errorModel) error,
@@ -546,7 +504,7 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String phone, bool isVerified)? successLogin,
+    TResult? Function()? success,
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(ErrorModel errorModel)? error,
@@ -557,7 +515,7 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String phone, bool isVerified)? successLogin,
+    TResult Function()? success,
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(ErrorModel errorModel)? error,
@@ -572,7 +530,7 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SuccessLogin value) successLogin,
+    required TResult Function(_Success value) success,
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Error value) error,
@@ -583,7 +541,7 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SuccessLogin value)? successLogin,
+    TResult? Function(_Success value)? success,
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Error value)? error,
@@ -594,7 +552,7 @@ class _$ErrorImpl implements _Error {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SuccessLogin value)? successLogin,
+    TResult Function(_Success value)? success,
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Error value)? error,
@@ -607,7 +565,7 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements LoginState {
+abstract class _Error implements VerifyPhoneState {
   const factory _Error({required final ErrorModel errorModel}) = _$ErrorImpl;
 
   ErrorModel get errorModel;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-const String kIqBaseUrl = "https://bigboss-b2b-api.mod-tech.org/api";
+// const String kIqBaseUrl = "https://bigboss-b2b-api.mod-tech.org/api";
+const String kIqBaseUrl = "https://test-api.thebigboss.co/api";
 const String kGoogleCheckEndpoint = "https://google.com";
 // const kKu = 'ar';
 const kAr = 'ar';

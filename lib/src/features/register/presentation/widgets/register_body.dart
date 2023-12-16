@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../app/routes/router.dart';
+import '../../../../app/routes/router.gr.dart';
 import '../../../../core/common/data/models/error_model/error_model.dart';
 import '../../../../core/common/widgets/alert_dialog.dart';
 import '../../../../core/common/widgets/button_view.dart';
@@ -58,7 +59,7 @@ class _RegisterBodyState extends State<RegisterBody> {
                   // }
                 },
                 successLogin: () {
-                  context.router.replaceNamed("main");
+                  context.router.navigate(VerifyOtpScreenAppRouter(phoneNumber: phoneController.text));
                 });
           },
           builder: (context, state) => state.maybeWhen(
@@ -206,7 +207,7 @@ class _RegisterBodyState extends State<RegisterBody> {
                 );
               },
               loading: () => Center(child: LoadingView()),
-              successLogin: () => Center(child: LoadingView())),
+              ),
         ));
   }
 }

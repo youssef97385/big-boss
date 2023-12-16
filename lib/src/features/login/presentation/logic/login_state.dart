@@ -7,7 +7,7 @@ part 'login_state.freezed.dart';
 
 @freezed
 class LoginState with _$LoginState {
-  const factory LoginState.successLogin() = _SuccessLogin;
+  const factory LoginState.successLogin(String phone,bool isVerified) = _SuccessLogin;
 
   const factory LoginState.initial() = _Initial;
 

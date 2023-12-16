@@ -13,6 +13,7 @@ import 'package:bigboss/src/features/home_page/presentation/logic/slides_bloc/sl
 import 'package:bigboss/src/features/order_feature/bloc/order_cubit.dart';
 import 'package:bigboss/src/features/order_feature/data/order_data_source.dart';
 import 'package:bigboss/src/features/orders_page/presentation/bloc/orders_bloc.dart';
+import 'package:bigboss/src/features/otp-verifivation/data/data_source/send_otp_data_source.dart';
 import 'package:bigboss/src/features/products_list/data/data_source/products_data_source.dart';
 import 'package:bigboss/src/features/products_list/data/repository/products_repository.dart';
 import 'package:bigboss/src/features/products_list/presentation/logic/products_list_cubit.dart';
@@ -39,6 +40,9 @@ import 'features/login/domain/use_cases/login_use_case.dart';
 import 'features/login/presentation/logic/login_cubit.dart';
 import 'features/menu_page/presentation/logic/delete_account_bloc/delete_account_cubit.dart';
 import 'features/order_feature/data/order_repository.dart';
+import 'features/otp-verifivation/data/repository/send_otp_repository.dart';
+import 'features/otp-verifivation/presentation/logic/send_otp_cubit.dart';
+import 'features/otp-verifivation/presentation/logic/verify_phone_cubit.dart';
 import 'features/register/presentation/bloc/register_cubit.dart';
 import 'features/shopping_cart/presentation/logic/cart_cubit.dart';
 import 'features/sub_categories/presentation/logic/sub_category_cubit/sub_category_cubit.dart';
@@ -109,6 +113,11 @@ void initInjections(GetIt serviceLocator) {
 
   ///login feature
 
+  serviceLocator.registerFactory<SendOtpDataSource>(
+    () => SendOtpDataSourceImpl(
+      httpManager: serviceLocator(),
+    ),
+  );
   serviceLocator.registerFactory<SearchDataSource>(
     () => SearchDataSourceImpl(
       httpManager: serviceLocator(),
@@ -144,6 +153,16 @@ void initInjections(GetIt serviceLocator) {
 
   //* bloc/cubit
 
+  serviceLocator.registerFactory<VerifyPhoneCubit>(
+    () => VerifyPhoneCubit(
+      repository: serviceLocator(),
+    ),
+  );
+  serviceLocator.registerFactory<SendOtpCubit>(
+    () => SendOtpCubit(
+      repository: serviceLocator(),
+    ),
+  );
   serviceLocator.registerFactory<SearchCubit>(
     () => SearchCubit(
       repository: serviceLocator(),
@@ -211,6 +230,13 @@ void initInjections(GetIt serviceLocator) {
       categoriesDataSource: serviceLocator(),
       countriesDataSource: serviceLocator(),
       accountsDataSource: serviceLocator(),
+    ),
+  );
+
+  serviceLocator.registerFactory<SendOtpRepository>(
+    () => SendOtpRepositoryImpl(
+      sendOtpDataSource: serviceLocator(),
+      databaseManager: serviceLocator(),
     ),
   );
 

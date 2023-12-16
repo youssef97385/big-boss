@@ -54,140 +54,144 @@ class _LoginBodyState extends State<LoginBody> {
 
               // }
             },
-            successLogin: () {
-              context.router.replaceNamed("main");
+            successLogin: (String phone, bool isVerified) {
+              if (isVerified) {
+                context.router.replaceNamed("main");
+              } else {
+                context.router
+                    .navigate(VerifyOtpScreenAppRouter(phoneNumber: phone));
+              }
             });
       },
       builder: (context, state) => state.maybeWhen(
-          orElse: () {
-            return Form(
-              key: _formGlobalKey,
-              child: SingleChildScrollView(
-                keyboardDismissBehavior:
-                    ScrollViewKeyboardDismissBehavior.onDrag,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(
-                        height: 32,
+        orElse: () {
+          return Form(
+            key: _formGlobalKey,
+            child: SingleChildScrollView(
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 32,
+                    ),
+                    Center(
+                      child: SizedBox(
+                        width: 240,
+                        child: Image.asset(
+                          'assets/images/big-boss-splash-logo.png',
+                          fit: BoxFit.fill,
+                        ),
                       ),
-                      Center(
+                    ),
+                    const SizedBox(
+                      height: 48,
+                    ),
+                    TextView(
+                      text: "user name".tr(),
+                      style: Theme.of(context).textTheme.subtitle1,
+                    ),
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    TextFormFieldView(
+                      onSave: (String? content) {
+                        loginFormEntity?.userName = content;
+                      },
+                      textEditingController: userNameController,
+                      textFormFieldTypes: TextFormFieldTypes.text,
+                      hint: "User name",
+                      maxLines: 1,
+                      errorMessage: "this_field_is_required".tr(),
+                      minLength: 0,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    PasswordField(
+                      title: "Password".tr(),
+                      hint: "Your_password".tr(),
+                      controller: passwordController,
+                      onSaved: (content) {
+                        loginFormEntity?.password = content ?? "";
+                      },
+                      autovalidateMode: autovalidateMode,
+                    ),
+                    const SizedBox(
+                      height: 19,
+                    ),
+                    const SizedBox(
+                      height: 19,
+                    ),
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 32.0),
                         child: SizedBox(
-                          width: 240,
-                          child: Image.asset(
-                            'assets/images/big-boss-splash-logo.png',
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 48,
-                      ),
-                      TextView(
-                        text: "user name".tr(),
-                        style: Theme.of(context).textTheme.subtitle1,
-                      ),
-                      const SizedBox(
-                        height: 4,
-                      ),
-                      TextFormFieldView(
-                        onSave: (String? content) {
-                          loginFormEntity?.userName = content;
-                        },
-                        textEditingController: userNameController,
-                        textFormFieldTypes: TextFormFieldTypes.text,
-                        hint: "User name",
-                        maxLines: 1,
-                        errorMessage: "this_field_is_required".tr(),
-                        minLength: 0,
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      PasswordField(
-                        title: "Password".tr(),
-                        hint: "Your_password".tr(),
-                        controller: passwordController,
-                        onSaved: (content) {
-                          loginFormEntity?.password = content ?? "";
-                        },
-                        autovalidateMode: autovalidateMode,
-                      ),
-                      const SizedBox(
-                        height: 19,
-                      ),
-                      const SizedBox(
-                        height: 19,
-                      ),
-                      Center(
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 32.0),
-                          child: SizedBox(
-                            width: 280,
-                            height: 65,
-                            child: ButtonView(
-                              title: "Login".tr(),
-                              buttonType: ButtonType.soldButton,
-                              onClick: () {
-                                if (_formGlobalKey.currentState!.validate()) {
-                                  _formGlobalKey.currentState?.save();
-                                  BlocProvider.of<LoginCubit>(context).doLogin(
-                                      loginFormEntity ?? LoginFormEntity());
-                                } else {
-                                  setState(() {
-                                    autovalidateMode =
-                                        AutovalidateMode.onUserInteraction;
-                                  });
-                                }
-                              },
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          TextView(
-                            text: "Don't have an accont yet",
-                            style: Theme.of(context).textTheme.bodyLarge,
-                          ),
-                          ButtonView(
-                            buttonType: ButtonType.textButton,
+                          width: 280,
+                          height: 65,
+                          child: ButtonView(
+                            title: "Login".tr(),
+                            buttonType: ButtonType.soldButton,
                             onClick: () {
-                              context.router.push(RegisterPageAppRouter());
+                              if (_formGlobalKey.currentState!.validate()) {
+                                _formGlobalKey.currentState?.save();
+                                BlocProvider.of<LoginCubit>(context).doLogin(
+                                    loginFormEntity ?? LoginFormEntity());
+                              } else {
+                                setState(() {
+                                  autovalidateMode =
+                                      AutovalidateMode.onUserInteraction;
+                                });
+                              }
                             },
-                            title: "Create account",
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Center(
-                        child: ButtonView(
-                          buttonType: ButtonType.textButton,
-                          buttonStyle: const ButtonStyle(
-                            textStyle: MaterialStatePropertyAll<TextStyle>(
-                                TextStyle(fontSize: 20)),
                           ),
-                          onClick: () {
-                            context.router.replaceNamed("main");
-                          },
-                          title: "Continue as Guest",
                         ),
-                      )
-                    ],
-                  ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      children: [
+                        TextView(
+                          text: "Don't have an accont yet",
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        ButtonView(
+                          buttonType: ButtonType.textButton,
+                          onClick: () {
+                            context.router.push(RegisterPageAppRouter());
+                          },
+                          title: "Create account",
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Center(
+                      child: ButtonView(
+                        buttonType: ButtonType.textButton,
+                        buttonStyle: const ButtonStyle(
+                          textStyle: MaterialStatePropertyAll<TextStyle>(
+                              TextStyle(fontSize: 20)),
+                        ),
+                        onClick: () {
+                          context.router.replaceNamed("main");
+                        },
+                        title: "Continue as Guest",
+                      ),
+                    )
+                  ],
                 ),
               ),
-            );
-          },
-          loading: () => Center(child: LoadingView()),
-          successLogin: () => Center(child: LoadingView())),
+            ),
+          );
+        },
+        loading: () => Center(child: LoadingView()),
+      ),
     ));
   }
 }

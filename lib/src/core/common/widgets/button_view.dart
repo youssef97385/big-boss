@@ -14,6 +14,7 @@ class ButtonView extends StatelessWidget {
   final Color? iconColor;
   final Color? textColor;
   final double? width;
+  final bool? isDisabled;
 
   const ButtonView({
     this.title,
@@ -24,6 +25,7 @@ class ButtonView extends StatelessWidget {
     this.iconColor,
     this.textColor,
     this.width,
+    this.isDisabled,
     Key? key,
   }) : super(key: key);
 
@@ -45,7 +47,9 @@ class ButtonView extends StatelessWidget {
     return ElevatedButton(
 
       onPressed: () {
-
+        isDisabled ?? false
+            ? null
+            :
         onClick();
       },
       style: buttonStyle,
@@ -69,7 +73,9 @@ class ButtonView extends StatelessWidget {
   Widget outlineButton(BuildContext context) {
     return OutlinedButton(
       onPressed: () {
-
+        isDisabled ?? false
+            ? null
+            :
         onClick();
       },
       style: buttonStyle,
@@ -87,7 +93,9 @@ class ButtonView extends StatelessWidget {
   Widget textButton(BuildContext context) {
     return TextButton(
       onPressed: () {
-
+        isDisabled ?? false
+            ? null
+            :
         onClick();
       },
       style: buttonStyle,
@@ -98,7 +106,9 @@ class ButtonView extends StatelessWidget {
   Widget iconButton(BuildContext context) {
     return IconButton(
       onPressed: () {
-
+        isDisabled ?? false
+            ? null
+            :
         onClick();
       },
       icon: Icon(

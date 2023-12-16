@@ -7,11 +7,13 @@ part 'login_model.g.dart';
 class LoginModel extends Equatable {
   final String? token;
   final String? userId;
+  final String? phone;
   final bool? isPhoneNumberConfirmed;
 
   const LoginModel({
     this.token,
     this.userId,
+    this.phone,
     this.isPhoneNumberConfirmed,
   });
 
@@ -25,6 +27,7 @@ class LoginModel extends Equatable {
   List<Object?> get props => [
     token,
     userId,
+    phone,
     isPhoneNumberConfirmed,
   ];
 }

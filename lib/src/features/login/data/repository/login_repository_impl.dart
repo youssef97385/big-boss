@@ -8,6 +8,7 @@ import '../../../../app/logic/app_settings.dart';
 import '../../../../core/common/data/models/error_model/error_model.dart';
 import '../../../../core/utils/helpers/error_parser.dart';
 import '../../../../injection.dart';
+import '../../domain/entities/login_response_entity.dart';
 import '../../domain/repository/login_repository.dart';
 import '../../domain/use_cases/login_use_case.dart';
 import '../data_source/remote_data_source/login_data_source.dart';
@@ -20,7 +21,7 @@ class LoginRepositoryImpl implements LoginRepository {
   });
 
   @override
-  Future<Either<ErrorModel, SuccessModel>> login(
+  Future<Either<ErrorModel, LoginResponseEntity>> login(
     Params? params,
   ) async {
     try {
@@ -36,7 +37,9 @@ class LoginRepositoryImpl implements LoginRepository {
       serviceLocator<DatabaseManager>()
           .saveData("USERNAME", params?.value["username"]);
 
-      return Right(SuccessModel());
+      return Right(LoginResponseEntity(
+          phone: loginModel.phone,
+          isVerified: loginModel.isPhoneNumberConfirmed ?? false));
     } on DioError catch (error, stackTrace) {
       print("ERROR DDD $error");
       return Left(errorParse(error, stackTrace));

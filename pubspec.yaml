@@ -54,6 +54,7 @@ dependencies:
   pin_code_fields: ^7.4.0
   flutter_verification_code: ^1.1.3+1
   introduction_screen: ^3.1.12
+  pinput: ^3.0.1
 
 
 

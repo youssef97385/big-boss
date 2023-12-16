@@ -5,6 +5,7 @@ import '../../features/intro/intro_page.dart';
 import '../../features/login/presentation/widgets/login_page.dart';
 import '../../features/main/main_page.dart';
 import '../../features/menu_page/presentation/widgets/menu_page.dart';
+import '../../features/otp-verifivation/presentation/widgets/verify_otp_screen.dart';
 import '../../features/product_page/presentation/widgets/products_page.dart';
 import '../../features/products_list/presentation/widgets/products_page.dart';
 import '../../features/register/presentation/widgets/register_page.dart';
@@ -55,6 +56,11 @@ import '../../features/sub_categories/presentation/sub_categories_page.dart';
       path: 'MenuPage',
       name: 'MenuPageAppRouter',
       page: MenuPage,
+    ),
+    AutoRoute(
+      path: 'VerifyOtpScreen',
+      name: 'VerifyOtpScreenAppRouter',
+      page: VerifyOtpScreen,
     ),
     AutoRoute(
       path: 'main',
