@@ -9,9 +9,9 @@ class OrderCubit extends Cubit<OrderState> {
 
   OrderCubit({required this.repo}) : super(const OrderState.initial());
 
-  Future<void> createOrder() async {
+  Future<void> createOrder(int addressId) async {
     emit(const OrderState.loading());
-    final result = await repo.crateOrder({});
+    final result = await repo.crateOrder(addressId);
     emit(
       result.fold((ErrorModel error) {
         return OrderState.error(errorModel: error);

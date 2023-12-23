@@ -15,7 +15,7 @@ import '../../../core/utils/managers/database/hive_service.dart';
 
 abstract class OrderRepo {
   Future<Either<ErrorModel, SuccessModel>> crateOrder(
-      Map<String, dynamic> data);
+      int addressId);
 
   Future<Either<ErrorModel, List<OrderModel>>> getAllOrders();
 }
@@ -28,7 +28,7 @@ class OrderRepoImpl implements OrderRepo {
 
   @override
   Future<Either<ErrorModel, SuccessModel>> crateOrder(
-      Map<String, dynamic> data) async {
+      int addressId) async {
     try {
       List<CartItemEntity> products =
           await hiveService.getBoxes<CartItemEntity>(kCartKey);
@@ -48,6 +48,7 @@ class OrderRepoImpl implements OrderRepo {
       }
 
       var data = {
+        "addressId":addressId,
         "remark": "string",
         "orderedProducts": mapProducts,
         "isOffer": false,

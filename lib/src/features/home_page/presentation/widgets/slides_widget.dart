@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:bigboss/src/app/routes/router.gr.dart';
 import 'package:bigboss/src/core/common/data/models/error_model/error_model.dart';
 import 'package:bigboss/src/core/common/widgets/error_view.dart';
 import 'package:bigboss/src/core/common/widgets/image_view.dart';
@@ -7,6 +9,7 @@ import 'package:bigboss/src/features/home_page/presentation/logic/slides_bloc/sl
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../domain/entities/slide_entity.dart';
 
 class SlidesWidget extends StatelessWidget {
@@ -20,7 +23,6 @@ class SlidesWidget extends StatelessWidget {
       }, error: (String error) {
         return ErrorView(error: error, onRefresh: () {});
       }, success: (List<SlideEntity> slides) {
-        print(slides);
         return CarouselSlider(
           options: CarouselOptions(
             autoPlay: true,

@@ -8,6 +8,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 
 import '../../core/constants/const.dart';
 
+import '../../features/address/logic/address_cubit.dart';
 import '../../features/order_feature/bloc/order_cubit.dart';
 import '../../injection.dart';
 import '../logic/app_bloc.dart';
@@ -40,6 +41,10 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => serviceLocator<OrderCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => serviceLocator<AddressCubit>(),
+
         ),
       ],
       child: BlocBuilder<AppBloc, AppState>(

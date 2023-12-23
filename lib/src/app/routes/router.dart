@@ -1,5 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bigboss/src/features/orders_page/presentation/order_page.dart';
+import '../../features/address/widget/address_details_page.dart';
+import '../../features/address/widget/addresses_list.dart';
+import '../../features/address/widget/map_picker.dart';
 import '../../features/home_page/presentation/widgets/home_page.dart';
 import '../../features/intro/intro_page.dart';
 import '../../features/login/presentation/widgets/login_page.dart';
@@ -11,6 +14,7 @@ import '../../features/products_list/presentation/widgets/products_page.dart';
 import '../../features/register/presentation/widgets/register_page.dart';
 import '../../features/search_page/search_page.dart';
 import '../../features/shopping_cart/presentation/widgets/cart_page.dart';
+import '../../features/shopping_cart/presentation/widgets/order_summary_page.dart';
 import '../../features/splash/splash_page.dart';
 import '../../features/sub_categories/presentation/sub_categories_page.dart';
 
@@ -61,6 +65,25 @@ import '../../features/sub_categories/presentation/sub_categories_page.dart';
       path: 'VerifyOtpScreen',
       name: 'VerifyOtpScreenAppRouter',
       page: VerifyOtpScreen,
+    ),
+    AutoRoute(
+      path: 'MapPicker',
+      name: 'MapPickerAppRouter',
+      page: MapPicker,
+    ),
+    AutoRoute(
+      path: 'AddressList',
+      name: 'AddressListAppRouter',
+      page: AddressList,
+    ),
+    AutoRoute(
+      path: 'AddressDetailsPage',
+      name: 'AddressDetailsPageAppRouter',
+      page: AddressDetailsPage,
+    ), AutoRoute(
+      path: 'OrderSummary',
+      name: 'OrderSummaryAppRouter',
+      page: OrderSummary,
     ),
     AutoRoute(
       path: 'main',

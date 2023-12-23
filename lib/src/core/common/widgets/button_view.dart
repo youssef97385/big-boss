@@ -52,7 +52,14 @@ class ButtonView extends StatelessWidget {
             :
         onClick();
       },
-      style: buttonStyle,
+      style: buttonStyle ?? ButtonStyle(
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+
+              )
+          )
+      ),
       child: SizedBox(
         width: width,
         child: Row(

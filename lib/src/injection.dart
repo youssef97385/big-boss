@@ -1,5 +1,8 @@
 import 'package:bigboss/src/core/utils/managers/database/hive_service.dart';
 import 'package:bigboss/src/core/utils/managers/sql_database_manager/db_services.dart';
+import 'package:bigboss/src/features/address/data/data_source/addresses_data_source.dart';
+import 'package:bigboss/src/features/address/data/repository/address_repository.dart';
+import 'package:bigboss/src/features/address/logic/address_cubit.dart';
 import 'package:bigboss/src/features/home_page/data/home_source/accounts_data_source.dart';
 import 'package:bigboss/src/features/home_page/data/home_source/categories_data_source.dart';
 import 'package:bigboss/src/features/home_page/data/home_source/countries_data_source.dart';
@@ -31,6 +34,7 @@ import 'core/utils/managers/database/database_manager.dart';
 import 'core/utils/managers/http/check_endpoint_reachability.dart';
 import 'core/utils/managers/http/domain_lookup.dart';
 import 'core/utils/managers/http/http_manager.dart';
+import 'features/address/logic/add_address_cubit.dart';
 import 'features/home_page/data/home_source/brands_data_source.dart';
 import 'features/home_page/data/repository/home_repository_impl.dart';
 import 'features/login/data/data_source/remote_data_source/login_data_source.dart';
@@ -132,6 +136,12 @@ void initInjections(GetIt serviceLocator) {
 
   //* repositories
 
+  serviceLocator.registerFactory<AddressRepository>(
+    () => AddressRepositoryImpl(
+      addressDataSource: serviceLocator(),
+      databaseManager: serviceLocator(),
+    ),
+  );
   serviceLocator.registerFactory<SearchRepo>(
     () => SearchRepoImpl(
       dataSource: serviceLocator(),
@@ -153,6 +163,11 @@ void initInjections(GetIt serviceLocator) {
 
   //* bloc/cubit
 
+  serviceLocator.registerFactory<AddressCubit>(
+    () => AddressCubit(
+      repository: serviceLocator(),
+    ),
+  );
   serviceLocator.registerFactory<VerifyPhoneCubit>(
     () => VerifyPhoneCubit(
       repository: serviceLocator(),
@@ -185,6 +200,11 @@ void initInjections(GetIt serviceLocator) {
 
   //slides
 
+  serviceLocator.registerFactory<AddressDataSource>(
+    () => AddressDataSourceImpl(
+      httpManager: serviceLocator(),
+    ),
+  );
   serviceLocator.registerFactory<HomeDataSource>(
     () => HomeDataSourceImpl(
       httpManager: serviceLocator(),
@@ -260,6 +280,11 @@ void initInjections(GetIt serviceLocator) {
 
   //* bloc/cubit
 
+  serviceLocator.registerFactory<AddAddressCubit>(
+    () => AddAddressCubit(
+      repository: serviceLocator(),
+    ),
+  );
   serviceLocator.registerFactory<OrdersBloc>(
     () => OrdersBloc(
       repository: serviceLocator(),
