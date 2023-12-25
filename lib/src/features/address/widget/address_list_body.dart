@@ -159,13 +159,11 @@ class _AddressListBodyState extends State<AddressListBody> {
                                       const SizedBox(
                                         width: 8,
                                       ),
-                                      Flexible(
-                                        child: TextView(
-                                          text: "${addressRemark["area"]}",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleMedium,
-                                        ),
+                                      TextView(
+                                        text: "${addressRemark["area"]}",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium,
                                       ),
                                     ],
                                   ),
@@ -184,14 +182,12 @@ class _AddressListBodyState extends State<AddressListBody> {
                                       const SizedBox(
                                         width: 8,
                                       ),
-                                      Flexible(
-                                        child: TextView(
-                                          text:
-                                              "${addressRemark["street_address"]}",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleMedium,
-                                        ),
+                                      TextView(
+                                        text:
+                                            "${addressRemark["street_address"]}",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium,
                                       ),
                                     ],
                                   ),
@@ -210,13 +206,11 @@ class _AddressListBodyState extends State<AddressListBody> {
                                       const SizedBox(
                                         width: 8,
                                       ),
-                                      Flexible(
-                                        child: TextView(
-                                          text: "${addressRemark["building"]}",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleMedium,
-                                        ),
+                                      TextView(
+                                        text: "${addressRemark["building"]}",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium,
                                       ),
                                     ],
                                   ),

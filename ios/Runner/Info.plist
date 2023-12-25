@@ -4,6 +4,10 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+    <string>We need your location to show your location on map</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>We need your location to show your location on map</string>
 	<key>CFBundleDisplayName</key>
 	<string>Bigboss</string>
 	<key>CFBundleExecutable</key>
