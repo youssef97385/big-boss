@@ -17,6 +17,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.13.0"
+  archive:
+    dependency: transitive
+    description:
+      name: archive
+      sha256: "7b875fd4a20b165a3084bd2d210439b22ebc653f21cea4842729c0c30c82596b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.4.9"
   args:
     dependency: transitive
     description:
@@ -73,6 +81,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.1"
+  build_cli_annotations:
+    dependency: transitive
+    description:
+      name: build_cli_annotations
+      sha256: b59d2769769efd6c9ff6d4c4cede0be115a566afc591705c2040b707534b1172
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   build_config:
     dependency: transitive
     description:
@@ -334,6 +350,70 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_avif:
+    dependency: "direct main"
+    description:
+      name: flutter_avif
+      sha256: "68455d49b786c54d146eb730562a49cf3773ee697436f2f42464dbc60cec88c2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
+  flutter_avif_android:
+    dependency: transitive
+    description:
+      name: flutter_avif_android
+      sha256: "44f18359d3d8f64dae96eba21fc67ec20b6c2302f4eaece17c6f1ebe07863095"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
+  flutter_avif_ios:
+    dependency: transitive
+    description:
+      name: flutter_avif_ios
+      sha256: "439e6cbb711eb954ad50ac313f2ef84297e21b19e40e93675701295d4d693985"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
+  flutter_avif_linux:
+    dependency: transitive
+    description:
+      name: flutter_avif_linux
+      sha256: "728d7678e5267e77041374d17740c850ed191817103d7f1dbd56de6a0048fb30"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
+  flutter_avif_macos:
+    dependency: transitive
+    description:
+      name: flutter_avif_macos
+      sha256: c18777a820e6ae1b284da9b36db6f8188a8abda349f595b689d5adaa60b95cd7
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
+  flutter_avif_platform_interface:
+    dependency: transitive
+    description:
+      name: flutter_avif_platform_interface
+      sha256: "39422c0a1ccaef4586013814175d123b19a88da42b2bac193f9b04248124e0b2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
+  flutter_avif_web:
+    dependency: transitive
+    description:
+      name: flutter_avif_web
+      sha256: ad9efa2ba30db934d6eb5b419cc2c0ec441e6bc1bcf642fd8bf111641476e826
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
+  flutter_avif_windows:
+    dependency: transitive
+    description:
+      name: flutter_avif_windows
+      sha256: "93c476b36eedeb601f3ff17f1fed6838b0a575bf7da335a20ad5a89936cb5c0e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.0"
   flutter_bloc:
     dependency: "direct main"
     description:
@@ -427,6 +507,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.17"
+  flutter_rust_bridge:
+    dependency: transitive
+    description:
+      name: flutter_rust_bridge
+      sha256: "2d31289a022f8b0a97e952d553686c50dff2ed5b58ac03628a13bc8cdf5f8ece"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.82.3"
   flutter_slidable:
     dependency: "direct main"
     description:
@@ -553,10 +641,10 @@ packages:
     dependency: transitive
     description:
       name: geolocator_android
-      sha256: "93906636752ea4d4e778afa981fdfe7409f545b3147046300df194330044d349"
+      sha256: "741579fa6c9e412984d2bdb2fbaa54e3c3f7587c60aeacfe6e058358a11f40f8"
       url: "https://pub.dev"
     source: hosted
-    version: "4.3.1"
+    version: "4.4.0"
   geolocator_apple:
     dependency: transitive
     description:
@@ -1037,6 +1125,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.9.3+5"
+  pointycastle:
+    dependency: transitive
+    description:
+      name: pointycastle
+      sha256: "7c1e5f0d23c9016c5bbd8b1473d0d3fb3fc851b876046039509e18e0c7485f2c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.7.3"
   pool:
     dependency: transitive
     description:
@@ -1069,6 +1165,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.3"
+  puppeteer:
+    dependency: transitive
+    description:
+      name: puppeteer
+      sha256: "59e723cc5b69537159a7c34efd645dc08a6a1ac4647d7d7823606802c0f93cdb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.2.0"
   responsive_framework:
     dependency: "direct main"
     description:
@@ -1157,6 +1261,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.4.1"
+  shelf_static:
+    dependency: transitive
+    description:
+      name: shelf_static
+      sha256: a41d3f53c4adf0f57480578c1d61d90342cd617de7fc8077b1304643c2d85c1e
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.2"
   shelf_web_socket:
     dependency: transitive
     description:
@@ -1218,6 +1330,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.10.0"
+  sprintf:
+    dependency: transitive
+    description:
+      name: sprintf
+      sha256: "1fc9ffe69d4df602376b52949af107d8f5703b77cda567c4d7d86a0693120f23"
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.0.0"
   sqflite:
     dependency: "direct main"
     description:
@@ -1298,6 +1418,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
+  tuple:
+    dependency: transitive
+    description:
+      name: tuple
+      sha256: a97ce2013f240b2f3807bcbaf218765b6f301c3eff91092bcfa23a039e7dd151
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.2"
   typed_data:
     dependency: transitive
     description:
@@ -1382,10 +1510,10 @@ packages:
     dependency: transitive
     description:
       name: uuid
-      sha256: "648e103079f7c64a36dc7d39369cabb358d377078a051d6ae2ad3aa539519313"
+      sha256: "22c94e5ad1e75f9934b766b53c742572ee2677c56bc871d850a57dad0f82127f"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.7"
+    version: "4.2.2"
   vector_graphics:
     dependency: transitive
     description:

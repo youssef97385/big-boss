@@ -5,6 +5,7 @@ import 'package:bigboss/src/core/common/widgets/text_view.dart';
 import 'package:bigboss/src/features/shopping_cart/domain/entities/cart_item_entity.dart';
 import 'package:bigboss/src/features/shopping_cart/presentation/logic/cart_cubit.dart';
 import 'package:bigboss/src/features/shopping_cart/presentation/logic/cart_state.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -25,7 +26,7 @@ class CartBody extends StatelessWidget {
         return items.isEmpty
             ? Center(
               child: TextView(
-                  text: "Your Shopping Cart is Empty",
+                  text: "Your_Shopping_Cart_is_Empty".tr(),
                   style: Theme.of(context).textTheme.headlineLarge,
                 ),
             )

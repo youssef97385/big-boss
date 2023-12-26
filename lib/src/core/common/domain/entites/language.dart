@@ -19,8 +19,15 @@ class Languages {
       fullDisplayLabel: 'English',
       local: Locale('en', 'US'),
     );
+    final Language ku = Language(
+      id: 1,
+      backendLangCode: 'ku',
+      shortDisplayLabel: 'Ku',
+      fullDisplayLabel: 'کوردی',
+      local: Locale('ar', 'EG'),
+    );
 
-    languagesData.addAll([ ar, en]);
+    languagesData.addAll([ ar, en,ku]);
   }
 }
 

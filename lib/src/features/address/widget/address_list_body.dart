@@ -10,6 +10,7 @@ import 'package:bigboss/src/core/common/widgets/text_view.dart';
 import 'package:bigboss/src/features/address/data/models/address_model.dart';
 import 'package:bigboss/src/features/address/logic/address_cubit.dart';
 import 'package:bigboss/src/features/address/logic/address_state.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -65,7 +66,7 @@ class _AddressListBodyState extends State<AddressListBody> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: TextView(
-                    text: "You don't have any addresses add now",
+                    text: "You_don't_have_any_addresses_add_now".tr(),
                     textAlignment: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
@@ -76,7 +77,7 @@ class _AddressListBodyState extends State<AddressListBody> {
                 const SizedBox(height: 21.0),
                 ButtonView(
                   buttonType: ButtonType.soldButton,
-                  title: "Add address",
+                  title: "Add_address".tr(),
                   onClick: () {
                     context.router.push(MapPickerAppRouter());
 
@@ -95,7 +96,7 @@ class _AddressListBodyState extends State<AddressListBody> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 12.0),
                   child: TextView(
-                    text: "Please choose address:",
+                    text: "Please_choose_address".tr(),
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                 ),
@@ -125,7 +126,7 @@ class _AddressListBodyState extends State<AddressListBody> {
                                   icon: Icons.remove_circle,
                                   iconColor: Colors.red,
                                   buttonType: ButtonType.textButton,
-                                  title: "remove",
+                                  title: "remove".tr(),
                                   textColor: Colors.red,
                                   onClick: () {
                                     BlocProvider.of<AddressCubit>(context)
@@ -230,7 +231,7 @@ class _AddressListBodyState extends State<AddressListBody> {
                     final value =
                         await context.router.push(MapPickerAppRouter());
                   },
-                  title: "Add new address",
+                  title: "Add_new_address".tr(),
                   icon: Icons.add,
                 ),
                 const SizedBox(
@@ -260,11 +261,11 @@ class _AddressListBodyState extends State<AddressListBody> {
                               addressModel: addressModel!));
                         }else{
                           showDialog(context: context, builder: (context){
-                            return AlertDialogView(content: "Please choose address first");
+                            return AlertDialogView(content: "Please_choose_address_first".tr());
                           });
                         }
                       },
-                      title: "Continue",
+                      title: "Continue".tr(),
                     ),
                   ),
                 ),

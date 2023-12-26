@@ -1,5 +1,6 @@
 import 'dart:ui' as ui;
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
@@ -58,7 +59,7 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
                         color: Theme.of(context).colorScheme.error),
                   ),
                 ),
-                errorText: "Wrong Pin",
+                errorText: "Wrong_Pin".tr(),
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 obscureText: false,
                 pinContentAlignment: Alignment.center,

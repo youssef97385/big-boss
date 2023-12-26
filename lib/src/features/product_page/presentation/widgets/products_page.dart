@@ -8,6 +8,7 @@ import 'package:bigboss/src/features/products_list/data/models/price_model.dart'
 import 'package:bigboss/src/features/products_list/domain/entiities/product_endtity.dart';
 import 'package:bigboss/src/features/shopping_cart/domain/entities/cart_item_entity.dart';
 import 'package:bigboss/src/features/shopping_cart/presentation/logic/cart_cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -260,7 +261,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                 child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextView(
-                                text: "Quantity",
+                                text: "Quantity".tr(),
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleMedium!
@@ -271,7 +272,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                 child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextView(
-                                text: "Price",
+                                text: "Price".tr(),
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleMedium!
@@ -329,7 +330,7 @@ class _ProductScreenState extends State<ProductScreen> {
                           textFormFieldTypes: TextFormFieldTypes.text,
                           hint: "",
                           maxLines: 1,
-                          errorMessage: "this_field_is_required",
+                          errorMessage: "this_field_is_required".tr(),
                           minLength: 0,
                           maxLength: 3,
                         ),
@@ -383,8 +384,6 @@ class _ProductScreenState extends State<ProductScreen> {
                               int count =
                                   int.parse(countEditingController.text);
 
-                              print(
-                                  "TESTT =============> count: ${count} || price: ${finPrice * count} ");
 
                               BlocProvider.of<CartCubit>(context).addItemToCart(
                                   cartItem: CartItemEntity(
@@ -400,10 +399,10 @@ class _ProductScreenState extends State<ProductScreen> {
                                   context: context,
                                   builder: (context) {
                                     return AlertDialogView(
-                                        content: "Product Added Successfully");
+                                        content: "Product_Added_Successfully".tr());
                                   });
                             },
-                            title: "Add to cart",
+                            title: "Add_to_cart".tr(),
                           ),
                         ),
                       ),
@@ -415,7 +414,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   ),
 
                   TextView(
-                    text: "Product Description:",
+                    text: "Product_Description".tr(),
                     style: Theme.of(context).textTheme.displayMedium,
                   ),
                   const SizedBox(
@@ -427,7 +426,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     height: 18,
                   ),
                   TextView(
-                    text: "Shipping Details:",
+                    text: "Shipping_Details".tr(),
                     style: Theme.of(context).textTheme.displayMedium,
                   ),
                   const SizedBox(

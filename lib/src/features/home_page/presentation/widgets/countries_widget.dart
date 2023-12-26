@@ -10,6 +10,7 @@ import 'package:bigboss/src/features/home_page/presentation/logic/categories_cub
 import 'package:bigboss/src/features/home_page/presentation/logic/countries_cubit/countries_cubit.dart';
 import 'package:bigboss/src/features/home_page/presentation/logic/countries_cubit/countries_state.dart';
 import 'package:bigboss/src/features/products_list/data/models/products_categories_enum.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -30,7 +31,7 @@ class CountriesWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextView(
-              text: "Countries",
+              text: "Countries".tr(),
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(

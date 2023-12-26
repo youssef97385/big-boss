@@ -5,6 +5,7 @@ import 'dart:developer';
 import 'package:auto_route/auto_route.dart';
 import 'package:bigboss/src/core/common/widgets/button_view.dart';
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -32,7 +33,6 @@ class _MapPickerState extends State<MapPicker> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _determinePosition();
   }
@@ -60,8 +60,6 @@ class _MapPickerState extends State<MapPicker> {
                       _controller.complete(controller);
                     },
                     onCameraMove: (CameraPosition newPosition) async {
-                      print(
-                          "newPosition.target.toJson() ${newPosition.target.toJson()}");
 
                       widget.value = newPosition.target;
                     },
@@ -112,7 +110,7 @@ class _MapPickerState extends State<MapPicker> {
                         width: 240,
                         height: 60,
                         child: ButtonView(
-                          title: "Confirm",
+                          title: "Confirm".tr(),
                           buttonType: ButtonType.soldButton,
                           onClick: () {
                             context.router.replace(AddressDetailsPageAppRouter(

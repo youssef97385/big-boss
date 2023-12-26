@@ -7,10 +7,12 @@ import 'package:bigboss/src/features/home_page/presentation/widgets/accounts_wid
 import 'package:bigboss/src/features/home_page/presentation/widgets/brands_widget.dart';
 import 'package:bigboss/src/features/home_page/presentation/widgets/countries_widget.dart';
 import 'package:bigboss/src/features/home_page/presentation/widgets/slides_widget.dart';
+import 'package:bigboss/src/features/offers/presentation/widgets/offers_widget.dart';
 import 'package:bigboss/src/injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../offers/presentation/logic/offers_bloc.dart';
 import 'categories_widget.dart';
 
 class HomePage extends StatelessWidget {
@@ -31,19 +33,28 @@ class HomePage extends StatelessWidget {
               create: (context) => serviceLocator<SlidesCubit>(),
               child: const SlidesWidget(),
             ),
-           const SizedBox(
+            const SizedBox(
+              height: 24,
+            ),
+            BlocProvider(
+              create: (context) => serviceLocator<OffersCubit>(),
+              child: const OffersWidget(),
+            ),
+            const SizedBox(
               height: 24,
             ),
             BlocProvider(
               create: (context) => serviceLocator<CategoriesCubit>(),
               child: const CategoriesWidget(),
-            ),const SizedBox(
+            ),
+            const SizedBox(
               height: 24,
             ),
             BlocProvider(
               create: (context) => serviceLocator<CountriesCubit>(),
               child: const CountriesWidget(),
-            ),const SizedBox(
+            ),
+            const SizedBox(
               height: 24,
             ),
             BlocProvider(
@@ -57,7 +68,9 @@ class HomePage extends StatelessWidget {
               create: (context) => serviceLocator<BrandsCubit>(),
               child: const BrandsWidget(),
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
           ],
         ),
       ),

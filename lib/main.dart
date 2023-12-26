@@ -24,7 +24,7 @@ Future<void> main() async {
 
   runApp(
     EasyLocalization(
-      supportedLocales: const [Locale('en', 'US'), Locale('ar', 'IQ')],
+      supportedLocales: const [Locale('en', 'US'), Locale('ar', 'IQ'),Locale('ar', 'EG')],
       path: 'assets/translations',
       fallbackLocale: const Locale('en', 'US'),
       child: MyApp(),

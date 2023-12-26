@@ -90,7 +90,7 @@ class _LoginBodyState extends State<LoginBody> {
                       height: 48,
                     ),
                     TextView(
-                      text: "user name".tr(),
+                      text: "user_name".tr(),
                       style: Theme.of(context).textTheme.subtitle1,
                     ),
                     const SizedBox(
@@ -102,7 +102,7 @@ class _LoginBodyState extends State<LoginBody> {
                       },
                       textEditingController: userNameController,
                       textFormFieldTypes: TextFormFieldTypes.text,
-                      hint: "User name",
+                      hint: "user_name".tr(),
                       maxLines: 1,
                       errorMessage: "this_field_is_required".tr(),
                       minLength: 0,
@@ -156,7 +156,7 @@ class _LoginBodyState extends State<LoginBody> {
                     Row(
                       children: [
                         TextView(
-                          text: "Don't have an accont yet",
+                          text: "Don't_have_an_account_yet".tr(),
                           style: Theme.of(context).textTheme.bodyLarge,
                         ),
                         ButtonView(
@@ -164,7 +164,7 @@ class _LoginBodyState extends State<LoginBody> {
                           onClick: () {
                             context.router.push(RegisterPageAppRouter());
                           },
-                          title: "Create account",
+                          title: "Create_account".tr(),
                         )
                       ],
                     ),
@@ -181,7 +181,7 @@ class _LoginBodyState extends State<LoginBody> {
                         onClick: () {
                           context.router.replaceNamed("main");
                         },
-                        title: "Continue as Guest",
+                        title: "Continue_as_Guest".tr(),
                       ),
                     )
                   ],

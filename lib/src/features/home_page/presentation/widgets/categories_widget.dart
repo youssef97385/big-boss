@@ -8,6 +8,7 @@ import 'package:bigboss/src/features/home_page/presentation/logic/brands_bloc/br
 import 'package:bigboss/src/features/home_page/presentation/logic/brands_bloc/brands_state.dart';
 import 'package:bigboss/src/features/home_page/presentation/logic/categories_cubit/categories_cubit.dart';
 import 'package:bigboss/src/features/home_page/presentation/logic/categories_cubit/categories_state.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,7 +29,7 @@ class CategoriesWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextView(
-              text: "Categories",
+              text: "Categories".tr(),
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(

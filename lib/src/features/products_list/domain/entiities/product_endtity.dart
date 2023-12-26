@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../app/logic/app_settings.dart';
+import '../../../../injection.dart';
 import '../../data/models/price_model.dart';
 
 class ProductsEntity extends Equatable {
@@ -24,9 +26,9 @@ class ProductsEntity extends Equatable {
 
 class ProductEntity extends Equatable {
   final int? id;
-  final String? name;
-  final String? description;
-  final String? shippingDetails;
+  late String? name;
+  late String? description;
+  late String? shippingDetails;
   final String? image;
   final bool? inStock;
   late String priceLabel;
@@ -37,15 +39,41 @@ class ProductEntity extends Equatable {
 
   ProductEntity({
     this.id,
-    this.name,
+    required String enName,
+    required String arName,
+    required String krName,
+
+    required String enDescription,
+    required String arDescription,
+    required String krDiscription,
+
+    required String enShippingDetails,
+    required String arShippingDetails,
+    required String krShippingDetails,
+
     this.image,
-    this.description,
-    this.shippingDetails,
+
     this.inStock,
     required String stringColors,
     required String stringSizes,
     required List<PriceModel> prices,
   }) {
+
+    final selectedLang = serviceLocator<AppSettings>().selectedLanguage;
+    if(selectedLang.id == 1){
+      name = krName;
+      shippingDetails = krShippingDetails;
+      description = krDiscription;
+    }else if(selectedLang.id == 2){
+      name = arName;
+      shippingDetails = arShippingDetails;
+      description = arDescription;
+    }else{
+      name = enName;
+      shippingDetails = enShippingDetails;
+      description = enDescription;
+    }
+
     pricesList = prices;
     if (prices.isEmpty) {
       priceLabel = "";

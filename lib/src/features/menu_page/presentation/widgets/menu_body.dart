@@ -12,9 +12,13 @@ import 'package:bigboss/src/core/common/widgets/card_view.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../app/logic/app_settings.dart';
+import '../../../../core/common/domain/entites/language.dart';
 import '../../../../core/common/widgets/alert_dialog.dart';
 import '../../../../core/common/widgets/app_bar_view.dart';
+import '../../../../core/common/widgets/drop_down_button.dart';
 import '../../../../core/common/widgets/text_view.dart';
+import '../../../../core/constants/const.dart';
 import '../../../../core/utils/managers/database/database_manager.dart';
 import '../../../../injection.dart';
 import '../../../shopping_cart/presentation/logic/cart_cubit.dart';
@@ -24,6 +28,10 @@ class MenuBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Languages languages = serviceLocator<AppSettings>().languages;
+    final Language selectedLanguage =
+        serviceLocator<AppSettings>().selectedLanguage;
+
     return BlocConsumer<DeleteAccounCubit, DeleteAccountState>(
         listener: (context, state) {
       state.maybeWhen(
@@ -49,6 +57,7 @@ class MenuBody extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
             children: [
+
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 child: Column(
@@ -64,6 +73,9 @@ class MenuBody extends StatelessWidget {
                     const SizedBox(
                       height: 12,
                     ),
+
+
+
                     TextView(
                       text:
                           "${serviceLocator<DatabaseManager>().getData("USERNAME")}",
@@ -72,6 +84,40 @@ class MenuBody extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
+                    ListTile(
+                      title: TextView(
+                        text: "Language".tr(),
+                        style: Theme.of(context).textTheme.displayMedium,
+                      ),
+                      leading: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(
+                          Icons.translate_outlined,
+                          color: Theme.of(context).colorScheme.onBackground,
+                        ),
+                      ),
+                      trailing: DropDownButton<Language>(
+                        textColor: Theme.of(context).colorScheme.primary,
+                        semanticLabelValue: selectedLanguage.shortDisplayLabel,
+                        getLabel: (Language? language) =>
+                        language?.fullDisplayLabel ?? "",
+                        options: languages.languagesData,
+                        value: selectedLanguage,
+                        onChanged: (Language? language) async {
+                          final isAlreadySelected =
+                              selectedLanguage.id == (language?.id ?? 0);
+                          if (isAlreadySelected) return;
+
+                          final Locale locale =
+                              language?.local ?? const Locale(kKu, kEG);
+                          context.setLocale(locale);
+                          context.router.replaceAll([const SplashAppRouter()]);
+                        },
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 14,
+                    ),
                     CardView(
                       onTap: () {
                         BlocProvider.of<DeleteAccounCubit>(context)
@@ -79,7 +125,7 @@ class MenuBody extends StatelessWidget {
                       },
                       child: ListTile(
                         title: TextView(
-                          text: "Delete your account".tr(),
+                          text: "Delete_your_account".tr(),
                           style: Theme.of(context).textTheme.displayMedium,
                         ),
                         leading: Icon(
@@ -100,7 +146,7 @@ class MenuBody extends StatelessWidget {
                       },
                       child: ListTile(
                         title: TextView(
-                          text: "Log out".tr(),
+                          text: "Log_out".tr(),
                           style: Theme.of(context).textTheme.displayMedium,
                         ),
                         leading: Icon(

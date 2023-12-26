@@ -17,6 +17,7 @@ import 'package:bigboss/src/features/shopping_cart/presentation/logic/cart_cubit
 import 'package:bigboss/src/features/shopping_cart/presentation/widgets/cart_body.dart';
 import 'package:bigboss/src/features/shopping_cart/presentation/widgets/order_summary_body.dart';
 import 'package:bigboss/src/injection.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -41,10 +42,10 @@ class _OrderSummaryState extends State<OrderSummary> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const PreferredSize(
-          preferredSize: Size(double.infinity, 60),
+        appBar:  PreferredSize(
+          preferredSize: const Size(double.infinity, 60),
           child: AppBarView(
-            appBarTitle: 'Order Summary',
+            appBarTitle: 'Order_Summary'.tr(),
           ),
         ),
         body: BlocProvider(

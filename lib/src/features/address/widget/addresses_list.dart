@@ -1,6 +1,7 @@
 import 'package:bigboss/src/features/address/logic/address_cubit.dart';
 import 'package:bigboss/src/features/address/widget/address_list_body.dart';
 import 'package:bigboss/src/injection.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,10 +18,10 @@ class _AddressListState extends State<AddressList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const PreferredSize(
-        preferredSize: Size(double.infinity, 60),
+      appBar:  PreferredSize(
+        preferredSize: const Size(double.infinity, 60),
         child: AppBarView(
-          appBarTitle: 'Addresses',
+          appBarTitle: 'Addresses'.tr(),
         ),
       ),
       body:  AddressListBody(),

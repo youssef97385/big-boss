@@ -61,9 +61,9 @@ class _SearchBodyState extends State<SearchBody> {
             },
             textEditingController: searchController,
             textFormFieldTypes: TextFormFieldTypes.text,
-            hint: "Type here",
+            hint: "Type_here".tr(),
             maxLines: 1,
-            errorMessage: "this field is required".tr(),
+            errorMessage: "this_field_is_required".tr(),
             minLength: 0,
             prefixIcon: Icon(Icons.search),
           ),
@@ -75,7 +75,7 @@ class _SearchBodyState extends State<SearchBody> {
                   }, error: (String error) {
                     return ErrorView(error: error, onRefresh: () {
                       BlocProvider.of<SearchCubit>(context).search(
-                          value: "Gill"
+                       value: searchController.text
                       );
 
                     });

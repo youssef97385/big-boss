@@ -6,12 +6,15 @@
 
 #include "generated_plugin_registrant.h"
 
+#include <flutter_avif_windows/flutter_avif_windows_plugin.h>
 #include <geolocator_windows/geolocator_windows.h>
 #include <permission_handler_windows/permission_handler_windows_plugin.h>
 #include <smart_auth/smart_auth_plugin.h>
 #include <url_launcher_windows/url_launcher_windows.h>
 
 void RegisterPlugins(flutter::PluginRegistry* registry) {
+  FlutterAvifWindowsPluginRegisterWithRegistrar(
+      registry->GetRegistrarForPlugin("FlutterAvifWindowsPlugin"));
   GeolocatorWindowsRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("GeolocatorWindows"));
   PermissionHandlerWindowsPluginRegisterWithRegistrar(

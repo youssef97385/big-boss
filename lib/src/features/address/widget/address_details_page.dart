@@ -8,6 +8,7 @@ import 'package:bigboss/src/features/address/logic/add_address_cubit.dart';
 import 'package:bigboss/src/features/address/logic/add_address_state.dart';
 import 'package:bigboss/src/features/address/logic/address_cubit.dart';
 import 'package:bigboss/src/injection.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,10 +41,10 @@ class _AddressDetailsPageState extends State<AddressDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const PreferredSize(
-        preferredSize: Size(double.infinity, 60),
+      appBar:  PreferredSize(
+        preferredSize: const Size(double.infinity, 60),
         child: AppBarView(
-          appBarTitle: 'Address details ',
+          appBarTitle: 'Address details'.tr(),
         ),
       ),
       body: BlocProvider(
@@ -60,7 +61,7 @@ class _AddressDetailsPageState extends State<AddressDetailsPage> {
                     height: 48,
                   ),
                   TextView(
-                    text: "Area",
+                    text: "Area".tr(),
                     style: Theme.of(context).textTheme.subtitle1,
                   ),
                   const SizedBox(
@@ -70,16 +71,16 @@ class _AddressDetailsPageState extends State<AddressDetailsPage> {
                     onSave: (String? content) {},
                     textEditingController: areaNameController,
                     textFormFieldTypes: TextFormFieldTypes.text,
-                    hint: "Area",
+                    hint: "Area".tr(),
                     maxLines: 1,
-                    errorMessage: "this_field_is_required",
+                    errorMessage: "this_field_is_required".tr(),
                     minLength: 0,
                   ),
                   const SizedBox(
                     height: 16,
                   ),
                   TextView(
-                    text: "Street name",
+                    text: "Street_name".tr(),
                     style: Theme.of(context).textTheme.subtitle1,
                   ),
                   const SizedBox(
@@ -89,16 +90,16 @@ class _AddressDetailsPageState extends State<AddressDetailsPage> {
                     onSave: (String? content) {},
                     textEditingController: streetController,
                     textFormFieldTypes: TextFormFieldTypes.text,
-                    hint: "Street name",
+                    hint: "Street_name".tr(),
                     maxLines: 1,
-                    errorMessage: "this_field_is_required",
+                    errorMessage: "this_field_is_required".tr(),
                     minLength: 0,
                   ),
                   const SizedBox(
                     height: 16,
                   ),
                   TextView(
-                    text: "Building name/number",
+                    text: "Building_name_number".tr(),
                     style: Theme.of(context).textTheme.subtitle1,
                   ),
                   const SizedBox(
@@ -108,9 +109,9 @@ class _AddressDetailsPageState extends State<AddressDetailsPage> {
                     onSave: (String? content) {},
                     textEditingController: buildingController,
                     textFormFieldTypes: TextFormFieldTypes.text,
-                    hint: "Building name/number",
+                    hint: "Building_name_number".tr(),
                     maxLines: 1,
-                    errorMessage: "this_field_is_required",
+                    errorMessage: "this_field_is_required".tr(),
                     minLength: 0,
                   ),
                   const SizedBox(
@@ -140,7 +141,7 @@ class _AddressDetailsPageState extends State<AddressDetailsPage> {
                             width: 280,
                             height: 65,
                             child: ButtonView(
-                              title: "Add",
+                              title: "Add".tr(),
                               buttonType: ButtonType.soldButton,
                               onClick: () {
                                 Map<String, dynamic> addressData = {

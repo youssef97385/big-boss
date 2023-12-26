@@ -6,10 +6,12 @@ import 'package:bigboss/src/core/common/widgets/image_view.dart';
 import 'package:bigboss/src/core/common/widgets/loading_view.dart';
 import 'package:bigboss/src/features/home_page/presentation/logic/slides_bloc/slides_cubit.dart';
 import 'package:bigboss/src/features/home_page/presentation/logic/slides_bloc/slides_state.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import '../../../../core/constants/const.dart';
 import '../../domain/entities/slide_entity.dart';
 
 class SlidesWidget extends StatelessWidget {

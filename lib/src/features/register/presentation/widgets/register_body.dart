@@ -90,7 +90,7 @@ class _RegisterBodyState extends State<RegisterBody> {
                             height: 48,
                           ),
                           TextView(
-                            text: "user name".tr(),
+                            text: "user_name".tr(),
                             style: Theme.of(context).textTheme.subtitle1,
                           ),
                           const SizedBox(
@@ -102,7 +102,7 @@ class _RegisterBodyState extends State<RegisterBody> {
                             },
                             textEditingController: userNameController,
                             textFormFieldTypes: TextFormFieldTypes.text,
-                            hint: "User name",
+                            hint: "user_name".tr(),
                             maxLines: 1,
                             errorMessage: "this_field_is_required".tr(),
                             minLength: 0,
@@ -126,9 +126,9 @@ class _RegisterBodyState extends State<RegisterBody> {
                             },
                             textEditingController: emailController,
                             textFormFieldTypes: TextFormFieldTypes.email,
-                            hint: "Email",
+                            hint: "Email".tr(),
                             maxLines: 1,
-                            errorMessage: "please provide valid email".tr(),
+                            errorMessage: "please_provide_valid_email".tr(),
 
                           ),
 
@@ -152,7 +152,7 @@ class _RegisterBodyState extends State<RegisterBody> {
                             textFormFieldTypes: TextFormFieldTypes.phone,
                             hint: "7xxxxxxxx",
                             keyboardType: TextInputType.number,
-                            errorMessage: "please provide valid phone".tr(),
+                            errorMessage: "please_provide_valid_phone".tr(),
 
                           ),
 

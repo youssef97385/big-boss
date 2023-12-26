@@ -5,6 +5,7 @@ import 'package:bigboss/src/core/utils/helpers/date_formatter.dart';
 import 'package:bigboss/src/features/order_feature/modles/order_model.dart';
 import 'package:bigboss/src/features/orders_page/presentation/bloc/orders_bloc.dart';
 import 'package:bigboss/src/features/orders_page/presentation/bloc/orders_state.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,7 +20,7 @@ class OrdersBody extends StatelessWidget {
         child: Column(
           children: [
             TextView(
-              text: "My Orders:",
+              text: "My_Orders".tr(),
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(
@@ -52,7 +53,7 @@ class OrdersBody extends StatelessWidget {
                                     Row(
                                       children: [
                                         TextView(
-                                            text: "Status: ",
+                                            text: "Status".tr(),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .titleMedium),
@@ -60,7 +61,7 @@ class OrdersBody extends StatelessWidget {
                                           width: 12,
                                         ),
                                         TextView(
-                                            text: "Proccessing",
+                                            text: "Processing".tr(),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .titleMedium!
@@ -73,7 +74,7 @@ class OrdersBody extends StatelessWidget {
                                     Row(
                                       children: [
                                         TextView(
-                                            text: "net total: ",
+                                            text: "net_total".tr(),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .titleMedium),
@@ -95,7 +96,7 @@ class OrdersBody extends StatelessWidget {
                                     Row(
                                       children: [
                                         TextView(
-                                            text: "Date: ",
+                                            text: "Date".tr(),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .titleMedium),
@@ -112,12 +113,21 @@ class OrdersBody extends StatelessWidget {
                                       ],
                                     ),
                                   ]),
-                              TextView(
-                                  text: "Order#${orders[index].id}",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleMedium!
-                                      .copyWith(color: Colors.green)),
+                              Row(
+                                children: [
+                                  TextView(
+                                      text: "Order".tr(),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium!
+                                          .copyWith(color: Colors.green)),  TextView(
+                                      text: "#${orders[index].id}",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium!
+                                          .copyWith(color: Colors.green)),
+                                ],
+                              ),
                             ],
                           ),
                         ),

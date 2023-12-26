@@ -48,7 +48,7 @@ dependencies:
 
   responsive_framework: ^0.2.0
   flutter_typeahead: ^4.0.0
-  
+  flutter_avif: ^2.2.0
   flutter_svg:
   linkwell: ^2.0.6
   pin_code_fields: ^7.4.0

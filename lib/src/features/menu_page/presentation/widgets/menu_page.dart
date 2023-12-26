@@ -20,10 +20,10 @@ class MenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const PreferredSize(
-        preferredSize: Size(double.infinity, 60),
+      appBar:  PreferredSize(
+        preferredSize: const Size(double.infinity, 60),
         child: AppBarView(
-          appBarTitle: 'Profile',
+          appBarTitle: 'Profile'.tr(),
         ),
       ),
       body: BlocProvider(create: (context)=>serviceLocator<DeleteAccounCubit>(),child: MenuBody(),)

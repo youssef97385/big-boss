@@ -5,6 +5,7 @@ import 'package:bigboss/src/core/utils/managers/database/database_manager.dart';
 import 'package:bigboss/src/features/orders_page/presentation/bloc/orders_bloc.dart';
 import 'package:bigboss/src/features/orders_page/presentation/orders_body.dart';
 import 'package:bigboss/src/injection.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -32,7 +33,7 @@ class OrderPage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: TextView(
-                  text: "to see your orders please login first",
+                  text: "to_see_your_orders_please_login_first".tr(),
                   textAlignment: TextAlign.center,
                   style: Theme.of(context).textTheme.headline3?.copyWith(height: 1.6),
                 ),
@@ -40,7 +41,7 @@ class OrderPage extends StatelessWidget {
               const SizedBox(height: 21.0),
               ButtonView(
                 buttonType: ButtonType.soldButton,
-                title: "Go to login",
+                title: "Go_to_login".tr(),
                 onClick: (){
                   context.router.push(LoginPageAppRouter());
                 },

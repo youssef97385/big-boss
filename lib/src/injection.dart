@@ -43,6 +43,10 @@ import 'features/login/domain/repository/login_repository.dart';
 import 'features/login/domain/use_cases/login_use_case.dart';
 import 'features/login/presentation/logic/login_cubit.dart';
 import 'features/menu_page/presentation/logic/delete_account_bloc/delete_account_cubit.dart';
+import 'features/offers/data/data_source/offer_data_source.dart';
+import 'features/offers/data/repository/offer_repository.dart';
+import 'features/offers/presentation/logic/offer_product_cubit.dart';
+import 'features/offers/presentation/logic/offers_bloc.dart';
 import 'features/order_feature/data/order_repository.dart';
 import 'features/otp-verifivation/data/repository/send_otp_repository.dart';
 import 'features/otp-verifivation/presentation/logic/send_otp_cubit.dart';
@@ -117,6 +121,11 @@ void initInjections(GetIt serviceLocator) {
 
   ///login feature
 
+  serviceLocator.registerFactory<OffersDataSource>(
+    () => OffersDataSourceImpl(
+      httpManager: serviceLocator(),
+    ),
+  );
   serviceLocator.registerFactory<SendOtpDataSource>(
     () => SendOtpDataSourceImpl(
       httpManager: serviceLocator(),
@@ -136,6 +145,11 @@ void initInjections(GetIt serviceLocator) {
 
   //* repositories
 
+  serviceLocator.registerFactory<OfferRepository>(
+    () => OfferRepositoryImpl(
+      offersDataSource: serviceLocator(),
+    ),
+  );
   serviceLocator.registerFactory<AddressRepository>(
     () => AddressRepositoryImpl(
       addressDataSource: serviceLocator(),
@@ -162,6 +176,21 @@ void initInjections(GetIt serviceLocator) {
   );
 
   //* bloc/cubit
+
+
+
+  serviceLocator.registerFactory<OffersCubit>(
+    () => OffersCubit(
+      repository: serviceLocator(),
+    ),
+  );
+
+
+  serviceLocator.registerFactory<OfferProductsCubit>(
+    () => OfferProductsCubit(
+      repository: serviceLocator(),
+    ),
+  );
 
   serviceLocator.registerFactory<AddressCubit>(
     () => AddressCubit(
@@ -263,6 +292,7 @@ void initInjections(GetIt serviceLocator) {
   serviceLocator.registerFactory<ProductRepository>(
     () => ProductRepositoryImpl(
       productsDataSource: serviceLocator(),
+      offersDataSource: serviceLocator(),
     ),
   );
 

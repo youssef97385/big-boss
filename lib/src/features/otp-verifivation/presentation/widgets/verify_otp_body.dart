@@ -66,7 +66,7 @@ class _VerifyOtpBodyState extends State<VerifyOtpBody> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: TextView(
-                  text: "Error sending OTP",
+                  text: "Error_sending_OTP".tr(),
                   textAlignment: TextAlign.center,
                   style: Theme.of(context)
                       .textTheme
@@ -77,7 +77,7 @@ class _VerifyOtpBodyState extends State<VerifyOtpBody> {
               const SizedBox(height: 21.0),
               ButtonView(
                 buttonType: ButtonType.soldButton,
-                title: "Try again".tr(),
+                title: "Try_again".tr(),
                 onClick: () {
                   BlocProvider.of<SendOtpCubit>(context).sendOtp(widget.phone);
                 },
@@ -114,7 +114,7 @@ class _VerifyOtpBodyState extends State<VerifyOtpBody> {
                   height: 24,
                 ),
                 TextView(
-                  text: 'Verification code'.tr(),
+                  text: 'Verification_code'.tr(),
                   style: Theme.of(context)
                       .textTheme
                       .displayLarge
@@ -126,7 +126,7 @@ class _VerifyOtpBodyState extends State<VerifyOtpBody> {
                 Row(
                   children: [
                     TextView(
-                      text: "We have send code to ".tr(args: ["6"]),
+                      text: "We_have_send_code_to".tr(),
                       style: Theme.of(context)
                           .textTheme
                           .displaySmall
@@ -151,7 +151,7 @@ class _VerifyOtpBodyState extends State<VerifyOtpBody> {
                 ),
 
                 TextView(
-                  text: 'enter the code below'.tr(),
+                  text: 'enter_the_code_below'.tr(),
                   style: Theme.of(context)
                       .textTheme
                       .displaySmall
@@ -190,7 +190,8 @@ class _VerifyOtpBodyState extends State<VerifyOtpBody> {
                             context: context,
                             builder: (_) {
                               return AlertDialogView(
-                                  content: "Pin code is incorrect try again!");
+                                  content:
+                                      "Pin_code_is_incorrect_try_again".tr());
                             });
                       }
                       BlocProvider.of<VerifyPhoneCubit>(context).verifyPhone();
@@ -231,7 +232,8 @@ class _VerifyOtpBodyState extends State<VerifyOtpBody> {
                                   builder: (_) {
                                     return AlertDialogView(
                                         content:
-                                            "Pin code is incorrect try again!");
+                                            "Pin_code_is_incorrect_try_again"
+                                                .tr());
                                   });
                             }
                           }
@@ -249,11 +251,11 @@ class _VerifyOtpBodyState extends State<VerifyOtpBody> {
                   children: [
                     Center(
                       child: TextView(
-                          text: 'have not receive code'.tr(),
+                          text: 'have_not_receive_code'.tr(),
                           style: Theme.of(context).textTheme.displaySmall),
                     ),
                     ButtonView(
-                        title: "Send again",
+                        title: "Send_again".tr(),
                         buttonType: ButtonType.textButton,
                         onClick: () {
                           BlocProvider.of<SendOtpCubit>(context)

@@ -6,9 +6,12 @@ const String kGoogleCheckEndpoint = "https://google.com";
 // const kKu = 'ar';
 const kAr = 'ar';
 const kEn = 'en';
+const kKu = 'ar';
 
 
 const kUS = 'US';
+const kEG = 'EG';
+const kIQ = 'IQ';
 
 //* BG Colors
 const Color kOffWhiteColor = Color(0xffFAFAFA);

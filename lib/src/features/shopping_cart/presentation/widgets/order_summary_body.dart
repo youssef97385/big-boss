@@ -7,6 +7,7 @@ import 'package:bigboss/src/features/address/data/models/address_model.dart';
 import 'package:bigboss/src/features/shopping_cart/domain/entities/cart_item_entity.dart';
 import 'package:bigboss/src/features/shopping_cart/presentation/logic/cart_cubit.dart';
 import 'package:bigboss/src/features/shopping_cart/presentation/logic/cart_state.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -52,7 +53,7 @@ class _OrderSummaryBodyState extends State<OrderSummaryBody> {
         return items.isEmpty
             ? Center(
                 child: TextView(
-                  text: "Your Shopping Cart is Empty",
+                  text: "Your_Shopping_Cart_is_Empty".tr(),
                   style: Theme.of(context).textTheme.headlineLarge,
                 ),
               )
@@ -68,7 +69,7 @@ class _OrderSummaryBodyState extends State<OrderSummaryBody> {
                           height: 16,
                         ),
                         TextView(
-                          text: "Products:",
+                          text: "products".tr(),
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                         ListView.builder(
@@ -151,7 +152,7 @@ class _OrderSummaryBodyState extends State<OrderSummaryBody> {
                           height: 16,
                         ),
                         TextView(
-                          text: "Address:",
+                          text: "Address".tr(),
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                         Card(
@@ -246,7 +247,7 @@ class _OrderSummaryBodyState extends State<OrderSummaryBody> {
                         Row(
                           children: [
                             TextView(
-                              text: "Net Total:",
+                              text: "Net_Total".tr(),
                               style: Theme.of(context).textTheme.titleLarge,
                             ),
                             const SizedBox(
@@ -278,7 +279,8 @@ class _OrderSummaryBodyState extends State<OrderSummaryBody> {
                                     builder: (_) {
                                       return AlertDialogView(
                                         content:
-                                            "Your Order Has Been Submitted Successfully",
+                                            "Your_Order_Has_Been_Submitted_Successfully"
+                                                .tr(),
                                       );
                                     });
                               },
@@ -321,9 +323,10 @@ class _OrderSummaryBodyState extends State<OrderSummaryBody> {
                                     buttonType: ButtonType.soldButton,
                                     onClick: () async {
                                       BlocProvider.of<OrderCubit>(context)
-                                          .createOrder(widget.addressModel.id ?? -1);
+                                          .createOrder(
+                                              widget.addressModel.id ?? -1);
                                     },
-                                    title: "Create order",
+                                    title: "Create_order".tr(),
                                   ),
                                 ),
                               ),

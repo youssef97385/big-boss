@@ -1,18 +1,16 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'generic_model.g.dart';
+part 'offer_model.g.dart';
 
 @JsonSerializable()
-class GenericModel extends Equatable {
-  const GenericModel({
+class OfferModel extends Equatable {
+  const OfferModel({
     this.id,
     this.enName,
     this.arName,
     this.krName,
-    this.remark,
     this.link,
-    this.subCategories,
   });
 
   final int? id;
@@ -22,14 +20,13 @@ class GenericModel extends Equatable {
   final String? arName;
   @JsonKey(name: 'kR_Name')
   final String? krName;
-  final String? remark;
-  final String? link;
-  final List<GenericModel>? subCategories;
 
-  factory GenericModel.fromJson(Map<String, dynamic> json) =>
-      _$GenericModelFromJson(json);
+  final List<String>? link;
 
-  Map<String, dynamic> toJson() => _$GenericModelToJson(this);
+  factory OfferModel.fromJson(Map<String, dynamic> json) =>
+      _$OfferModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$OfferModelToJson(this);
 
   @override
   List<Object?> get props => [
@@ -37,8 +34,6 @@ class GenericModel extends Equatable {
         enName,
         arName,
         krName,
-        remark,
         link,
-    subCategories,
       ];
 }

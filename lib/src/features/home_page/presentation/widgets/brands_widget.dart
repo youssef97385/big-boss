@@ -5,6 +5,7 @@ import 'package:bigboss/src/core/common/widgets/image_view.dart';
 import 'package:bigboss/src/core/common/widgets/text_view.dart';
 import 'package:bigboss/src/features/home_page/presentation/logic/brands_bloc/brands_cubit.dart';
 import 'package:bigboss/src/features/home_page/presentation/logic/brands_bloc/brands_state.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,7 +27,7 @@ class BrandsWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextView(
-              text: "Brands",
+              text: "Brands".tr(),
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(

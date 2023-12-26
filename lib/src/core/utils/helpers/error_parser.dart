@@ -9,7 +9,7 @@ import '../../common/data/models/error_model/error_model.dart';
 
 ErrorModel errorParse(error, stackTrace) {
   if (error is DioError) {
-    print("ERRRR ${error.response}");
+
     final int statusCode = error.response?.statusCode ?? 500;
     if (statusCode == 500) {
       final Error localError = Error(message: "Error_Communication".tr());

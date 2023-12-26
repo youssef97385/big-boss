@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_mask/easy_mask.dart';
 import 'package:flutter/material.dart';
 
@@ -145,21 +146,21 @@ class TextFormFieldView extends StatelessWidget with InputValidationMixin {
 
           case TextFormFieldTypes.IbanNumber:
             return value?.isEmpty ?? true
-                ? "This field is required"
+                ? "This_field_is_required".tr()
                 : isIban(value ?? "")
                     ? null
                     : errorMessage;
 
           case TextFormFieldTypes.percentage:
             return value?.isEmpty ?? true
-                ? "This field is required"
+                ? "This_field_is_required".tr()
                 : isPercentage(value ?? "")
                     ? null
                     : errorMessage;
 
           case TextFormFieldTypes.TIN:
             return value?.isEmpty ?? true
-                ? "This field is required"
+                ? "This_field_is_required".tr()
                 : isTinNumber(value ?? "")
                     ? null
                     : errorMessage;
@@ -168,7 +169,6 @@ class TextFormFieldView extends StatelessWidget with InputValidationMixin {
             if (minLength == null) {
               return null;
             } else {
-              print("vllue ${value?.length} ");
               return ((value ?? "").length > (minLength ?? 1))
                   ? null
                   : errorMessage;
