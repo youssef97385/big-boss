@@ -15,6 +15,8 @@ class CartItemEntity extends Equatable {
   final int count;
   @HiveField(4)
   final double price;
+  @HiveField(5)
+  final bool isOffer;
 
   const CartItemEntity({
     required this.id,
@@ -22,6 +24,7 @@ class CartItemEntity extends Equatable {
     required this.image,
     required this.count,
     required this.price,
+    required this.isOffer,
   });
 
   @override
@@ -29,5 +32,6 @@ class CartItemEntity extends Equatable {
         id,
         name,
         count,
+        isOffer,
       ];
 }

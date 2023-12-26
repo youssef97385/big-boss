@@ -44,6 +44,7 @@ class OfferRepositoryImpl implements OfferRepository {
           link = model.link?[0] ?? "";
         }
         products.add(ProductEntity(
+          isOffer: true,
           id: model.id,
           image: link,
           enName: model.enName ??"",

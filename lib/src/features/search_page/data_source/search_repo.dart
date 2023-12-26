@@ -40,6 +40,7 @@ class SearchRepoImpl implements SearchRepo {
           link = model.link?[0] ?? "";
         }
         products.add(ProductEntity(
+          isOffer: false,
           id: model.id,
           image: link,
           enName: model.enName ??"",

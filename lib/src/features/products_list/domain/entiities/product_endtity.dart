@@ -36,6 +36,7 @@ class ProductEntity extends Equatable {
   late List<Color> colors;
   late List<String> sizes;
   late List<PriceModel>? pricesList;
+  final bool isOffer;
 
   ProductEntity({
     this.id,
@@ -57,6 +58,7 @@ class ProductEntity extends Equatable {
     required String stringColors,
     required String stringSizes,
     required List<PriceModel> prices,
+    required this.isOffer,
   }) {
 
     final selectedLang = serviceLocator<AppSettings>().selectedLanguage;

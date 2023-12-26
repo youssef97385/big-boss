@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bigboss/src/core/common/data/models/error_model/error_model.dart';
 import 'package:bigboss/src/core/common/data/models/success_model/success_model.dart';
 import 'package:bigboss/src/core/constants/const.dart';
@@ -14,8 +16,7 @@ import 'package:dio/dio.dart';
 import '../../../core/utils/managers/database/hive_service.dart';
 
 abstract class OrderRepo {
-  Future<Either<ErrorModel, SuccessModel>> crateOrder(
-      int addressId);
+  Future<Either<ErrorModel, SuccessModel>> crateOrder(int addressId);
 
   Future<Either<ErrorModel, List<OrderModel>>> getAllOrders();
 }
@@ -27,31 +28,45 @@ class OrderRepoImpl implements OrderRepo {
   OrderRepoImpl({required this.orderDataSource, required this.hiveService});
 
   @override
-  Future<Either<ErrorModel, SuccessModel>> crateOrder(
-      int addressId) async {
+  Future<Either<ErrorModel, SuccessModel>> crateOrder(int addressId) async {
     try {
       List<CartItemEntity> products =
           await hiveService.getBoxes<CartItemEntity>(kCartKey);
 
       List<Map<String, dynamic>> mapProducts = [];
+      List<Map<String, dynamic>> mapOffers = [];
 
       double netTotal = 0;
-
+      bool isOneProductsOffer = false;
       for (CartItemEntity cartItemEntity in products) {
-        mapProducts.add({
-          "productId": cartItemEntity.id,
-          "qty": cartItemEntity.count,
-          "price": cartItemEntity.price,
-          "remark": "string"
-        });
-        netTotal +=(cartItemEntity.price*cartItemEntity.count) ?? 0;
+
+
+        if (cartItemEntity.isOffer) {
+          isOneProductsOffer = true;
+          mapOffers.add({
+            "offerId": cartItemEntity.id,
+            "qty": cartItemEntity.count,
+            "price": cartItemEntity.price,
+            "remark": "string"
+          });
+        } else {
+          mapProducts.add({
+            "productId": cartItemEntity.id,
+            "qty": cartItemEntity.count,
+            "price": cartItemEntity.price,
+            "remark": "string"
+          });
+        }
+
+        netTotal += (cartItemEntity.price * cartItemEntity.count) ?? 0;
       }
 
       var data = {
-        "addressId":addressId,
+        "addressId": addressId,
         "remark": "string",
         "orderedProducts": mapProducts,
-        "isOffer": false,
+        "orderedOffers": mapOffers,
+        "isOffer": isOneProductsOffer,
         "coupenCodeCode": "string",
         "netTotal": netTotal
       };

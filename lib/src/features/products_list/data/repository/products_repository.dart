@@ -43,6 +43,7 @@ class ProductRepositoryImpl implements ProductRepository {
             link = model.link?[0] ?? "";
           }
           products.add(ProductEntity(
+            isOffer: true,
             id: model.id,
             image: link,
             enName: model.enName ??"",
@@ -94,6 +95,7 @@ return right(productsEntity);
           link = model.link?[0] ?? "";
         }
         products.add(ProductEntity(
+          isOffer: false,
           id: model.id,
           image: link,
           enName: model.enName ??"",
@@ -137,6 +139,7 @@ return right(productsEntity);
           link = model.link?[0] ?? "";
         }
         products.add(ProductEntity(
+          isOffer: false,
           id: model.id,
           image: link,
           enName: model.enName ??"",
