@@ -1,4 +1,5 @@
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -21,7 +22,11 @@ class AppBarView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading:  Image.asset('assets/images/big-boss-splash-logo.png'),
+      leading:  InkWell(
+          onTap: (){
+            context.router.navigateNamed('main/');
+          },
+          child: Image.asset('assets/images/big-boss-splash-logo.png')),
       leadingWidth: 80,
       titleSpacing: 0.0,
       title: Center(

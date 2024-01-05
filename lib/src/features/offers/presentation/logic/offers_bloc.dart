@@ -1,5 +1,6 @@
 import 'package:bigboss/src/features/offers/data/models/offer_model.dart';
 import 'package:bigboss/src/features/offers/data/repository/offer_repository.dart';
+import 'package:bigboss/src/features/offers/domain/offer_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/common/data/models/error_model/error_model.dart';
 import 'offers_state.dart';
@@ -19,7 +20,7 @@ class OffersCubit extends Cubit<OffersState> {
       (ErrorModel error) => emit(
         OffersState.error(error.error ?? ""),
       ),
-      (List<OfferModel> offers) => emit(
+      (List<OfferEntity> offers) => emit(
         OffersState.success(offers),
       ),
     );

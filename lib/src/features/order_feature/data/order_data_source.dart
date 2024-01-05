@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:bigboss/src/core/common/data/models/success_model/success_model.dart';
 import 'package:bigboss/src/features/order_feature/modles/order_model.dart';
 import 'package:dio/dio.dart';
@@ -11,6 +12,8 @@ abstract class OrderDataSource {
       {required String path, required Map<String, dynamic> data});
 
   Future<List<OrderModel>?> getAllOrders(String userId);
+
+  Future<List<OrderModel>?> getOrderById(String userId, int orderId);
 }
 
 class OrderDataSourceImpl implements OrderDataSource {
@@ -40,6 +43,21 @@ class OrderDataSourceImpl implements OrderDataSource {
   Future<List<OrderModel>?> getAllOrders(String userId) async {
     final Response response = await httpManager.request(
       path: "/Ecommerce/EUserOrders?userId=$userId",
+      method: HttpMethods.Get,
+    );
+
+    List<dynamic> jsonData = json.decode(response.data);
+
+    List<OrderModel> model = jsonData
+        .map((json) => OrderModel.fromJson(json as Map<String, dynamic>))
+        .toList();
+    return model;
+  }
+
+  @override
+  Future<List<OrderModel>?> getOrderById(String userId, int orderId) async {
+    final Response response = await httpManager.request(
+      path: "/Ecommerce/EUserOrdersById?userId=$userId&orderId=$orderId",
       method: HttpMethods.Get,
     );
 

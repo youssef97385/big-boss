@@ -11,67 +11,72 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i18;
-import 'package:flutter/material.dart' as _i19;
-import 'package:google_maps_flutter/google_maps_flutter.dart' as _i23;
+import 'package:auto_route/auto_route.dart' as _i20;
+import 'package:flutter/material.dart' as _i21;
+import 'package:google_maps_flutter/google_maps_flutter.dart' as _i26;
 
-import '../../core/common/domain/entites/generic_entity.dart' as _i21;
-import '../../features/address/data/models/address_model.dart' as _i24;
-import '../../features/address/widget/address_details_page.dart' as _i12;
-import '../../features/address/widget/addresses_list.dart' as _i11;
+import '../../core/common/domain/entites/generic_entity.dart' as _i23;
+import '../../features/address/data/models/address_model.dart' as _i27;
+import '../../features/address/widget/address_details_page.dart' as _i13;
+import '../../features/address/widget/addresses_list.dart' as _i12;
 import '../../features/address/widget/map_picker.dart' as _i10;
-import '../../features/home_page/presentation/widgets/home_page.dart' as _i15;
+import '../../features/home_page/presentation/widgets/home_page.dart' as _i17;
 import '../../features/login/presentation/widgets/login_page.dart' as _i2;
-import '../../features/main/main_page.dart' as _i14;
+import '../../features/main/main_page.dart' as _i16;
 import '../../features/menu_page/presentation/widgets/menu_page.dart' as _i8;
-import '../../features/orders_page/presentation/order_page.dart' as _i16;
+import '../../features/offers/domain/offer_entity.dart' as _i28;
+import '../../features/offers/presentation/widgets/offer_products_page.dart'
+    as _i15;
+import '../../features/order_feature/modles/order_model.dart' as _i25;
+import '../../features/orders_page/presentation/order_detail_page.dart' as _i11;
+import '../../features/orders_page/presentation/order_page.dart' as _i18;
 import '../../features/otp-verifivation/presentation/widgets/verify_otp_screen.dart'
     as _i9;
 import '../../features/product_page/presentation/widgets/products_page.dart'
     as _i7;
 import '../../features/products_list/data/models/products_categories_enum.dart'
-    as _i20;
-import '../../features/products_list/domain/entiities/product_endtity.dart'
     as _i22;
+import '../../features/products_list/domain/entiities/product_endtity.dart'
+    as _i24;
 import '../../features/products_list/presentation/widgets/products_page.dart'
     as _i4;
 import '../../features/register/presentation/widgets/register_page.dart' as _i3;
-import '../../features/search_page/search_page.dart' as _i17;
+import '../../features/search_page/search_page.dart' as _i19;
 import '../../features/shopping_cart/presentation/widgets/cart_page.dart'
     as _i6;
 import '../../features/shopping_cart/presentation/widgets/order_summary_page.dart'
-    as _i13;
+    as _i14;
 import '../../features/splash/splash_page.dart' as _i1;
 import '../../features/sub_categories/presentation/sub_categories_page.dart'
     as _i5;
 
-class AppRouter extends _i18.RootStackRouter {
-  AppRouter([_i19.GlobalKey<_i19.NavigatorState>? navigatorKey])
+class AppRouter extends _i20.RootStackRouter {
+  AppRouter([_i21.GlobalKey<_i21.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i18.PageFactory> pagesMap = {
+  final Map<String, _i20.PageFactory> pagesMap = {
     SplashAppRouter.name: (routeData) {
-      return _i18.MaterialPageX<dynamic>(
+      return _i20.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i1.SplashPage(),
       );
     },
     LoginPageAppRouter.name: (routeData) {
-      return _i18.MaterialPageX<dynamic>(
+      return _i20.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i2.LoginPage(),
       );
     },
     RegisterPageAppRouter.name: (routeData) {
-      return _i18.MaterialPageX<dynamic>(
+      return _i20.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i3.RegisterPage(),
       );
     },
     ProductsPageAppRouter.name: (routeData) {
       final args = routeData.argsAs<ProductsPageAppRouterArgs>();
-      return _i18.MaterialPageX<dynamic>(
+      return _i20.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i4.ProductsPage(
           key: args.key,
@@ -82,7 +87,7 @@ class AppRouter extends _i18.RootStackRouter {
     },
     SubCategoriesPageAppRouter.name: (routeData) {
       final args = routeData.argsAs<SubCategoriesPageAppRouterArgs>();
-      return _i18.MaterialPageX<dynamic>(
+      return _i20.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i5.SubCategoriesPage(
           key: args.key,
@@ -92,7 +97,7 @@ class AppRouter extends _i18.RootStackRouter {
       );
     },
     CartPageAppRouter.name: (routeData) {
-      return _i18.MaterialPageX<dynamic>(
+      return _i20.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i6.CartPage(),
       );
@@ -100,7 +105,7 @@ class AppRouter extends _i18.RootStackRouter {
     ProductScreenAppRouter.name: (routeData) {
       final args = routeData.argsAs<ProductScreenAppRouterArgs>(
           orElse: () => const ProductScreenAppRouterArgs());
-      return _i18.MaterialPageX<dynamic>(
+      return _i20.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i7.ProductScreen(
           key: args.key,
@@ -109,14 +114,14 @@ class AppRouter extends _i18.RootStackRouter {
       );
     },
     MenuPageAppRouter.name: (routeData) {
-      return _i18.MaterialPageX<dynamic>(
+      return _i20.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i8.MenuPage(),
       );
     },
     VerifyOtpScreenAppRouter.name: (routeData) {
       final args = routeData.argsAs<VerifyOtpScreenAppRouterArgs>();
-      return _i18.MaterialPageX<dynamic>(
+      return _i20.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i9.VerifyOtpScreen(
           key: args.key,
@@ -127,23 +132,33 @@ class AppRouter extends _i18.RootStackRouter {
     MapPickerAppRouter.name: (routeData) {
       final args = routeData.argsAs<MapPickerAppRouterArgs>(
           orElse: () => const MapPickerAppRouterArgs());
-      return _i18.MaterialPageX<dynamic>(
+      return _i20.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i10.MapPicker(key: args.key),
       );
     },
-    AddressListAppRouter.name: (routeData) {
-      return _i18.MaterialPageX<dynamic>(
+    OrderDetailPageAppRouter.name: (routeData) {
+      final args = routeData.argsAs<OrderDetailPageAppRouterArgs>();
+      return _i20.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i11.AddressList(),
+        child: _i11.OrderDetailPage(
+          key: args.key,
+          orderModel: args.orderModel,
+        ),
+      );
+    },
+    AddressListAppRouter.name: (routeData) {
+      return _i20.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i12.AddressList(),
       );
     },
     AddressDetailsPageAppRouter.name: (routeData) {
       final args = routeData.argsAs<AddressDetailsPageAppRouterArgs>(
           orElse: () => const AddressDetailsPageAppRouterArgs());
-      return _i18.MaterialPageX<dynamic>(
+      return _i20.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i12.AddressDetailsPage(
+        child: _i13.AddressDetailsPage(
           key: args.key,
           latLng: args.latLng,
         ),
@@ -151,115 +166,134 @@ class AppRouter extends _i18.RootStackRouter {
     },
     OrderSummaryAppRouter.name: (routeData) {
       final args = routeData.argsAs<OrderSummaryAppRouterArgs>();
-      return _i18.MaterialPageX<dynamic>(
+      return _i20.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i13.OrderSummary(
+        child: _i14.OrderSummary(
           key: args.key,
           addressModel: args.addressModel,
         ),
       );
     },
-    MainAppRouter.name: (routeData) {
-      return _i18.MaterialPageX<dynamic>(
+    OfferProductsPageAppRouter.name: (routeData) {
+      final args = routeData.argsAs<OfferProductsPageAppRouterArgs>();
+      return _i20.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i14.MainPage(),
+        child: _i15.OfferProductsPage(
+          key: args.key,
+          offerId: args.offerId,
+          offerEntity: args.offerEntity,
+        ),
+      );
+    },
+    MainAppRouter.name: (routeData) {
+      return _i20.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i16.MainPage(),
       );
     },
     HomePageAppRouter.name: (routeData) {
-      return _i18.MaterialPageX<dynamic>(
+      return _i20.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i15.HomePage(),
+        child: const _i17.HomePage(),
       );
     },
     OrderPageAppRouter.name: (routeData) {
-      return _i18.MaterialPageX<dynamic>(
+      return _i20.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i16.OrderPage(),
+        child: const _i18.OrderPage(),
         maintainState: false,
       );
     },
     SearchPageAppRouter.name: (routeData) {
-      return _i18.MaterialPageX<dynamic>(
+      return _i20.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i17.SearchPage(),
+        child: const _i19.SearchPage(),
       );
     },
   };
 
   @override
-  List<_i18.RouteConfig> get routes => [
-        _i18.RouteConfig(
+  List<_i20.RouteConfig> get routes => [
+        _i20.RouteConfig(
           SplashAppRouter.name,
           path: '/',
         ),
-        _i18.RouteConfig(
+        _i20.RouteConfig(
           LoginPageAppRouter.name,
           path: 'loginPage',
         ),
-        _i18.RouteConfig(
+        _i20.RouteConfig(
           RegisterPageAppRouter.name,
           path: 'RegisterPage',
         ),
-        _i18.RouteConfig(
+        _i20.RouteConfig(
           ProductsPageAppRouter.name,
           path: 'ProductsPage',
         ),
-        _i18.RouteConfig(
+        _i20.RouteConfig(
           SubCategoriesPageAppRouter.name,
           path: 'SubCategoriesPage',
         ),
-        _i18.RouteConfig(
+        _i20.RouteConfig(
           CartPageAppRouter.name,
           path: 'CartPage',
         ),
-        _i18.RouteConfig(
+        _i20.RouteConfig(
           ProductScreenAppRouter.name,
           path: 'ProductScreen',
         ),
-        _i18.RouteConfig(
+        _i20.RouteConfig(
           MenuPageAppRouter.name,
           path: 'MenuPage',
         ),
-        _i18.RouteConfig(
+        _i20.RouteConfig(
           VerifyOtpScreenAppRouter.name,
           path: 'VerifyOtpScreen',
         ),
-        _i18.RouteConfig(
+        _i20.RouteConfig(
           MapPickerAppRouter.name,
           path: 'MapPicker',
         ),
-        _i18.RouteConfig(
+        _i20.RouteConfig(
+          OrderDetailPageAppRouter.name,
+          path: 'OrderDetailPage',
+        ),
+        _i20.RouteConfig(
           AddressListAppRouter.name,
           path: 'AddressList',
         ),
-        _i18.RouteConfig(
+        _i20.RouteConfig(
           AddressDetailsPageAppRouter.name,
           path: 'AddressDetailsPage',
         ),
-        _i18.RouteConfig(
+        _i20.RouteConfig(
           OrderSummaryAppRouter.name,
           path: 'OrderSummary',
         ),
-        _i18.RouteConfig(
+        _i20.RouteConfig(
+          OfferProductsPageAppRouter.name,
+          path: 'OfferProductsPage',
+        ),
+        _i20.RouteConfig(
           MainAppRouter.name,
           path: 'main',
           children: [
-            _i18.RouteConfig(
+            _i20.RouteConfig(
               HomePageAppRouter.name,
               path: 'HomePage',
               parent: MainAppRouter.name,
             ),
-            _i18.RouteConfig(
+            _i20.RouteConfig(
               CartPageAppRouter.name,
               path: 'CartPage',
               parent: MainAppRouter.name,
             ),
-            _i18.RouteConfig(
+            _i20.RouteConfig(
               OrderPageAppRouter.name,
               path: 'OrderPage',
               parent: MainAppRouter.name,
             ),
-            _i18.RouteConfig(
+            _i20.RouteConfig(
               SearchPageAppRouter.name,
               path: 'SearchPage',
               parent: MainAppRouter.name,
@@ -271,7 +305,7 @@ class AppRouter extends _i18.RootStackRouter {
 
 /// generated route for
 /// [_i1.SplashPage]
-class SplashAppRouter extends _i18.PageRouteInfo<void> {
+class SplashAppRouter extends _i20.PageRouteInfo<void> {
   const SplashAppRouter()
       : super(
           SplashAppRouter.name,
@@ -283,7 +317,7 @@ class SplashAppRouter extends _i18.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.LoginPage]
-class LoginPageAppRouter extends _i18.PageRouteInfo<void> {
+class LoginPageAppRouter extends _i20.PageRouteInfo<void> {
   const LoginPageAppRouter()
       : super(
           LoginPageAppRouter.name,
@@ -295,7 +329,7 @@ class LoginPageAppRouter extends _i18.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.RegisterPage]
-class RegisterPageAppRouter extends _i18.PageRouteInfo<void> {
+class RegisterPageAppRouter extends _i20.PageRouteInfo<void> {
   const RegisterPageAppRouter()
       : super(
           RegisterPageAppRouter.name,
@@ -308,11 +342,11 @@ class RegisterPageAppRouter extends _i18.PageRouteInfo<void> {
 /// generated route for
 /// [_i4.ProductsPage]
 class ProductsPageAppRouter
-    extends _i18.PageRouteInfo<ProductsPageAppRouterArgs> {
+    extends _i20.PageRouteInfo<ProductsPageAppRouterArgs> {
   ProductsPageAppRouter({
-    _i19.Key? key,
+    _i21.Key? key,
     required int id,
-    required _i20.ProductCatsEnum productCatsEnum,
+    required _i22.ProductCatsEnum productCatsEnum,
   }) : super(
           ProductsPageAppRouter.name,
           path: 'ProductsPage',
@@ -333,11 +367,11 @@ class ProductsPageAppRouterArgs {
     required this.productCatsEnum,
   });
 
-  final _i19.Key? key;
+  final _i21.Key? key;
 
   final int id;
 
-  final _i20.ProductCatsEnum productCatsEnum;
+  final _i22.ProductCatsEnum productCatsEnum;
 
   @override
   String toString() {
@@ -348,10 +382,10 @@ class ProductsPageAppRouterArgs {
 /// generated route for
 /// [_i5.SubCategoriesPage]
 class SubCategoriesPageAppRouter
-    extends _i18.PageRouteInfo<SubCategoriesPageAppRouterArgs> {
+    extends _i20.PageRouteInfo<SubCategoriesPageAppRouterArgs> {
   SubCategoriesPageAppRouter({
-    _i19.Key? key,
-    required List<_i21.GenericEntity> subCats,
+    _i21.Key? key,
+    required List<_i23.GenericEntity> subCats,
     required String catName,
   }) : super(
           SubCategoriesPageAppRouter.name,
@@ -373,9 +407,9 @@ class SubCategoriesPageAppRouterArgs {
     required this.catName,
   });
 
-  final _i19.Key? key;
+  final _i21.Key? key;
 
-  final List<_i21.GenericEntity> subCats;
+  final List<_i23.GenericEntity> subCats;
 
   final String catName;
 
@@ -387,7 +421,7 @@ class SubCategoriesPageAppRouterArgs {
 
 /// generated route for
 /// [_i6.CartPage]
-class CartPageAppRouter extends _i18.PageRouteInfo<void> {
+class CartPageAppRouter extends _i20.PageRouteInfo<void> {
   const CartPageAppRouter()
       : super(
           CartPageAppRouter.name,
@@ -400,10 +434,10 @@ class CartPageAppRouter extends _i18.PageRouteInfo<void> {
 /// generated route for
 /// [_i7.ProductScreen]
 class ProductScreenAppRouter
-    extends _i18.PageRouteInfo<ProductScreenAppRouterArgs> {
+    extends _i20.PageRouteInfo<ProductScreenAppRouterArgs> {
   ProductScreenAppRouter({
-    _i19.Key? key,
-    _i22.ProductEntity? productEntity,
+    _i21.Key? key,
+    _i24.ProductEntity? productEntity,
   }) : super(
           ProductScreenAppRouter.name,
           path: 'ProductScreen',
@@ -422,9 +456,9 @@ class ProductScreenAppRouterArgs {
     this.productEntity,
   });
 
-  final _i19.Key? key;
+  final _i21.Key? key;
 
-  final _i22.ProductEntity? productEntity;
+  final _i24.ProductEntity? productEntity;
 
   @override
   String toString() {
@@ -434,7 +468,7 @@ class ProductScreenAppRouterArgs {
 
 /// generated route for
 /// [_i8.MenuPage]
-class MenuPageAppRouter extends _i18.PageRouteInfo<void> {
+class MenuPageAppRouter extends _i20.PageRouteInfo<void> {
   const MenuPageAppRouter()
       : super(
           MenuPageAppRouter.name,
@@ -447,9 +481,9 @@ class MenuPageAppRouter extends _i18.PageRouteInfo<void> {
 /// generated route for
 /// [_i9.VerifyOtpScreen]
 class VerifyOtpScreenAppRouter
-    extends _i18.PageRouteInfo<VerifyOtpScreenAppRouterArgs> {
+    extends _i20.PageRouteInfo<VerifyOtpScreenAppRouterArgs> {
   VerifyOtpScreenAppRouter({
-    _i19.Key? key,
+    _i21.Key? key,
     required String phoneNumber,
   }) : super(
           VerifyOtpScreenAppRouter.name,
@@ -469,7 +503,7 @@ class VerifyOtpScreenAppRouterArgs {
     required this.phoneNumber,
   });
 
-  final _i19.Key? key;
+  final _i21.Key? key;
 
   final String phoneNumber;
 
@@ -481,8 +515,8 @@ class VerifyOtpScreenAppRouterArgs {
 
 /// generated route for
 /// [_i10.MapPicker]
-class MapPickerAppRouter extends _i18.PageRouteInfo<MapPickerAppRouterArgs> {
-  MapPickerAppRouter({_i19.Key? key})
+class MapPickerAppRouter extends _i20.PageRouteInfo<MapPickerAppRouterArgs> {
+  MapPickerAppRouter({_i21.Key? key})
       : super(
           MapPickerAppRouter.name,
           path: 'MapPicker',
@@ -495,7 +529,7 @@ class MapPickerAppRouter extends _i18.PageRouteInfo<MapPickerAppRouterArgs> {
 class MapPickerAppRouterArgs {
   const MapPickerAppRouterArgs({this.key});
 
-  final _i19.Key? key;
+  final _i21.Key? key;
 
   @override
   String toString() {
@@ -504,8 +538,43 @@ class MapPickerAppRouterArgs {
 }
 
 /// generated route for
-/// [_i11.AddressList]
-class AddressListAppRouter extends _i18.PageRouteInfo<void> {
+/// [_i11.OrderDetailPage]
+class OrderDetailPageAppRouter
+    extends _i20.PageRouteInfo<OrderDetailPageAppRouterArgs> {
+  OrderDetailPageAppRouter({
+    _i21.Key? key,
+    required _i25.OrderModel orderModel,
+  }) : super(
+          OrderDetailPageAppRouter.name,
+          path: 'OrderDetailPage',
+          args: OrderDetailPageAppRouterArgs(
+            key: key,
+            orderModel: orderModel,
+          ),
+        );
+
+  static const String name = 'OrderDetailPageAppRouter';
+}
+
+class OrderDetailPageAppRouterArgs {
+  const OrderDetailPageAppRouterArgs({
+    this.key,
+    required this.orderModel,
+  });
+
+  final _i21.Key? key;
+
+  final _i25.OrderModel orderModel;
+
+  @override
+  String toString() {
+    return 'OrderDetailPageAppRouterArgs{key: $key, orderModel: $orderModel}';
+  }
+}
+
+/// generated route for
+/// [_i12.AddressList]
+class AddressListAppRouter extends _i20.PageRouteInfo<void> {
   const AddressListAppRouter()
       : super(
           AddressListAppRouter.name,
@@ -516,12 +585,12 @@ class AddressListAppRouter extends _i18.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i12.AddressDetailsPage]
+/// [_i13.AddressDetailsPage]
 class AddressDetailsPageAppRouter
-    extends _i18.PageRouteInfo<AddressDetailsPageAppRouterArgs> {
+    extends _i20.PageRouteInfo<AddressDetailsPageAppRouterArgs> {
   AddressDetailsPageAppRouter({
-    _i19.Key? key,
-    _i23.LatLng? latLng,
+    _i21.Key? key,
+    _i26.LatLng? latLng,
   }) : super(
           AddressDetailsPageAppRouter.name,
           path: 'AddressDetailsPage',
@@ -540,9 +609,9 @@ class AddressDetailsPageAppRouterArgs {
     this.latLng,
   });
 
-  final _i19.Key? key;
+  final _i21.Key? key;
 
-  final _i23.LatLng? latLng;
+  final _i26.LatLng? latLng;
 
   @override
   String toString() {
@@ -551,12 +620,12 @@ class AddressDetailsPageAppRouterArgs {
 }
 
 /// generated route for
-/// [_i13.OrderSummary]
+/// [_i14.OrderSummary]
 class OrderSummaryAppRouter
-    extends _i18.PageRouteInfo<OrderSummaryAppRouterArgs> {
+    extends _i20.PageRouteInfo<OrderSummaryAppRouterArgs> {
   OrderSummaryAppRouter({
-    _i19.Key? key,
-    required _i24.AddressModel addressModel,
+    _i21.Key? key,
+    required _i27.AddressModel addressModel,
   }) : super(
           OrderSummaryAppRouter.name,
           path: 'OrderSummary',
@@ -575,9 +644,9 @@ class OrderSummaryAppRouterArgs {
     required this.addressModel,
   });
 
-  final _i19.Key? key;
+  final _i21.Key? key;
 
-  final _i24.AddressModel addressModel;
+  final _i27.AddressModel addressModel;
 
   @override
   String toString() {
@@ -586,9 +655,49 @@ class OrderSummaryAppRouterArgs {
 }
 
 /// generated route for
-/// [_i14.MainPage]
-class MainAppRouter extends _i18.PageRouteInfo<void> {
-  const MainAppRouter({List<_i18.PageRouteInfo>? children})
+/// [_i15.OfferProductsPage]
+class OfferProductsPageAppRouter
+    extends _i20.PageRouteInfo<OfferProductsPageAppRouterArgs> {
+  OfferProductsPageAppRouter({
+    _i21.Key? key,
+    required int offerId,
+    required _i28.OfferEntity offerEntity,
+  }) : super(
+          OfferProductsPageAppRouter.name,
+          path: 'OfferProductsPage',
+          args: OfferProductsPageAppRouterArgs(
+            key: key,
+            offerId: offerId,
+            offerEntity: offerEntity,
+          ),
+        );
+
+  static const String name = 'OfferProductsPageAppRouter';
+}
+
+class OfferProductsPageAppRouterArgs {
+  const OfferProductsPageAppRouterArgs({
+    this.key,
+    required this.offerId,
+    required this.offerEntity,
+  });
+
+  final _i21.Key? key;
+
+  final int offerId;
+
+  final _i28.OfferEntity offerEntity;
+
+  @override
+  String toString() {
+    return 'OfferProductsPageAppRouterArgs{key: $key, offerId: $offerId, offerEntity: $offerEntity}';
+  }
+}
+
+/// generated route for
+/// [_i16.MainPage]
+class MainAppRouter extends _i20.PageRouteInfo<void> {
+  const MainAppRouter({List<_i20.PageRouteInfo>? children})
       : super(
           MainAppRouter.name,
           path: 'main',
@@ -599,8 +708,8 @@ class MainAppRouter extends _i18.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i15.HomePage]
-class HomePageAppRouter extends _i18.PageRouteInfo<void> {
+/// [_i17.HomePage]
+class HomePageAppRouter extends _i20.PageRouteInfo<void> {
   const HomePageAppRouter()
       : super(
           HomePageAppRouter.name,
@@ -611,8 +720,8 @@ class HomePageAppRouter extends _i18.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i16.OrderPage]
-class OrderPageAppRouter extends _i18.PageRouteInfo<void> {
+/// [_i18.OrderPage]
+class OrderPageAppRouter extends _i20.PageRouteInfo<void> {
   const OrderPageAppRouter()
       : super(
           OrderPageAppRouter.name,
@@ -623,8 +732,8 @@ class OrderPageAppRouter extends _i18.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i17.SearchPage]
-class SearchPageAppRouter extends _i18.PageRouteInfo<void> {
+/// [_i19.SearchPage]
+class SearchPageAppRouter extends _i20.PageRouteInfo<void> {
   const SearchPageAppRouter()
       : super(
           SearchPageAppRouter.name,

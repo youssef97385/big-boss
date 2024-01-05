@@ -12,6 +12,11 @@ OrderModel _$OrderModelFromJson(Map<String, dynamic> json) => OrderModel(
           ? null
           : DateTime.parse(json['dateTime'] as String),
       netTotal: (json['netTotal'] as num?)?.toDouble(),
+      orderStatus: json['orderStatus'] as int?,
+      products: json['products'] == null
+          ? null
+          : OrderProductModel.fromJson(
+              json['products'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$OrderModelToJson(OrderModel instance) =>
@@ -19,4 +24,6 @@ Map<String, dynamic> _$OrderModelToJson(OrderModel instance) =>
       'id': instance.id,
       'dateTime': instance.dateTime?.toIso8601String(),
       'netTotal': instance.netTotal,
+      'orderStatus': instance.orderStatus,
+      'products': instance.products,
     };

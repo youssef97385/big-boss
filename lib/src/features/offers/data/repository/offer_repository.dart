@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bigboss/src/features/offers/data/data_source/offer_data_source.dart';
 import 'package:bigboss/src/features/offers/data/models/offer_model.dart';
 import 'package:bigboss/src/features/products_list/data/models/product_model.dart';
@@ -6,9 +8,10 @@ import 'package:dartz/dartz.dart';
 import '../../../../core/common/data/models/error_model/error_model.dart';
 import '../../../../core/utils/helpers/error_parser.dart';
 import '../../../products_list/domain/entiities/product_endtity.dart';
+import '../../domain/offer_entity.dart';
 
 abstract class OfferRepository {
-  Future<Either<ErrorModel, List<OfferModel>>> getOffers();
+  Future<Either<ErrorModel, List<OfferEntity>>> getOffers();
 
   Future<Either<ErrorModel, List<ProductEntity>>> getProductsByOfferId(id);
 }
@@ -21,11 +24,30 @@ class OfferRepositoryImpl implements OfferRepository {
   });
 
   @override
-  Future<Either<ErrorModel, List<OfferModel>>> getOffers() async {
+  Future<Either<ErrorModel, List<OfferEntity>>> getOffers() async {
     try {
       final data = await offersDataSource.getOffers();
 
-      return Right(data ?? []);
+      List<OfferEntity> offers = [];
+     for(OfferModel model in data ?? []){
+       offers.add(
+
+           OfferEntity(
+             id:model.id,
+             enName:model.enName,
+             arName:model.arName,
+       krName:model.krName,
+           link:model.link,
+            netTotal:model.netTotal,
+          arDescritpion:model.arDescritpion,
+          krDescription:model.krDescription,
+           enDescription:model.enDescription,
+           )
+       );
+     }
+
+
+      return Right(offers ?? []);
     } catch (error, stackTrace) {
       print("error# $error");
       return Left(errorParse(error, stackTrace));

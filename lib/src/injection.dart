@@ -15,6 +15,7 @@ import 'package:bigboss/src/features/home_page/presentation/logic/countries_cubi
 import 'package:bigboss/src/features/home_page/presentation/logic/slides_bloc/slides_cubit.dart';
 import 'package:bigboss/src/features/order_feature/bloc/order_cubit.dart';
 import 'package:bigboss/src/features/order_feature/data/order_data_source.dart';
+import 'package:bigboss/src/features/orders_page/presentation/bloc/order_detail_cubit.dart';
 import 'package:bigboss/src/features/orders_page/presentation/bloc/orders_bloc.dart';
 import 'package:bigboss/src/features/otp-verifivation/data/data_source/send_otp_data_source.dart';
 import 'package:bigboss/src/features/products_list/data/data_source/products_data_source.dart';
@@ -177,6 +178,13 @@ void initInjections(GetIt serviceLocator) {
 
   //* bloc/cubit
 
+
+
+  serviceLocator.registerFactory<OrderDetailCubit>(
+    () => OrderDetailCubit(
+      repository: serviceLocator(),
+    ),
+  );
 
 
   serviceLocator.registerFactory<OffersCubit>(

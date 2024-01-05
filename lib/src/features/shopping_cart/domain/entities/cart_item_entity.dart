@@ -16,7 +16,7 @@ class CartItemEntity extends Equatable {
   @HiveField(4)
   final double price;
   @HiveField(5)
-  final bool isOffer;
+  final bool? isOffer;
 
   const CartItemEntity({
     required this.id,

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'offers_state.dart';
+part of 'order_details_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,13 +15,13 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$OffersState {
+mixin _$OrderDetailState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(List<OfferEntity> accounts) success,
+    required TResult Function(List<ProductEntity> products) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +29,7 @@ mixin _$OffersState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(List<OfferEntity> accounts)? success,
+    TResult? Function(List<ProductEntity> products)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$OffersState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(List<OfferEntity> accounts)? success,
+    TResult Function(List<ProductEntity> products)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -69,16 +69,16 @@ mixin _$OffersState {
 }
 
 /// @nodoc
-abstract class $OffersStateCopyWith<$Res> {
-  factory $OffersStateCopyWith(
-          OffersState value, $Res Function(OffersState) then) =
-      _$OffersStateCopyWithImpl<$Res, OffersState>;
+abstract class $OrderDetailStateCopyWith<$Res> {
+  factory $OrderDetailStateCopyWith(
+          OrderDetailState value, $Res Function(OrderDetailState) then) =
+      _$OrderDetailStateCopyWithImpl<$Res, OrderDetailState>;
 }
 
 /// @nodoc
-class _$OffersStateCopyWithImpl<$Res, $Val extends OffersState>
-    implements $OffersStateCopyWith<$Res> {
-  _$OffersStateCopyWithImpl(this._value, this._then);
+class _$OrderDetailStateCopyWithImpl<$Res, $Val extends OrderDetailState>
+    implements $OrderDetailStateCopyWith<$Res> {
+  _$OrderDetailStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -95,7 +95,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$OffersStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$OrderDetailStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -109,7 +109,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'OffersState.initial()';
+    return 'OrderDetailState.initial()';
   }
 
   @override
@@ -127,7 +127,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(List<OfferEntity> accounts) success,
+    required TResult Function(List<ProductEntity> products) success,
   }) {
     return initial();
   }
@@ -138,7 +138,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(List<OfferEntity> accounts)? success,
+    TResult? Function(List<ProductEntity> products)? success,
   }) {
     return initial?.call();
   }
@@ -149,7 +149,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(List<OfferEntity> accounts)? success,
+    TResult Function(List<ProductEntity> products)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -196,7 +196,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements OffersState {
+abstract class _Initial implements OrderDetailState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -209,7 +209,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$OffersStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$OrderDetailStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
@@ -223,7 +223,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'OffersState.loading()';
+    return 'OrderDetailState.loading()';
   }
 
   @override
@@ -241,7 +241,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(List<OfferEntity> accounts) success,
+    required TResult Function(List<ProductEntity> products) success,
   }) {
     return loading();
   }
@@ -252,7 +252,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(List<OfferEntity> accounts)? success,
+    TResult? Function(List<ProductEntity> products)? success,
   }) {
     return loading?.call();
   }
@@ -263,7 +263,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(List<OfferEntity> accounts)? success,
+    TResult Function(List<ProductEntity> products)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -310,7 +310,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements OffersState {
+abstract class _Loading implements OrderDetailState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -325,7 +325,7 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$OffersStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$OrderDetailStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
@@ -355,7 +355,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'OffersState.error(message: $message)';
+    return 'OrderDetailState.error(message: $message)';
   }
 
   @override
@@ -381,7 +381,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(List<OfferEntity> accounts) success,
+    required TResult Function(List<ProductEntity> products) success,
   }) {
     return error(message);
   }
@@ -392,7 +392,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(List<OfferEntity> accounts)? success,
+    TResult? Function(List<ProductEntity> products)? success,
   }) {
     return error?.call(message);
   }
@@ -403,7 +403,7 @@ class _$ErrorImpl implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(List<OfferEntity> accounts)? success,
+    TResult Function(List<ProductEntity> products)? success,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -450,7 +450,7 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements OffersState {
+abstract class _Error implements OrderDetailState {
   const factory _Error(final String message) = _$ErrorImpl;
 
   String get message;
@@ -465,12 +465,12 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<OfferEntity> accounts});
+  $Res call({List<ProductEntity> products});
 }
 
 /// @nodoc
 class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$OffersStateCopyWithImpl<$Res, _$SuccessImpl>
+    extends _$OrderDetailStateCopyWithImpl<$Res, _$SuccessImpl>
     implements _$$SuccessImplCopyWith<$Res> {
   __$$SuccessImplCopyWithImpl(
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
@@ -479,13 +479,13 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accounts = null,
+    Object? products = null,
   }) {
     return _then(_$SuccessImpl(
-      null == accounts
-          ? _value._accounts
-          : accounts // ignore: cast_nullable_to_non_nullable
-              as List<OfferEntity>,
+      null == products
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<ProductEntity>,
     ));
   }
 }
@@ -493,19 +493,20 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(final List<OfferEntity> accounts) : _accounts = accounts;
+  const _$SuccessImpl(final List<ProductEntity> products)
+      : _products = products;
 
-  final List<OfferEntity> _accounts;
+  final List<ProductEntity> _products;
   @override
-  List<OfferEntity> get accounts {
-    if (_accounts is EqualUnmodifiableListView) return _accounts;
+  List<ProductEntity> get products {
+    if (_products is EqualUnmodifiableListView) return _products;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_accounts);
+    return EqualUnmodifiableListView(_products);
   }
 
   @override
   String toString() {
-    return 'OffersState.success(accounts: $accounts)';
+    return 'OrderDetailState.success(products: $products)';
   }
 
   @override
@@ -513,12 +514,12 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            const DeepCollectionEquality().equals(other._accounts, _accounts));
+            const DeepCollectionEquality().equals(other._products, _products));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_accounts));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_products));
 
   @JsonKey(ignore: true)
   @override
@@ -532,9 +533,9 @@ class _$SuccessImpl implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String message) error,
-    required TResult Function(List<OfferEntity> accounts) success,
+    required TResult Function(List<ProductEntity> products) success,
   }) {
-    return success(accounts);
+    return success(products);
   }
 
   @override
@@ -543,9 +544,9 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String message)? error,
-    TResult? Function(List<OfferEntity> accounts)? success,
+    TResult? Function(List<ProductEntity> products)? success,
   }) {
-    return success?.call(accounts);
+    return success?.call(products);
   }
 
   @override
@@ -554,11 +555,11 @@ class _$SuccessImpl implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String message)? error,
-    TResult Function(List<OfferEntity> accounts)? success,
+    TResult Function(List<ProductEntity> products)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(accounts);
+      return success(products);
     }
     return orElse();
   }
@@ -601,10 +602,10 @@ class _$SuccessImpl implements _Success {
   }
 }
 
-abstract class _Success implements OffersState {
-  const factory _Success(final List<OfferEntity> accounts) = _$SuccessImpl;
+abstract class _Success implements OrderDetailState {
+  const factory _Success(final List<ProductEntity> products) = _$SuccessImpl;
 
-  List<OfferEntity> get accounts;
+  List<ProductEntity> get products;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;

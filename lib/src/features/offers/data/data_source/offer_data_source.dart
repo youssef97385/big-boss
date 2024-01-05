@@ -27,11 +27,17 @@ class OffersDataSourceImpl implements OffersDataSource {
       path: "/Ecommerce/Eoffers",
       method: HttpMethods.Get,
     );
+
+
+    log("Offers response $response");
+
+
     List<dynamic> jsonData = json.decode(response.data);
 
     List<OfferModel> model = jsonData
         .map((json) => OfferModel.fromJson(json as Map<String, dynamic>))
         .toList();
+
     return model;
   }
 

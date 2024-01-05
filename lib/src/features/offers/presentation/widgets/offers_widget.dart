@@ -8,6 +8,7 @@ import 'package:bigboss/src/features/home_page/presentation/logic/accounts_cubit
 import 'package:bigboss/src/features/home_page/presentation/logic/brands_bloc/brands_cubit.dart';
 import 'package:bigboss/src/features/home_page/presentation/logic/brands_bloc/brands_state.dart';
 import 'package:bigboss/src/features/offers/data/models/offer_model.dart';
+import 'package:bigboss/src/features/offers/domain/offer_entity.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_avif/flutter_avif.dart';
@@ -28,7 +29,8 @@ class OffersWidget extends StatelessWidget {
     return BlocBuilder<OffersCubit, OffersState>(builder: (context, state) {
       return state.maybeWhen(orElse: () {
         return const SizedBox();
-      }, success: (List<OfferModel> offers) {
+      }, success: (List<OfferEntity> offers) {
+
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -53,13 +55,25 @@ class OffersWidget extends StatelessWidget {
                         width: 150,
                         child: CardView(
                             onTap: () {
-                              context.router.push(ProductsPageAppRouter(
-                                  id: offers[index].id ?? 0,
-                                  productCatsEnum: ProductCatsEnum.offer));
+                              context.router.push(
+                                OfferProductsPageAppRouter(
+                                  offerId: offers[index].id ?? 0,
+                                  offerEntity: offers[index],
+                                ),
+                              );
                             },
                             child: Column(
                               children: [
                                 Visibility(
+                                  visible: offers[index].link?[0]?.substring(
+                                          (offers[index].link?[0]?.length ?? 0) -
+                                              4) ==
+                                      "avif",
+                                  replacement: SizedBox(
+                                      height: 120,
+                                      child: ImageBuilder(
+                                        imageUrl: offers[index].link?[0] ?? "",
+                                      )),
                                   child: SizedBox(
                                     height: 120,
                                     child: AvifImage.network(
@@ -68,15 +82,6 @@ class OffersWidget extends StatelessWidget {
                                       fit: BoxFit.contain,
                                     ),
                                   ),
-                                  visible: offers[index].link?[0].substring(
-                                          (offers[index].link?[0].length ?? 0) -
-                                              4) ==
-                                      "avif",
-                                  replacement: SizedBox(
-                                    height: 120,
-                                    child: ImageBuilder(
-                                      imageUrl: offers[index].link?[0] ?? "",
-                                    )),
                                 ),
                                 const SizedBox(
                                   height: 12,
@@ -96,7 +101,9 @@ class OffersWidget extends StatelessWidget {
           ],
         );
       }, error: (String error) {
-        return ErrorView(error: error, onRefresh: () {});
+        return ErrorView(error: error, onRefresh: () {
+          BlocProvider.of<OffersCubit>(context).getOffers();
+        });
       }, loading: () {
         return LoadingView();
       });

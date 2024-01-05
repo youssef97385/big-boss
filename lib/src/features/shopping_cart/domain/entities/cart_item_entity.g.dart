@@ -22,7 +22,7 @@ class CartItemEntityAdapter extends TypeAdapter<CartItemEntity> {
       image: fields[2] as String,
       count: fields[3] as int,
       price: fields[4] as double,
-      isOffer: fields[5] as bool,
+      isOffer: fields[5] as bool?,
     );
   }
 

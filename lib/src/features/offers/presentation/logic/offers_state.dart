@@ -1,5 +1,6 @@
 
 import 'package:bigboss/src/features/offers/data/models/offer_model.dart';
+import 'package:bigboss/src/features/offers/domain/offer_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 
@@ -14,5 +15,5 @@ abstract class OffersState with _$OffersState {
   const factory OffersState.error(String message) = _Error;
 
   const factory OffersState.success(
-      List<OfferModel> accounts) = _Success;
+      List<OfferEntity> accounts) = _Success;
 }

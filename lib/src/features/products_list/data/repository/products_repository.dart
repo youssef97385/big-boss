@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bigboss/src/features/offers/data/data_source/offer_data_source.dart';
 import 'package:bigboss/src/features/products_list/data/data_source/products_data_source.dart';
 import 'package:bigboss/src/features/products_list/data/models/product_model.dart';
@@ -90,6 +92,7 @@ return right(productsEntity);
 
       List<ProductEntity> products = [];
       for (ProductModel model in result?.data ?? []) {
+        log("model.link ${model.link}");
         String link = "";
         if (model.link?.isNotEmpty ?? false) {
           link = model.link?[0] ?? "";
@@ -111,6 +114,7 @@ return right(productsEntity);
           prices: model.priceLists ?? [],
           stringColors: model.colors ?? "",
           stringSizes: model.sizes ?? "",
+          productImages: model.link,
         ));
       }
       ProductsEntity productsEntity = ProductsEntity(
@@ -155,6 +159,7 @@ return right(productsEntity);
           prices: model.priceLists ?? [],
           stringColors: model.colors ?? "",
           stringSizes: model.sizes ?? "",
+          productImages: model.link,
         ));
       }
       ProductsEntity productsEntity = ProductsEntity(

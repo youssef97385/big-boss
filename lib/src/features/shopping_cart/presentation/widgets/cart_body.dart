@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/common/widgets/loading_view.dart';
+import '../../../../core/utils/helpers/priceFormatter.dart';
 
 class CartBody extends StatelessWidget {
   const CartBody({super.key});
@@ -89,11 +90,11 @@ class CartBody extends StatelessWidget {
                                         height: 10,
                                       ),
                                       TextView(
-                                        text: (items[index].price *
-                                                        items[index].count)
-                                                    .toString() +
-                                                " IQD" ??
-                                            "",
+                                        text: (getFormattedPrice(items[index].price *
+                                                        items[index].count))
+                                                    .toString()
+
+                                            ,
                                         style: Theme.of(context)
                                             .textTheme
                                             .titleLarge!
@@ -124,7 +125,7 @@ class CartBody extends StatelessWidget {
                             ),
                           ),
                           Visibility(
-                            visible: items[index].isOffer,
+                            visible: items[index].isOffer ?? false,
                             child: Positioned(
                                 bottom: 8,
                                 left: (serviceLocator<AppSettings>()

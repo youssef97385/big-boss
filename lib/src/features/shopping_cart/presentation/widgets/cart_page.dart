@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:bigboss/src/app/logic/app_settings.dart';
 import 'package:bigboss/src/app/routes/router.gr.dart';
 import 'package:bigboss/src/core/common/data/models/error_model/error_model.dart';
 import 'package:bigboss/src/core/common/widgets/alert_dialog.dart';
@@ -15,11 +16,13 @@ import 'package:bigboss/src/features/order_feature/bloc/order_state.dart';
 import 'package:bigboss/src/features/shopping_cart/domain/entities/cart_item_entity.dart';
 import 'package:bigboss/src/features/shopping_cart/presentation/logic/cart_cubit.dart';
 import 'package:bigboss/src/features/shopping_cart/presentation/widgets/cart_body.dart';
+import 'package:bigboss/src/injection.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/common/widgets/alert_dialog_view.dart';
+import '../../../../core/utils/helpers/priceFormatter.dart';
 import '../logic/cart_state.dart';
 
 class CartPage extends StatefulWidget {
@@ -73,7 +76,7 @@ class _CartPageState extends State<CartPage> {
                                   total += (item.price * item.count);
                                 }
                                 return TextView(
-                                  text: "$total IQD",
+                                  text: "${getFormattedPrice(total)}",
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleLarge!
@@ -102,8 +105,17 @@ class _CartPageState extends State<CartPage> {
                             title: "Choose_address".tr(),
                             buttonType: ButtonType.soldButton,
                             onClick: () async {
-                              addressModel = await context.router
-                                  .push(AddressListAppRouter());
+
+                              if(serviceLocator<AppSettings>().token == null){
+                                showDialog(context: context, builder: (context){
+                                  return AlertDialogView(content:"Please_login_first" );
+                                });
+                              }else{
+                                await context.router
+                                    .push(AddressListAppRouter());
+                              }
+
+
 
                             },
                           ),

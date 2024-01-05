@@ -1,4 +1,5 @@
 import 'package:bigboss/src/core/common/data/models/error_model/error_model.dart';
+import 'package:bigboss/src/core/common/widgets/button_view.dart';
 import 'package:bigboss/src/core/common/widgets/loading_view.dart';
 import 'package:bigboss/src/features/menu_page/presentation/logic/delete_account_bloc/delete_account_cubit.dart';
 import 'package:bigboss/src/features/menu_page/presentation/logic/delete_account_bloc/delete_account_state.dart';
@@ -57,7 +58,6 @@ class MenuBody extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
             children: [
-
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 child: Column(
@@ -73,9 +73,6 @@ class MenuBody extends StatelessWidget {
                     const SizedBox(
                       height: 12,
                     ),
-
-
-
                     TextView(
                       text:
                           "${serviceLocator<DatabaseManager>().getData("USERNAME")}",
@@ -100,7 +97,7 @@ class MenuBody extends StatelessWidget {
                         textColor: Theme.of(context).colorScheme.primary,
                         semanticLabelValue: selectedLanguage.shortDisplayLabel,
                         getLabel: (Language? language) =>
-                        language?.fullDisplayLabel ?? "",
+                            language?.fullDisplayLabel ?? "",
                         options: languages.languagesData,
                         value: selectedLanguage,
                         onChanged: (Language? language) async {
@@ -120,8 +117,42 @@ class MenuBody extends StatelessWidget {
                     ),
                     CardView(
                       onTap: () {
-                        BlocProvider.of<DeleteAccounCubit>(context)
-                            .deleteAccount();
+                        showDialog(
+                            builder: (ctxt) {
+                              return AlertDialog(
+                                  title: Text("Delete account"),
+                                  content: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text("Do you Really want to delete your account?"),
+                                      const SizedBox(height: 20),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          ButtonView(
+                                            title: "no",
+                                            onClick: () {
+                                              Navigator.pop(context);
+                                            },
+                                            buttonType: ButtonType.soldButton,
+                                          ),
+                                          ButtonView(
+                                            title: "yes",
+                                            onClick: () {
+                                              BlocProvider.of<
+                                                          DeleteAccounCubit>(
+                                                      context)
+                                                  .deleteAccount();
+                                            },
+                                            buttonType: ButtonType.soldButton,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ));
+                            },
+                            context: context);
                       },
                       child: ListTile(
                         title: TextView(
@@ -140,9 +171,45 @@ class MenuBody extends StatelessWidget {
                     ),
                     CardView(
                       onTap: () {
-                        serviceLocator<DatabaseManager>().deleteData("token");
-                        BlocProvider.of<CartCubit>(context).clearCart();
-                        context.router.replaceAll([SplashAppRouter()]);
+
+                        showDialog(
+                            builder: (ctxt) {
+                              return AlertDialog(
+                                  title: Text("Logout"),
+                                  content: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text("Do you Really want to logout?"),
+                                      const SizedBox(height: 20),
+                                      Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                        children: [
+                                          ButtonView(
+                                            title: "no",
+                                            onClick: () {
+                                              Navigator.pop(context);
+                                            },
+                                            buttonType: ButtonType.soldButton,
+                                          ),
+                                          ButtonView(
+                                            title: "yes",
+                                            onClick: () {
+
+                                              serviceLocator<DatabaseManager>().deleteData("token");
+                                              BlocProvider.of<CartCubit>(context).clearCart();
+                                              context.router.replaceAll([SplashAppRouter()]);
+                                            },
+                                            buttonType: ButtonType.soldButton,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ));
+                            },
+                            context: context);
+
+
                       },
                       child: ListTile(
                         title: TextView(

@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:developer';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
@@ -37,6 +39,8 @@ class ProductEntity extends Equatable {
   late List<String> sizes;
   late List<PriceModel>? pricesList;
   final bool isOffer;
+  final List<String?>? productImages;
+
 
   ProductEntity({
     this.id,
@@ -55,11 +59,15 @@ class ProductEntity extends Equatable {
     this.image,
 
     this.inStock,
+    this.productImages,
     required String stringColors,
     required String stringSizes,
     required List<PriceModel> prices,
     required this.isOffer,
   }) {
+
+
+
 
     final selectedLang = serviceLocator<AppSettings>().selectedLanguage;
     if(selectedLang.id == 1){
@@ -77,17 +85,31 @@ class ProductEntity extends Equatable {
     }
 
     pricesList = prices;
+
+
+    NumberFormat formatter = NumberFormat('#,###', 'en_US');
+
+
+
+
     if (prices.isEmpty) {
       priceLabel = "";
       highestPrice = "";
     } else if (prices.length == 1) {
-      priceLabel = "${prices[0].price} IQD";
-      highestPrice = "${prices[0].price} IQD";
+      final String formattedPrice = formatter.format(prices[0].price);
+      priceLabel = "${formattedPrice} IQD";
+      highestPrice = "${formattedPrice} IQD";
     } else {
+      final String formattedPrice1 = formatter.format(prices[0].price);
+      final String formattedPrice2 = formatter.format(prices[prices.length - 1].price);
       priceLabel =
-          "${prices[prices.length - 1].price} IQD - ${prices[0].price} IQD";
-      highestPrice = "${prices[0].price} IQD";
+          "${formattedPrice2} IQD - ${formattedPrice1} IQD";
+      highestPrice = "${formattedPrice1} IQD";
     }
+
+
+
+
 
     if (stringColors.isNotEmpty) {
       String colorString = "$stringColors"; // Your color string

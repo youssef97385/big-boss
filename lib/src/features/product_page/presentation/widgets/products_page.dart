@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:bigboss/src/app/routes/router.gr.dart';
 import 'package:bigboss/src/core/common/widgets/alert_dialog.dart';
@@ -29,6 +31,8 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreenState extends State<ProductScreen> {
+  int selectedImageIndex = 0;
+
   List<Color> colors = [
     const Color(0xffffffff),
     const Color(0xffA6B7E8),
@@ -44,6 +48,7 @@ class _ProductScreenState extends State<ProductScreen> {
   bool isProductAdded = false;
   TextEditingController countEditingController =
       TextEditingController(text: "1");
+
   @override
   void initState() {
     super.initState();
@@ -51,6 +56,7 @@ class _ProductScreenState extends State<ProductScreen> {
 
   @override
   Widget build(BuildContext context) {
+    log("TTTT ${widget.productEntity?.productImages}");
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: PreferredSize(
@@ -102,30 +108,71 @@ class _ProductScreenState extends State<ProductScreen> {
             Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Stack(
-              children: [
-                Container(
-                  height: 250,
-                  width: size.width,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(14),
-                        bottomLeft: Radius.circular(14)),
-                  ),
-                  child: (widget.productEntity?.image?.isEmpty ?? true)? SizedBox(): ClipRRect(
+            Container(
+              height: 250,
+              width: size.width,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(14),
+                    bottomLeft: Radius.circular(14)),
+              ),
+              child: (widget.productEntity?.image?.isEmpty ?? true)
+                  ? SizedBox()
+                  : ClipRRect(
                       borderRadius: const BorderRadius.only(
                           bottomRight: Radius.circular(14),
                           bottomLeft: Radius.circular(14)),
                       child: Hero(
                         tag: "${widget.productEntity?.id}",
                         child: Image.network(
-                          "${widget.productEntity?.image}",
+                          "${widget.productEntity?.productImages?[selectedImageIndex] ?? ""}",
                           fit: BoxFit.contain,
                         ),
                       )),
-                ),
-              ],
+            ),
+            Visibility(
+              visible: (widget.productEntity?.productImages?.length ?? 0) > 1,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(
+                    height: 100,
+                    child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount:
+                            widget.productEntity?.productImages?.length ?? 0,
+                        itemBuilder: (ctx, idx) {
+                          return Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: InkWell(
+                              onTap: (){
+                                setState(() {
+                                  selectedImageIndex = idx;
+                                });
+                              },
+                              child: Container(
+                                height: 100,
+                                width: 100,
+                                child: (widget.productEntity?.productImages?[idx]
+                                            ?.isEmpty ??
+                                        true)
+                                    ? SizedBox()
+                                    : Image.network(
+                                        "${widget.productEntity?.productImages?[idx]}",
+                                        fit: BoxFit.fill,
+                                      ),
+                              ),
+                            ),
+                          );
+                        }),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(
               height: 20,
@@ -282,34 +329,39 @@ class _ProductScreenState extends State<ProductScreen> {
                           ]),
                       ...List.generate(
                           widget.productEntity?.pricesList?.length ?? 0,
-                          (index) => TableRow(
-                                children: [
-                                  TableCell(
-                                      child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: TextView(
-                                      text:
-                                          "${widget.productEntity?.pricesList?[index].fromQTY}-${widget.productEntity?.pricesList?[index].toQTY}",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium!
-                                          .copyWith(color: Colors.black),
-                                    ),
-                                  )),
-                                  TableCell(
-                                      child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: TextView(
-                                      text:
-                                          "${widget.productEntity?.pricesList?[index].price}IQD",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium!
-                                          .copyWith(color: Colors.black),
-                                    ),
-                                  )),
-                                ],
-                              )),
+                          (index) {
+                        NumberFormat formatter = NumberFormat('#,###', 'en_US');
+
+                        final String formattedPrice = formatter.format(
+                            widget.productEntity?.pricesList?[index].price);
+                        return TableRow(
+                          children: [
+                            TableCell(
+                                child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextView(
+                                text:
+                                    "${widget.productEntity?.pricesList?[index].fromQTY}-${widget.productEntity?.pricesList?[index].toQTY}",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .copyWith(color: Colors.black),
+                              ),
+                            )),
+                            TableCell(
+                                child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: TextView(
+                                text: "${formattedPrice} IQD",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .copyWith(color: Colors.black),
+                              ),
+                            )),
+                          ],
+                        );
+                      }),
                     ],
                   ),
 
@@ -384,14 +436,14 @@ class _ProductScreenState extends State<ProductScreen> {
                               int count =
                                   int.parse(countEditingController.text);
 
-
                               BlocProvider.of<CartCubit>(context).addItemToCart(
                                   cartItem: CartItemEntity(
                                       id: widget.productEntity?.id ?? 0,
                                       name: widget.productEntity?.name ?? "",
                                       image: widget.productEntity?.image ?? "",
                                       price: finPrice,
-                                      isOffer: widget.productEntity?.isOffer ?? false,
+                                      isOffer: widget.productEntity?.isOffer ??
+                                          false,
                                       count: count));
                               setState(() {
                                 isProductAdded = true;
@@ -400,7 +452,8 @@ class _ProductScreenState extends State<ProductScreen> {
                                   context: context,
                                   builder: (context) {
                                     return AlertDialogView(
-                                        content: "Product_Added_Successfully".tr());
+                                        content:
+                                            "Product_Added_Successfully".tr());
                                   });
                             },
                             title: "Add_to_cart".tr(),

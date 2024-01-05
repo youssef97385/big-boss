@@ -16,6 +16,7 @@ import '../../../../core/common/widgets/alert_dialog.dart';
 import '../../../../core/common/widgets/alert_dialog_view.dart';
 import '../../../../core/common/widgets/button_view.dart';
 import '../../../../core/common/widgets/loading_view.dart';
+import '../../../../core/utils/helpers/priceFormatter.dart';
 import '../../../order_feature/bloc/order_cubit.dart';
 import '../../../order_feature/bloc/order_state.dart';
 
@@ -128,11 +129,9 @@ class _OrderSummaryBodyState extends State<OrderSummaryBody> {
                                             height: 10,
                                           ),
                                           TextView(
-                                            text: (items[index].price *
-                                                            items[index].count)
-                                                        .toString() +
-                                                    " IQD" ??
-                                                "",
+                                            text: (getFormattedPrice(items[index].price *
+                                                            items[index].count))
+                                                        .toString() ,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .titleLarge!
@@ -254,7 +253,7 @@ class _OrderSummaryBodyState extends State<OrderSummaryBody> {
                               width: 6,
                             ),
                             TextView(
-                              text: "$total",
+                              text: "${getFormattedPrice(total)}",
                               style: Theme.of(context)
                                   .textTheme
                                   .headlineLarge!

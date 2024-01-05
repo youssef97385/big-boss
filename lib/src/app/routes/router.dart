@@ -8,6 +8,8 @@ import '../../features/intro/intro_page.dart';
 import '../../features/login/presentation/widgets/login_page.dart';
 import '../../features/main/main_page.dart';
 import '../../features/menu_page/presentation/widgets/menu_page.dart';
+import '../../features/offers/presentation/widgets/offer_products_page.dart';
+import '../../features/orders_page/presentation/order_detail_page.dart';
 import '../../features/otp-verifivation/presentation/widgets/verify_otp_screen.dart';
 import '../../features/product_page/presentation/widgets/products_page.dart';
 import '../../features/products_list/presentation/widgets/products_page.dart';
@@ -70,6 +72,10 @@ import '../../features/sub_categories/presentation/sub_categories_page.dart';
       path: 'MapPicker',
       name: 'MapPickerAppRouter',
       page: MapPicker,
+    ),  AutoRoute(
+      path: 'OrderDetailPage',
+      name: 'OrderDetailPageAppRouter',
+      page: OrderDetailPage,
     ),
     AutoRoute(
       path: 'AddressList',
@@ -84,6 +90,10 @@ import '../../features/sub_categories/presentation/sub_categories_page.dart';
       path: 'OrderSummary',
       name: 'OrderSummaryAppRouter',
       page: OrderSummary,
+    ),AutoRoute(
+      path: 'OfferProductsPage',
+      name: 'OfferProductsPageAppRouter',
+      page: OfferProductsPage,
     ),
     AutoRoute(
       path: 'main',

@@ -1,7 +1,11 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:bigboss/src/app/routes/router.gr.dart';
 import 'package:bigboss/src/core/common/widgets/error_view.dart';
 import 'package:bigboss/src/core/common/widgets/loading_view.dart';
 import 'package:bigboss/src/core/common/widgets/text_view.dart';
 import 'package:bigboss/src/core/utils/helpers/date_formatter.dart';
+import 'package:bigboss/src/core/utils/helpers/format_order_status.dart';
+import 'package:bigboss/src/core/utils/helpers/priceFormatter.dart';
 import 'package:bigboss/src/features/order_feature/modles/order_model.dart';
 import 'package:bigboss/src/features/orders_page/presentation/bloc/orders_bloc.dart';
 import 'package:bigboss/src/features/orders_page/presentation/bloc/orders_state.dart';
@@ -30,9 +34,11 @@ class OrdersBody extends StatelessWidget {
               return state.maybeWhen(orElse: () {
                 return SizedBox();
               }, error: (String error) {
-                return ErrorView(error: error, onRefresh: () {
-                  BlocProvider.of<OrdersBloc>(context).getOrders();
-                });
+                return ErrorView(
+                    error: error,
+                    onRefresh: () {
+                      BlocProvider.of<OrdersBloc>(context).getOrders();
+                    });
               }, loading: () {
                 return LoadingView();
               }, success: (List<OrderModel> orders) {
@@ -41,94 +47,106 @@ class OrdersBody extends StatelessWidget {
                     shrinkWrap: true,
                     itemCount: orders.length,
                     itemBuilder: (context, index) {
-                      return Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                      return InkWell(
+                        onTap: () {
+                          context.router.push(OrderDetailPageAppRouter(
+                              orderModel: orders[index]));
+                        },
+                        child: Card(
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          TextView(
+                                              text: "Status".tr(),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleMedium),
+                                          const SizedBox(
+                                            width: 12,
+                                          ),
+                                          TextView(
+                                              text: getFormattedOrderStatus(
+                                                  orders[index].orderStatus ??
+                                                      5),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleMedium!
+                                                  .copyWith(color: Colors.red)),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 12,
+                                      ),
+                                      Row(
+                                        children: [
+                                          TextView(
+                                              text: "net_total".tr(),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleMedium),
+                                          const SizedBox(
+                                            width: 12,
+                                          ),
+                                          TextView(
+                                              text: getFormattedPrice(
+                                                  orders[index].netTotal ?? 0),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleMedium!
+                                                  .copyWith(
+                                                      color: Colors.green)),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 12,
+                                      ),
+                                      Row(
+                                        children: [
+                                          TextView(
+                                              text: "Date".tr(),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleMedium),
+                                          const SizedBox(
+                                            width: 12,
+                                          ),
+                                          TextView(
+                                              text:
+                                                  "${formatDate(orders[index].dateTime)}",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleMedium!
+                                                  .copyWith(
+                                                      color: Colors.green)),
+                                        ],
+                                      ),
+                                    ]),
+                                Row(
                                   children: [
-                                    Row(
-                                      children: [
-                                        TextView(
-                                            text: "Status".tr(),
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleMedium),
-                                        const SizedBox(
-                                          width: 12,
-                                        ),
-                                        TextView(
-                                            text: "Processing".tr(),
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleMedium!
-                                                .copyWith(color: Colors.red)),
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      height: 12,
-                                    ),
-                                    Row(
-                                      children: [
-                                        TextView(
-                                            text: "net_total".tr(),
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleMedium),
-                                        const SizedBox(
-                                          width: 12,
-                                        ),
-                                        TextView(
-                                            text:
-                                                "IQD ${orders[index].netTotal}",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleMedium!
-                                                .copyWith(color: Colors.green)),
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      height: 12,
-                                    ),
-                                    Row(
-                                      children: [
-                                        TextView(
-                                            text: "Date".tr(),
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleMedium),
-                                        const SizedBox(
-                                          width: 12,
-                                        ),
-                                        TextView(
-                                            text:
-                                                "${formatDate(orders[index].dateTime)}",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleMedium!
-                                                .copyWith(color: Colors.green)),
-                                      ],
-                                    ),
-                                  ]),
-                              Row(
-                                children: [
-                                  TextView(
-                                      text: "Order".tr(),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium!
-                                          .copyWith(color: Colors.green)),  TextView(
-                                      text: "#${orders[index].id}",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium!
-                                          .copyWith(color: Colors.green)),
-                                ],
-                              ),
-                            ],
+                                    TextView(
+                                        text: "Order".tr(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium!
+                                            .copyWith(color: Colors.green)),
+                                    TextView(
+                                        text: "#${orders[index].id}",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium!
+                                            .copyWith(color: Colors.green)),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       );
