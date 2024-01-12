@@ -97,6 +97,8 @@ class _ProductsPageBodyState extends State<ProductsPageBody> {
                     SizedBox(
                       height: 30,
                       child: TextView(
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                         text: products[index].name ?? "",
                         style: Theme.of(context)
                             .textTheme

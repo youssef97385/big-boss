@@ -13,6 +13,7 @@ class OrderModel extends Equatable {
   final double? netTotal;
   final int? orderStatus;
   final OrderProductModel? products;
+  final int? qty;
 
   const OrderModel({
     this.id,
@@ -20,6 +21,7 @@ class OrderModel extends Equatable {
     this.netTotal,
     this.orderStatus,
     this.products,
+    this.qty,
   });
 
   factory OrderModel.fromJson(Map<String, dynamic> json) {
@@ -32,6 +34,6 @@ class OrderModel extends Equatable {
   List<Object?> get props => [
         id,
         dateTime,
-        netTotal,orderStatus,products,
+        netTotal,orderStatus,products,qty
       ];
 }

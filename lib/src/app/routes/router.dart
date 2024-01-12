@@ -8,6 +8,7 @@ import '../../features/intro/intro_page.dart';
 import '../../features/login/presentation/widgets/login_page.dart';
 import '../../features/main/main_page.dart';
 import '../../features/menu_page/presentation/widgets/menu_page.dart';
+import '../../features/notification_page/presentation/widgets/notification_page.dart';
 import '../../features/offers/presentation/widgets/offer_products_page.dart';
 import '../../features/orders_page/presentation/order_detail_page.dart';
 import '../../features/otp-verifivation/presentation/widgets/verify_otp_screen.dart';
@@ -39,6 +40,10 @@ import '../../features/sub_categories/presentation/sub_categories_page.dart';
       page: RegisterPage,
     ),
     AutoRoute(
+      path: 'NotificationPage',
+      name: 'NotificationPageAppRouter',
+      page: NotificationPage,
+    ),AutoRoute(
       path: 'ProductsPage',
       name: 'ProductsPageAppRouter',
       page: ProductsPage,

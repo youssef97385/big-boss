@@ -13,6 +13,6 @@ abstract class LoginRepository {
 
   );
   Future<Either<ErrorModel, SuccessModel>> register(
-      String userName, String email, String password, String phone
+     String password, String phone
   );
 }

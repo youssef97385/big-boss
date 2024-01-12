@@ -29,13 +29,9 @@ class _RegisterBodyState extends State<RegisterBody> {
 
   AutovalidateMode? autovalidateMode;
 
-  TextEditingController userNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
 
-  String userName = "";
-  String email = "";
   String phone = "";
   String password = "";
 
@@ -89,53 +85,11 @@ class _RegisterBodyState extends State<RegisterBody> {
                           const SizedBox(
                             height: 48,
                           ),
-                          TextView(
-                            text: "user_name".tr(),
-                            style: Theme.of(context).textTheme.subtitle1,
-                          ),
-                          const SizedBox(
-                            height: 4,
-                          ),
-                          TextFormFieldView(
-                            onSave: (String? content) {
-                             userName = content ??"";
-                            },
-                            textEditingController: userNameController,
-                            textFormFieldTypes: TextFormFieldTypes.text,
-                            hint: "user_name".tr(),
-                            maxLines: 1,
-                            errorMessage: "this_field_is_required".tr(),
-                            minLength: 0,
-                          ),
 
 
 
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          TextView(
-                            text: "Email".tr(),
-                            style: Theme.of(context).textTheme.subtitle1,
-                          ),
-                          const SizedBox(
-                            height: 4,
-                          ),
-                          TextFormFieldView(
-                            onSave: (String? content) {
-                              email = content ??"";
-                            },
-                            textEditingController: emailController,
-                            textFormFieldTypes: TextFormFieldTypes.email,
-                            hint: "Email".tr(),
-                            maxLines: 1,
-                            errorMessage: "please_provide_valid_email".tr(),
-
-                          ),
 
 
-                          const SizedBox(
-                            height: 20,
-                          ),
                           TextView(
                             text: "phone".tr(),
                             style: Theme.of(context).textTheme.subtitle1,
@@ -188,7 +142,7 @@ class _RegisterBodyState extends State<RegisterBody> {
                                     if (_formGlobalKey.currentState!.validate()) {
                                       _formGlobalKey.currentState?.save();
                                       BlocProvider.of<RegisterCubit>(context).register(
-                                          userName,email,password,phone);
+                                          password,phone);
                                     } else {
                                       setState(() {
                                         autovalidateMode =

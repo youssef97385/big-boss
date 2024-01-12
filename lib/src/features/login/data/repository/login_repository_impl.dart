@@ -1,3 +1,5 @@
+import 'dart:developer';
+import 'dart:io' show Platform;
 import 'package:bigboss/src/core/common/data/models/success_model/success_model.dart';
 import 'package:bigboss/src/core/utils/managers/database/database_manager.dart';
 import 'package:bigboss/src/features/login/data/models/login_model.dart';
@@ -7,6 +9,7 @@ import 'package:dio/dio.dart';
 import '../../../../app/logic/app_settings.dart';
 import '../../../../core/common/data/models/error_model/error_model.dart';
 import '../../../../core/utils/helpers/error_parser.dart';
+import '../../../../core/utils/managers/notification/gms_notification_manager.dart';
 import '../../../../injection.dart';
 import '../../domain/entities/login_response_entity.dart';
 import '../../domain/repository/login_repository.dart';
@@ -15,9 +18,11 @@ import '../data_source/remote_data_source/login_data_source.dart';
 
 class LoginRepositoryImpl implements LoginRepository {
   final LoginDataSource loginDataSource;
+  final GmsNotificationsManager gmsNotificationsManager;
 
   LoginRepositoryImpl({
     required this.loginDataSource,
+    required this.gmsNotificationsManager,
   });
 
   @override
@@ -25,7 +30,25 @@ class LoginRepositoryImpl implements LoginRepository {
     Params? params,
   ) async {
     try {
-      final response = await loginDataSource.login(params?.value ?? {});
+      await gmsNotificationsManager.init();
+
+      await Future.delayed(const Duration(seconds: 1));
+
+      String? token = await gmsNotificationsManager.getToken();
+
+      log("Token firebasse $token");
+      String platform = "ios";
+      if (Platform.isAndroid) {
+        platform = "android";
+      }
+      Map<String, dynamic>? parms = params?.value;
+
+      parms?.addAll({
+        "token": token,
+        "device": platform //web, android or ios
+      });
+
+      final response = await loginDataSource.login(parms ?? {});
 
       final LoginModel loginModel = LoginModel.fromJson(response);
 
@@ -48,11 +71,10 @@ class LoginRepositoryImpl implements LoginRepository {
 
   @override
   Future<Either<ErrorModel, SuccessModel>> register(
-      String userName, String email, String password, String phone) async {
+     String password, String phone) async {
     try {
       var data = {
-        "username": userName,
-        "email": email,
+        "username":"+964$phone",
         "password": password,
         "phone": "+964$phone"
       };
@@ -63,13 +85,30 @@ class LoginRepositoryImpl implements LoginRepository {
       serviceLocator<DatabaseManager>().saveData("USERID", loginModel.userId);
       serviceLocator<DatabaseManager>().saveData("ISPHONECONFIRMED", false);
 
-      final vResponse = await loginDataSource
-          .login({'username': userName, 'password': password});
+      await gmsNotificationsManager.init();
+
+      await Future.delayed(const Duration(seconds: 1));
+
+      String? token = await gmsNotificationsManager.getToken();
+
+      log("Token firebasse $token");
+      String platform = "ios";
+      if (Platform.isAndroid) {
+        platform = "android";
+      }
+      Map<String, dynamic>? parms = {
+        'username': "+964$phone",
+        'password': password,
+        "token": token,
+        "device": platform
+      };
+
+      final vResponse = await loginDataSource.login(parms);
 
       final LoginModel loginModel2 = LoginModel.fromJson(vResponse);
 
       serviceLocator<AppSettings>().token = loginModel2.token;
-      serviceLocator<DatabaseManager>().saveData("USERNAME", userName);
+      serviceLocator<DatabaseManager>().saveData("USERNAME", "+964$phone");
       return Right(SuccessModel());
     } on DioError catch (error, stackTrace) {
       print("ERROR DDD $error");

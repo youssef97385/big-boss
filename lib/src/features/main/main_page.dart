@@ -46,10 +46,20 @@ class _MainPageState extends State<MainPage> {
           preferredSize: Size(double.infinity, 64),
           child: AppBarView(
             appBarTitle: '',
+            
             customeOption:
-                serviceLocator<DatabaseManager>().getData("token") == null
-                    ? null
-                    : InkWell(
+                Row(
+                  children: [
+                    
+                    InkWell(
+                        onTap: (){
+                          context.router.push(NotificationPageAppRouter());
+                        },
+                        child: Icon(IconData(0xe44f, fontFamily: 'MaterialIcons'))),
+                    const SizedBox(width: 12,),
+                    Visibility(
+                      visible: serviceLocator<DatabaseManager>().getData("token") != null,
+                      child: InkWell(
                         onTap: () {
                           context.router.navigate(MenuPageAppRouter());
                         },
@@ -61,6 +71,12 @@ class _MainPageState extends State<MainPage> {
                           ),
                         ),
                       ),
+                    ),
+                    
+                        
+                  ],
+                ),
+               
           ),
         ),
         bottomNavigationBuilder: (_, tabsRouter) {

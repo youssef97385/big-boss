@@ -17,6 +17,7 @@ OrderModel _$OrderModelFromJson(Map<String, dynamic> json) => OrderModel(
           ? null
           : OrderProductModel.fromJson(
               json['products'] as Map<String, dynamic>),
+      qty: json['qty'] as int?,
     );
 
 Map<String, dynamic> _$OrderModelToJson(OrderModel instance) =>
@@ -26,4 +27,5 @@ Map<String, dynamic> _$OrderModelToJson(OrderModel instance) =>
       'netTotal': instance.netTotal,
       'orderStatus': instance.orderStatus,
       'products': instance.products,
+      'qty': instance.qty,
     };

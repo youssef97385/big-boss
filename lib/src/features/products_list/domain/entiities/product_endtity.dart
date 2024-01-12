@@ -41,6 +41,8 @@ class ProductEntity extends Equatable {
   final bool isOffer;
   final List<String?>? productImages;
 
+  final int? qty;
+
 
   ProductEntity({
     this.id,
@@ -64,6 +66,7 @@ class ProductEntity extends Equatable {
     required String stringSizes,
     required List<PriceModel> prices,
     required this.isOffer,
+    this.qty,
   }) {
 
 

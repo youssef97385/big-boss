@@ -94,7 +94,7 @@ class _$RequestRefreshImpl implements _RequestRefresh {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$RequestRefreshImpl);
   }

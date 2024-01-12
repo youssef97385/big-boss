@@ -35,6 +35,8 @@ import 'core/utils/managers/database/database_manager.dart';
 import 'core/utils/managers/http/check_endpoint_reachability.dart';
 import 'core/utils/managers/http/domain_lookup.dart';
 import 'core/utils/managers/http/http_manager.dart';
+import 'core/utils/managers/notification/gms_notification_manager.dart';
+import 'core/utils/managers/notification/notification_message_handler.dart';
 import 'features/address/logic/add_address_cubit.dart';
 import 'features/home_page/data/home_source/brands_data_source.dart';
 import 'features/home_page/data/repository/home_repository_impl.dart';
@@ -44,6 +46,9 @@ import 'features/login/domain/repository/login_repository.dart';
 import 'features/login/domain/use_cases/login_use_case.dart';
 import 'features/login/presentation/logic/login_cubit.dart';
 import 'features/menu_page/presentation/logic/delete_account_bloc/delete_account_cubit.dart';
+import 'features/notification_page/data/data_source/notification_data_source.dart';
+import 'features/notification_page/data/repository/notification_repository.dart';
+import 'features/notification_page/presentation/cubit/notification_cubit.dart';
 import 'features/offers/data/data_source/offer_data_source.dart';
 import 'features/offers/data/repository/offer_repository.dart';
 import 'features/offers/presentation/logic/offer_product_cubit.dart';
@@ -144,8 +149,19 @@ void initInjections(GetIt serviceLocator) {
     ),
   );
 
+  serviceLocator.registerFactory<NotificationDataSource>(
+    () => NotificationDataSourceImpl(
+      httpManager: serviceLocator(),
+    ),
+  );
+
   //* repositories
 
+  serviceLocator.registerFactory<NotificationRepo>(
+    () => NotificationRepoImpl(
+      dataSource: serviceLocator(),
+    ),
+  );
   serviceLocator.registerFactory<OfferRepository>(
     () => OfferRepositoryImpl(
       offersDataSource: serviceLocator(),
@@ -165,6 +181,7 @@ void initInjections(GetIt serviceLocator) {
   serviceLocator.registerFactory<LoginRepository>(
     () => LoginRepositoryImpl(
       loginDataSource: serviceLocator(),
+      gmsNotificationsManager: serviceLocator(),
     ),
   );
 
@@ -178,7 +195,11 @@ void initInjections(GetIt serviceLocator) {
 
   //* bloc/cubit
 
-
+  serviceLocator.registerFactory<NotificationCubit>(
+    () => NotificationCubit(
+      repository: serviceLocator(),
+    ),
+  );
 
   serviceLocator.registerFactory<OrderDetailCubit>(
     () => OrderDetailCubit(
@@ -186,13 +207,11 @@ void initInjections(GetIt serviceLocator) {
     ),
   );
 
-
   serviceLocator.registerFactory<OffersCubit>(
     () => OffersCubit(
       repository: serviceLocator(),
     ),
   );
-
 
   serviceLocator.registerFactory<OfferProductsCubit>(
     () => OfferProductsCubit(
@@ -377,6 +396,16 @@ void initInjections(GetIt serviceLocator) {
   serviceLocator.registerFactory<SubCategoryCubit>(
     () => SubCategoryCubit(
       repository: serviceLocator(),
+    ),
+  );
+
+  serviceLocator.registerLazySingleton<NotificationMessageHandler>(
+    () => NotificationMessageHandlerImpl(),
+  );
+
+  serviceLocator.registerLazySingleton<GmsNotificationsManager>(
+    () => GmsNotificationsManager(
+      notificationMessageHandler: serviceLocator(),
     ),
   );
 }

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import '../../../../../core/utils/managers/http/http_manager.dart';
@@ -21,6 +22,8 @@ class LoginDataSourceImpl implements LoginDataSource {
   @override
   Future<Map<String, dynamic>> login(Map<String, dynamic> data) async {
 
+    log("login params ${data}");
+
     final Response response = await httpManager.request(
       path: "/Authenticate/login",
       method: HttpMethods.Post,
@@ -32,6 +35,7 @@ class LoginDataSourceImpl implements LoginDataSource {
   @override
   Future<Map<String, dynamic>> register(Map<String, dynamic> data) async {
 
+    log("register data $data");
     final Response response = await httpManager.request(
       path: "/Authenticate/register",
       method: HttpMethods.Post,

@@ -90,23 +90,25 @@ class _LoginBodyState extends State<LoginBody> {
                       height: 48,
                     ),
                     TextView(
-                      text: "user_name".tr(),
+                      text: "phone".tr(),
                       style: Theme.of(context).textTheme.subtitle1,
                     ),
+
                     const SizedBox(
                       height: 4,
                     ),
                     TextFormFieldView(
                       onSave: (String? content) {
-                        loginFormEntity?.userName = content;
+                       loginFormEntity?.userName = content;
                       },
                       textEditingController: userNameController,
-                      textFormFieldTypes: TextFormFieldTypes.text,
-                      hint: "user_name".tr(),
-                      maxLines: 1,
-                      errorMessage: "this_field_is_required".tr(),
-                      minLength: 0,
+                      textFormFieldTypes: TextFormFieldTypes.phone,
+                      hint: "7xxxxxxxx",
+                      keyboardType: TextInputType.number,
+                      errorMessage: "please_provide_valid_phone".tr(),
+
                     ),
+
                     const SizedBox(
                       height: 20,
                     ),

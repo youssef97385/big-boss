@@ -2,6 +2,8 @@
 plugins {
 
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+    id("com.android.application")
+    id("com.google.gms.google-services")
 }
 
 def localProperties = new Properties()
@@ -32,6 +34,7 @@ if (flutterVersionName == null) {
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+apply plugin: 'com.google.gms.google-services'
 
 
 
@@ -60,8 +63,8 @@ android {
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdkVersion 24
         targetSdkVersion flutter.targetSdkVersion
-        versionCode 14
-        versionName "1.2.14"
+        versionCode 16
+        versionName "1.2.16"
     }
 
     signingConfigs {
@@ -91,5 +94,9 @@ flutter {
 }
 
 dependencies {
+    implementation platform('com.google.firebase:firebase-bom:29.0.3')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation platform('com.google.firebase:firebase-bom:32.7.0')
+    implementation 'com.google.firebase:firebase-analytics'
+
 }

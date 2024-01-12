@@ -11,10 +11,10 @@ class RegisterCubit extends Cubit<RegisterState> {
       : super(const RegisterState.initial());
 
   Future<void> register(
-      String userName, String email, String password, String phone) async {
+       String password, String phone) async {
     emit(const RegisterState.loading());
     final userIssues =
-        await loginRepository.register(userName, email, password, phone);
+        await loginRepository.register(  password, phone);
     emit(
       userIssues.fold((ErrorModel error) {
         return RegisterState.error(errorModel: error);
