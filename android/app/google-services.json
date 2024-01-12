@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1067868100258",
+    "project_id": "bigbossb2b-2fa53",
+    "storage_bucket": "bigbossb2b-2fa53.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1067868100258:android:d1793c4755cdfe306369fb",
+        "android_client_info": {
+          "package_name": "co.bigboss.big"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFiMXtQ_I_hPZHoHOfORijUhCUv19mR30"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
