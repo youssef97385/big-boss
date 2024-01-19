@@ -56,7 +56,8 @@ class _ProductScreenState extends State<ProductScreen> {
 
   @override
   Widget build(BuildContext context) {
-    log("TTTT ${widget.productEntity?.productImages}");
+    final bool isDiscountAvailable = widget.productEntity?.discountPercentage != 0 &&
+        widget.productEntity?.discountPercentage != null;
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: PreferredSize(
@@ -191,13 +192,46 @@ class _ProductScreenState extends State<ProductScreen> {
                   const SizedBox(
                     height: 12,
                   ),
-                  TextView(
-                    text: "${widget.productEntity?.highestPrice}",
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge!
-                        .copyWith(color: Theme.of(context).colorScheme.primary),
+
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+
+                    children: [
+                      Visibility(
+                        visible: isDiscountAvailable,
+                        child: TextView(
+                          text: widget.productEntity?.priceLabelAfterDiscount??"",
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge!
+                              .copyWith(
+
+
+
+                              fontWeight: FontWeight.bold,
+                              color:
+                              Theme.of(context).colorScheme.primary),
+                          textAlignment: TextAlign.center,
+
+                        ),
+                      ),  const SizedBox(width: 16,),
+                      TextView(
+                        text:   "${widget.productEntity?.highestPrice}",
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge!
+                            .copyWith(
+                            decoration:isDiscountAvailable? TextDecoration.lineThrough:null,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: isDiscountAvailable ?Colors.grey:Theme.of(context).colorScheme.primary),
+                        textAlignment: TextAlign.center,
+                      ),
+
+
+                    ],
                   ),
+
                   const SizedBox(
                     height: 18,
                   ),
@@ -426,10 +460,27 @@ class _ProductScreenState extends State<ProductScreen> {
                                   in widget.productEntity?.pricesList ?? []) {
                                 if (int.parse(countEditingController.text) <=
                                     (price.toQTY ?? 1000000)) {
-                                  finPrice = price.price ?? 0;
+                                  if(widget.productEntity?.discountPercentage != null && widget.productEntity?.discountPercentage!=0){
+                                    double discountedPrice =(  price.price ?? 0 )*( widget.productEntity?.discountPercentage ?? 1) /100;
+
+                                    double newPrice = (price.price  ?? 0 ) - discountedPrice;
+
+                                    finPrice = newPrice;
+                                  }else{
+                                    finPrice = price.price ?? 0;
+                                  }
+
                                   break;
                                 } else {
-                                  finPrice = price.price ?? 0;
+                                  if(widget.productEntity?.discountPercentage != null && widget.productEntity?.discountPercentage!=0){
+                                    double discountedPrice =(  price.price ?? 0 )*( widget.productEntity?.discountPercentage ?? 1) /100;
+
+                                    double newPrice = (price.price  ?? 0 ) - discountedPrice;
+
+                                    finPrice = newPrice;
+                                  }else{
+                                    finPrice = price.price ?? 0;
+                                  }
                                 }
                               }
 

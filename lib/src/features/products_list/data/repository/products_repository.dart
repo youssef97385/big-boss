@@ -62,6 +62,7 @@ class ProductRepositoryImpl implements ProductRepository {
             prices: model.priceLists ?? [],
             stringColors: model.colors ?? "",
             stringSizes: model.sizes ?? "",
+            discountPercentage: model.discountPercentage,
           ));
         }
         ProductsEntity productsEntity = ProductsEntity(
@@ -114,7 +115,7 @@ return right(productsEntity);
           prices: model.priceLists ?? [],
           stringColors: model.colors ?? "",
           stringSizes: model.sizes ?? "",
-          productImages: model.link,
+          productImages: model.link,       discountPercentage: model.discountPercentage,
         ));
       }
       ProductsEntity productsEntity = ProductsEntity(
@@ -159,7 +160,7 @@ return right(productsEntity);
           prices: model.priceLists ?? [],
           stringColors: model.colors ?? "",
           stringSizes: model.sizes ?? "",
-          productImages: model.link,
+          productImages: model.link,       discountPercentage: model.discountPercentage,
         ));
       }
       ProductsEntity productsEntity = ProductsEntity(

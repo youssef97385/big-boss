@@ -25,7 +25,7 @@ class Params extends Equatable {
 
   Params({required LoginFormEntity entity}) {
     value = {
-      'username':"+964${entity.userName}",
+      'username':"${entity.userName}",
       'password': entity.password
     };
   }

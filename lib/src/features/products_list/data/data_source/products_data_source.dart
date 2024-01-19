@@ -29,7 +29,13 @@ class ProductsDataSourceImpl implements ProductsDataSource {
       path: "/Ecommerce/$path",
       method: HttpMethods.Get,
     );
+
+
+
     ProductsResponseModel model = ProductsResponseModel.fromJson(json.decode(response.data) as Map<String,dynamic>);
+
+
+
 
     return model;
   }
@@ -41,6 +47,7 @@ class ProductsDataSourceImpl implements ProductsDataSource {
       path: "/Ecommerce/EproductsBySubCategoryIdP?PageNumber=$page&PageSize=20&subCategoryId=$id",
       method: HttpMethods.Get,
     );
+
 
 
     ProductsResponseModel model = ProductsResponseModel.fromJson(json.decode(response.data) as Map<String,dynamic>);

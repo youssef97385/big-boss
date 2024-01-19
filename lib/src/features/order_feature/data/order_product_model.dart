@@ -31,7 +31,7 @@ class OrderProductModel extends Equatable {
   final String? uoMs;
   final String? weight;
   final bool? inStock;
-
+final double? discountPercentage;
   final String? link;
   final List<PriceModel>? priceLists;
 
@@ -53,7 +53,7 @@ class OrderProductModel extends Equatable {
     this.uoMs,
     this.weight,
     this.inStock,
-    this.priceLists,
+    this.priceLists,this.discountPercentage,
   });
 
   factory OrderProductModel.fromJson(Map<String, dynamic> json) {

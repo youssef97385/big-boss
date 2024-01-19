@@ -1,6 +1,7 @@
 import 'package:bigboss/src/features/login/presentation/widgets/password_field.dart';
 import 'package:bigboss/src/features/login/presentation/widgets/phone_number_form.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:country_code_picker/country_code_picker.dart';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,7 @@ class LoginBody extends StatefulWidget {
 }
 
 class _LoginBodyState extends State<LoginBody> {
+  String countryCode = "+964";
   final GlobalKey<FormState> _formGlobalKey = GlobalKey<FormState>();
   LoginFormEntity? loginFormEntity = LoginFormEntity();
   AutovalidateMode? autovalidateMode;
@@ -93,22 +95,51 @@ class _LoginBodyState extends State<LoginBody> {
                       text: "phone".tr(),
                       style: Theme.of(context).textTheme.subtitle1,
                     ),
-
                     const SizedBox(
                       height: 4,
                     ),
-                    TextFormFieldView(
-                      onSave: (String? content) {
-                       loginFormEntity?.userName = content;
-                      },
-                      textEditingController: userNameController,
-                      textFormFieldTypes: TextFormFieldTypes.phone,
-                      hint: "7xxxxxxxx",
-                      keyboardType: TextInputType.number,
-                      errorMessage: "please_provide_valid_phone".tr(),
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 130,
+                          child: CountryCodePicker(
+                            onChanged: (CountryCode? code) {
+                              setState(() {
+                                print("${code?.dialCode}");
+                                countryCode = code?.dialCode ?? "+964";
 
+                              });
+                            },
+                            // Initial selection and favorite can be one of code ('IT') OR dial_code('+39')
+                            initialSelection: 'IQ',
+                            favorite: ['+964', 'IQ'],
+                            // optional. Shows only country name and flag
+                            showCountryOnly: false,
+                            // optional. Shows only country name and flag when popup is closed.
+                            showOnlyCountryWhenClosed: false,
+                            // optional. aligns the flag and the Text left
+                            alignLeft: false,
+                            textStyle: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(fontSize: 14),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 290,
+                          child: TextFormFieldView(
+                            onSave: (String? content) {
+                              loginFormEntity?.userName = content;
+                            },
+                            textEditingController: userNameController,
+                            textFormFieldTypes: TextFormFieldTypes.phone,
+                            hint: "",
+                            keyboardType: TextInputType.number,
+                            errorMessage: "please_provide_valid_phone".tr(),
+                          ),
+                        ),
+                      ],
                     ),
-
                     const SizedBox(
                       height: 20,
                     ),
@@ -127,30 +158,42 @@ class _LoginBodyState extends State<LoginBody> {
                     const SizedBox(
                       height: 19,
                     ),
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 32.0),
-                        child: SizedBox(
-                          width: 280,
-                          height: 65,
-                          child: ButtonView(
-                            title: "Login".tr(),
-                            buttonType: ButtonType.soldButton,
-                            onClick: () {
-                              if (_formGlobalKey.currentState!.validate()) {
-                                _formGlobalKey.currentState?.save();
-                                BlocProvider.of<LoginCubit>(context).doLogin(
-                                    loginFormEntity ?? LoginFormEntity());
-                              } else {
-                                setState(() {
-                                  autovalidateMode =
-                                      AutovalidateMode.onUserInteraction;
-                                });
-                              }
-                            },
-                          ),
-                        ),
-                      ),
+                    BlocBuilder<LoginCubit,LoginState>(
+                      builder: (context,state) {
+                        return state.maybeWhen(orElse: (){
+                          return Center(
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 32.0),
+                              child: SizedBox(
+                                width: 280,
+                                height: 65,
+                                child: ButtonView(
+                                  title: "Login".tr(),
+                                  buttonType: ButtonType.soldButton,
+                                  onClick: () {
+                                    if (_formGlobalKey.currentState!.validate()) {
+                                      _formGlobalKey.currentState?.save();
+                                      BlocProvider.of<LoginCubit>(context).doLogin(
+                                          LoginFormEntity(
+                                              password: passwordController.text,
+                                              userName: "${countryCode}${userNameController.text}"
+                                          ) ?? LoginFormEntity());
+                                    } else {
+                                      setState(() {
+                                        autovalidateMode =
+                                            AutovalidateMode.onUserInteraction;
+                                      });
+                                    }
+                                  },
+                                ),
+                              ),
+                            ),
+                          );
+                        },loading: (){
+                          return Center(child: LoadingView());
+                        });
+
+                      }
                     ),
                     const SizedBox(
                       height: 10,
@@ -192,7 +235,7 @@ class _LoginBodyState extends State<LoginBody> {
             ),
           );
         },
-        loading: () => Center(child: LoadingView()),
+
       ),
     ));
   }

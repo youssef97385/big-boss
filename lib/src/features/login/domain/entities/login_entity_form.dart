@@ -4,6 +4,7 @@ class LoginFormEntity extends Equatable {
   String? userName;
   String? password;
 
+
   LoginFormEntity({
     this.userName,
     this.password,

@@ -71,12 +71,12 @@ class LoginRepositoryImpl implements LoginRepository {
 
   @override
   Future<Either<ErrorModel, SuccessModel>> register(
-     String password, String phone) async {
+     String password, String phone,String countryCode) async {
     try {
       var data = {
-        "username":"+964$phone",
+        "username":"$countryCode$phone",
         "password": password,
-        "phone": "+964$phone"
+        "phone": "$countryCode$phone"
       };
       final response = await loginDataSource.register(data);
 
@@ -97,7 +97,7 @@ class LoginRepositoryImpl implements LoginRepository {
         platform = "android";
       }
       Map<String, dynamic>? parms = {
-        'username': "+964$phone",
+        'username': "$countryCode$phone",
         'password': password,
         "token": token,
         "device": platform
@@ -108,7 +108,7 @@ class LoginRepositoryImpl implements LoginRepository {
       final LoginModel loginModel2 = LoginModel.fromJson(vResponse);
 
       serviceLocator<AppSettings>().token = loginModel2.token;
-      serviceLocator<DatabaseManager>().saveData("USERNAME", "+964$phone");
+      serviceLocator<DatabaseManager>().saveData("USERNAME", "$countryCode$phone");
       return Right(SuccessModel());
     } on DioError catch (error, stackTrace) {
       print("ERROR DDD $error");

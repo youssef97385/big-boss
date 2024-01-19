@@ -2,6 +2,7 @@ import 'package:bigboss/src/features/login/presentation/widgets/password_field.d
 import 'package:bigboss/src/features/login/presentation/widgets/phone_number_form.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:bigboss/src/features/register/presentation/bloc/register_cubit.dart';
+import 'package:country_code_picker/country_code_picker.dart';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +35,7 @@ class _RegisterBodyState extends State<RegisterBody> {
 
   String phone = "";
   String password = "";
+  String countryCode = "+964";
 
   @override
   Widget build(BuildContext context) {
@@ -98,16 +100,45 @@ class _RegisterBodyState extends State<RegisterBody> {
                           const SizedBox(
                             height: 4,
                           ),
-                          TextFormFieldView(
-                            onSave: (String? content) {
-                              phone = content ??"";
-                            },
-                            textEditingController: phoneController,
-                            textFormFieldTypes: TextFormFieldTypes.phone,
-                            hint: "7xxxxxxxx",
-                            keyboardType: TextInputType.number,
-                            errorMessage: "please_provide_valid_phone".tr(),
+                          Row(
+                            children: [
+                              SizedBox(
+                                width: 130,
+                                child: CountryCodePicker(
+                                  onChanged: (CountryCode? code) {
+                                    setState(() {
+                                      countryCode = code?.dialCode ?? "+964";
+                                    });
+                                  },
+                                  // Initial selection and favorite can be one of code ('IT') OR dial_code('+39')
+                                  initialSelection: 'IQ',
+                                  favorite: ['+964', 'IQ'],
+                                  // optional. Shows only country name and flag
+                                  showCountryOnly: false,
+                                  // optional. Shows only country name and flag when popup is closed.
+                                  showOnlyCountryWhenClosed: false,
+                                  // optional. aligns the flag and the Text left
+                                  alignLeft: false,
+                                  textStyle: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(fontSize: 14),
+                                ),
+                              ),
+                              SizedBox(width: 290,
+                                child: TextFormFieldView(
+                                  onSave: (String? content) {
+                                    phone = content ??"";
+                                  },
+                                  textEditingController: phoneController,
+                                  textFormFieldTypes: TextFormFieldTypes.phone,
+                                  hint: "",
+                                  keyboardType: TextInputType.number,
+                                  errorMessage: "please_provide_valid_phone".tr(),
 
+                                ),
+                              ),
+                            ],
                           ),
 
 
@@ -142,7 +173,7 @@ class _RegisterBodyState extends State<RegisterBody> {
                                     if (_formGlobalKey.currentState!.validate()) {
                                       _formGlobalKey.currentState?.save();
                                       BlocProvider.of<RegisterCubit>(context).register(
-                                          password,phone);
+                                          password,phone,countryCode);
                                     } else {
                                       setState(() {
                                         autovalidateMode =

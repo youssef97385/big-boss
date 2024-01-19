@@ -84,6 +84,7 @@ class OfferRepositoryImpl implements OfferRepository {
           prices: model.priceLists ?? [],
           stringColors: model.colors ?? "",
           stringSizes: model.sizes ?? "",
+          discountPercentage: model.discountPercentage,
         ));
       }
       return Right(products ?? []);

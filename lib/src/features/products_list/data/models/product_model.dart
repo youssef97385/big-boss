@@ -35,6 +35,7 @@ class ProductModel extends Equatable {
   final List<String>? link;
   final List<PriceModel>? priceLists;
 
+  final double? discountPercentage;
 
   const ProductModel({
     this.id,
@@ -54,6 +55,7 @@ class ProductModel extends Equatable {
     this.weight,
     this.inStock,
     this.priceLists,
+    this.discountPercentage,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
@@ -64,22 +66,23 @@ class ProductModel extends Equatable {
 
   @override
   List<Object?> get props => [
-    id,
-    link,
-    enName,
-    arName,
-    krName,
-    enDescription,
-    arDescription,
-    krDescription,
-    enShippingDetails,
-    arShippingDetails,
-    krShippingDetails,
-    sizes,
-    colors,
-    uoMs,
-    weight,
-    inStock,
-    priceLists,
+        id,
+        link,
+        enName,
+        arName,
+        krName,
+        enDescription,
+        arDescription,
+        krDescription,
+        enShippingDetails,
+        arShippingDetails,
+        krShippingDetails,
+        sizes,
+        colors,
+        uoMs,
+        weight,
+        inStock,
+        discountPercentage,
+        priceLists,
       ];
 }

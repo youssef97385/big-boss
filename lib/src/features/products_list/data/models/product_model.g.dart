@@ -26,6 +26,7 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) => ProductModel(
       priceLists: (json['priceLists'] as List<dynamic>?)
           ?.map((e) => PriceModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      discountPercentage: (json['discountPercentage'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$ProductModelToJson(ProductModel instance) =>
@@ -47,4 +48,5 @@ Map<String, dynamic> _$ProductModelToJson(ProductModel instance) =>
       'inStock': instance.inStock,
       'link': instance.link,
       'priceLists': instance.priceLists,
+      'discountPercentage': instance.discountPercentage,
     };

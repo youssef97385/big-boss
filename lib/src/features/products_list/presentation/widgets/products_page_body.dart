@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:bigboss/src/app/routes/router.gr.dart';
 import 'package:bigboss/src/core/common/widgets/image_view.dart';
@@ -34,10 +36,10 @@ class _ProductsPageBodyState extends State<ProductsPageBody> {
   void initState() {
     super.initState();
     BlocProvider.of<ProductsListCubit>(context).getProducts(
-        id: widget.id,
-        productCatsEnum: widget.productCatsEnum,
-        pageNumber: 1,
-       );
+      id: widget.id,
+      productCatsEnum: widget.productCatsEnum,
+      pageNumber: 1,
+    );
     _scrollController.addListener(_loadMoreData);
   }
 
@@ -45,10 +47,10 @@ class _ProductsPageBodyState extends State<ProductsPageBody> {
     if (_scrollController.position.pixels ==
         _scrollController.position.maxScrollExtent) {
       BlocProvider.of<ProductsListCubit>(context).getProducts(
-          id: widget.id,
-          productCatsEnum: widget.productCatsEnum,
-          pageNumber: page + 1,
-         );
+        id: widget.id,
+        productCatsEnum: widget.productCatsEnum,
+        pageNumber: page + 1,
+      );
     }
   }
 
@@ -77,6 +79,8 @@ class _ProductsPageBodyState extends State<ProductsPageBody> {
           itemCount: products.length,
           // total number of items
           itemBuilder: (context, index) {
+           final bool isDiscountAvailable = products[index].discountPercentage != 0 &&
+               products[index].discountPercentage != null;
             return InkWell(
               onTap: () {
                 context.router.push(
@@ -110,13 +114,43 @@ class _ProductsPageBodyState extends State<ProductsPageBody> {
                     const SizedBox(
                       height: 12,
                     ),
-                    TextView(
-                      text: products[index].priceLabel,
-                      style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.primary),
-                      textAlignment: TextAlign.center,
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Visibility(
+                          visible: isDiscountAvailable,
+                          child: TextView(
+                            text: products[index].priceLabelAfterDiscount,
+                            style: Theme.of(context)
+                                .textTheme
+                                .displaySmall!
+                                .copyWith(
+
+
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color:
+                                Theme.of(context).colorScheme.primary),
+                            textAlignment: TextAlign.center,
+
+                          ),
+                        ),  const SizedBox(width: 16,),
+                        TextView(
+                          text: products[index].priceLabel,
+                          style: Theme.of(context)
+                              .textTheme
+                              .displaySmall!
+                              .copyWith(
+                              decoration:isDiscountAvailable? TextDecoration.lineThrough:null,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: isDiscountAvailable ?Colors.grey:Theme.of(context).colorScheme.primary),
+                          textAlignment: TextAlign.center,
+                        ),
+
+
+                      ],
                     ),
                   ],
                 ),

@@ -55,7 +55,7 @@ class SearchRepoImpl implements SearchRepo {
           krShippingDetails: model.krShippingDetails??"",
           prices: model.priceLists ?? [],
           stringColors: model.colors ?? "",
-          stringSizes: model.sizes ?? "",
+          stringSizes: model.sizes ?? "",       discountPercentage: model.discountPercentage,
         ));
       }
 

@@ -42,24 +42,21 @@ class ProductEntity extends Equatable {
   final List<String?>? productImages;
 
   final int? qty;
-
+  final double? discountPercentage;
+  late String priceLabelAfterDiscount;
 
   ProductEntity({
     this.id,
     required String enName,
     required String arName,
     required String krName,
-
     required String enDescription,
     required String arDescription,
     required String krDiscription,
-
     required String enShippingDetails,
     required String arShippingDetails,
     required String krShippingDetails,
-
     this.image,
-
     this.inStock,
     this.productImages,
     required String stringColors,
@@ -67,21 +64,18 @@ class ProductEntity extends Equatable {
     required List<PriceModel> prices,
     required this.isOffer,
     this.qty,
+    required this.discountPercentage,
   }) {
-
-
-
-
     final selectedLang = serviceLocator<AppSettings>().selectedLanguage;
-    if(selectedLang.id == 1){
+    if (selectedLang.id == 1) {
       name = krName;
       shippingDetails = krShippingDetails;
       description = krDiscription;
-    }else if(selectedLang.id == 2){
+    } else if (selectedLang.id == 2) {
       name = arName;
       shippingDetails = arShippingDetails;
       description = arDescription;
-    }else{
+    } else {
       name = enName;
       shippingDetails = enShippingDetails;
       description = enDescription;
@@ -94,25 +88,51 @@ class ProductEntity extends Equatable {
 
 
 
-
     if (prices.isEmpty) {
       priceLabel = "";
       highestPrice = "";
+      priceLabelAfterDiscount = "";
     } else if (prices.length == 1) {
       final String formattedPrice = formatter.format(prices[0].price);
       priceLabel = "${formattedPrice} IQD";
       highestPrice = "${formattedPrice} IQD";
+
+
+      if(discountPercentage != 0){
+
+        double discountedPrice =( prices[0].price ?? 0 )*( discountPercentage ?? 1) /100;
+
+        double newPrice = (prices[0].price ?? 0 ) - discountedPrice;
+
+        final String formattedPrice = formatter.format(newPrice);
+        priceLabelAfterDiscount = "${formattedPrice} IQD";
+
+
+      }else{
+        priceLabelAfterDiscount = "";
+      }
+
+
     } else {
       final String formattedPrice1 = formatter.format(prices[0].price);
-      final String formattedPrice2 = formatter.format(prices[prices.length - 1].price);
-      priceLabel =
-          "${formattedPrice2} IQD - ${formattedPrice1} IQD";
+      final String formattedPrice2 =
+          formatter.format(prices[prices.length - 1].price);
+      priceLabel = "${formattedPrice2} IQD - ${formattedPrice1} IQD";
       highestPrice = "${formattedPrice1} IQD";
+
+      if(discountPercentage != 0){
+        double discountedPrice =( prices[0].price ?? 0 )*( discountPercentage ?? 1) /100;
+
+        double newPrice = (prices[0].price ?? 0 ) - discountedPrice;
+
+
+        final String formattedPrice = formatter.format(newPrice);
+        priceLabelAfterDiscount = "${formattedPrice} IQD";
+
+      }else{
+        priceLabelAfterDiscount = "";
+      }
     }
-
-
-
-
 
     if (stringColors.isNotEmpty) {
       String colorString = "$stringColors"; // Your color string

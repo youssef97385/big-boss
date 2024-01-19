@@ -125,6 +125,7 @@ class OrderRepoImpl implements OrderRepo {
             stringColors: model.products?.colors ?? "",
             stringSizes: model.products?.sizes ?? "",
             prices: model.products?.priceLists ?? [],
+            discountPercentage: model.products?.discountPercentage,
             isOffer: false,qty: model.qty));
       }
 
