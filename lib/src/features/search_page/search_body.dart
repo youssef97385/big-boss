@@ -13,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/common/widgets/error_view.dart';
 import '../../core/common/widgets/loading_view.dart';
+import '../../core/common/widgets/product_widget.dart';
 import '../../core/common/widgets/text_form_field_view.dart';
 
 class SearchBody extends StatefulWidget {
@@ -85,61 +86,25 @@ class _SearchBodyState extends State<SearchBody> {
 
                     return GridView.builder(
 
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2, // number of items in each row
-                        mainAxisSpacing: 8.0, // spacing between rows
-                        crossAxisSpacing: 2.0, // spacing between columns
-                      ),
-                      padding: const EdgeInsets.all(8.0),
-                      // padding around the grid
                       itemCount: products.length,
-                      // total number of items
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: () {
-                            context.router.push(
-                                ProductScreenAppRouter(productEntity: products[index]));
-                          },
-                          child: Card(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                        height: 100,
-                                        child: ImageBuilder(
-                                            imageUrl: products[index].image ?? "")),
-                                    const SizedBox(
-                                      height: 12,
-                                    ),
-                                    SizedBox(
-                                      height: 30,
-                                      child: TextView(
-                                        text: products[index].name ?? "",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium!
-                                            .copyWith(fontWeight: FontWeight.bold),
-                                        textAlignment: TextAlign.center,
-                                        overflow: TextOverflow.visible,
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 22,
-                                    ),
-                                    TextView(
-                                      text: products[index].priceLabel,
-                                      style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                          color: Theme.of(context).colorScheme.primary),
-                                      textAlignment: TextAlign.center,
-                                    ),
-                                  ],
-                                ),
-                              )),
-                        );
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount:
+                        MediaQuery.of(context).orientation == Orientation.landscape
+                            ? 3
+                            : 2,
+                        crossAxisSpacing: 16,
+                        mainAxisSpacing: 16,
+                        childAspectRatio: (0.85),
+                      ),
+                      shrinkWrap: true,
+                      physics: ScrollPhysics(),
+                      itemBuilder: (
+                          context,
+                          index,
+                          ) {
+                        return ProductWidget(productEntity: products[index],);
                       },
+
                     );
                   });
                 }),

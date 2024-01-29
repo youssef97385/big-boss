@@ -20,6 +20,8 @@ class OfferModel extends Equatable {
     this.arDescritpion,
     this.krDescription,
     this.enDescription,
+    this.startDate,
+    this.endDate,
   }) {
     final selectedLang = serviceLocator<AppSettings>().selectedLanguage;
     if (selectedLang.id == 1) {
@@ -60,6 +62,9 @@ class OfferModel extends Equatable {
 
   late String? name;
   late String? description;
+
+  final DateTime? startDate;
+  final DateTime? endDate;
 
   factory OfferModel.fromJson(Map<String, dynamic> json) =>
       _$OfferModelFromJson(json);

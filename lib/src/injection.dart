@@ -40,6 +40,7 @@ import 'core/utils/managers/notification/notification_message_handler.dart';
 import 'features/address/logic/add_address_cubit.dart';
 import 'features/home_page/data/home_source/brands_data_source.dart';
 import 'features/home_page/data/repository/home_repository_impl.dart';
+import 'features/home_page/presentation/logic/new_products_cubit/new_products_cubit.dart';
 import 'features/login/data/data_source/remote_data_source/login_data_source.dart';
 import 'features/login/data/repository/login_repository_impl.dart';
 import 'features/login/domain/repository/login_repository.dart';
@@ -197,6 +198,11 @@ void initInjections(GetIt serviceLocator) {
 
   serviceLocator.registerFactory<NotificationCubit>(
     () => NotificationCubit(
+      repository: serviceLocator(),
+    ),
+  );
+  serviceLocator.registerFactory<NewProductsCubit>(
+    () => NewProductsCubit(
       repository: serviceLocator(),
     ),
   );

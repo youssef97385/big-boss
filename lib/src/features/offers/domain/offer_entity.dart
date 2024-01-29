@@ -1,4 +1,4 @@
-
+import 'package:bigboss/src/core/utils/helpers/date_formatter.dart';
 import 'package:equatable/equatable.dart';
 import '../../../app/logic/app_settings.dart';
 import '../../../injection.dart';
@@ -14,6 +14,8 @@ class OfferEntity extends Equatable {
     this.arDescritpion,
     this.krDescription,
     this.enDescription,
+    this.startDate,
+    this.endDate,
   }) {
     final selectedLang = serviceLocator<AppSettings>().selectedLanguage;
     if (selectedLang.id == 1) {
@@ -28,6 +30,9 @@ class OfferEntity extends Equatable {
 
       description = enDescription ?? "";
     }
+
+    startDateText = formatDateText(startDate);
+    endDateText = formatDateText(endDate);
   }
 
   final int? id;
@@ -46,6 +51,12 @@ class OfferEntity extends Equatable {
   late String? name;
   late String? description;
 
+  final DateTime? startDate;
+  final DateTime? endDate;
+
+  late String? startDateText;
+  late String? endDateText;
+
   @override
   List<Object?> get props => [
         id,
@@ -56,5 +67,7 @@ class OfferEntity extends Equatable {
         netTotal,
         description,
         name,
+        startDate,
+        endDate,
       ];
 }

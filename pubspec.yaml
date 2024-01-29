@@ -134,13 +134,14 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/icons/
     - assets/translations/
 
 #
-#  fonts:
-#    - family: SpeedFilled
-#      fonts:
-#        - asset: assets/fonts/SpeedFilled.ttf
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-Regular.ttf
 #
 #    #Rabar
 #    - family: RabarBold

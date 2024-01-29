@@ -29,23 +29,21 @@ class OfferRepositoryImpl implements OfferRepository {
       final data = await offersDataSource.getOffers();
 
       List<OfferEntity> offers = [];
-     for(OfferModel model in data ?? []){
-       offers.add(
-
-           OfferEntity(
-             id:model.id,
-             enName:model.enName,
-             arName:model.arName,
-       krName:model.krName,
-           link:model.link,
-            netTotal:model.netTotal,
-          arDescritpion:model.arDescritpion,
-          krDescription:model.krDescription,
-           enDescription:model.enDescription,
-           )
-       );
-     }
-
+      for (OfferModel model in data ?? []) {
+        offers.add(OfferEntity(
+          id: model.id,
+          enName: model.enName,
+          arName: model.arName,
+          krName: model.krName,
+          link: model.link,
+          netTotal: model.netTotal,
+          arDescritpion: model.arDescritpion,
+          krDescription: model.krDescription,
+          enDescription: model.enDescription,
+          startDate: model.startDate,
+          endDate: model.endDate,
+        ));
+      }
 
       return Right(offers ?? []);
     } catch (error, stackTrace) {
@@ -69,22 +67,20 @@ class OfferRepositoryImpl implements OfferRepository {
           isOffer: true,
           id: model.id,
           image: link,
-          enName: model.enName ??"",
-          krName: model.krName??"",
-          arName: model.arName??"",
-
-          krDiscription: model.krDescription ??"",
-          arDescription: model.arDescription??"",
-          enDescription: model.enDescription??"",
-
-          enShippingDetails: model.enShippingDetails ??"",
-          arShippingDetails: model.arShippingDetails??"",
-          krShippingDetails: model.krShippingDetails??"",
-
+          enName: model.enName ?? "",
+          krName: model.krName ?? "",
+          arName: model.arName ?? "",
+          krDiscription: model.krDescription ?? "",
+          arDescription: model.arDescription ?? "",
+          enDescription: model.enDescription ?? "",
+          enShippingDetails: model.enShippingDetails ?? "",
+          arShippingDetails: model.arShippingDetails ?? "",
+          krShippingDetails: model.krShippingDetails ?? "",
           prices: model.priceLists ?? [],
           stringColors: model.colors ?? "",
           stringSizes: model.sizes ?? "",
           discountPercentage: model.discountPercentage,
+          remark: model.remark,
         ));
       }
       return Right(products ?? []);

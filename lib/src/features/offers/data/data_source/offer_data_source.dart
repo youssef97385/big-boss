@@ -32,6 +32,8 @@ class OffersDataSourceImpl implements OffersDataSource {
     log("Offers response $response");
 
 
+
+
     List<dynamic> jsonData = json.decode(response.data);
 
     List<OfferModel> model = jsonData

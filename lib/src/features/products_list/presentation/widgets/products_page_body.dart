@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/common/widgets/error_view.dart';
 import '../../../../core/common/widgets/loading_view.dart';
+import '../../../../core/common/widgets/product_widget.dart';
 import '../../data/models/products_categories_enum.dart';
 
 class ProductsPageBody extends StatefulWidget {
@@ -67,96 +68,30 @@ class _ProductsPageBodyState extends State<ProductsPageBody> {
       }, success: (List<ProductEntity> products, pageNumber, totalPages) {
         productEntityList = products;
         page = pageNumber;
-        return GridView.builder(
-          controller: _scrollController,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, // number of items in each row
-            mainAxisSpacing: 8.0, // spacing between rows
-            crossAxisSpacing: 8.0, // spacing between columns
+        return     Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: GridView.builder(
+            controller: _scrollController,
+            itemCount: productEntityList.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount:
+              MediaQuery.of(context).orientation == Orientation.landscape
+                  ? 3
+                  : 2,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 16,
+              childAspectRatio: (0.85),
+            ),
+            shrinkWrap: true,
+            physics: ScrollPhysics(),
+            itemBuilder: (
+                context,
+                index,
+                ) {
+              return ProductWidget(productEntity: productEntityList[index],);
+            },
+
           ),
-          padding: const EdgeInsets.all(8.0),
-          // padding around the grid
-          itemCount: products.length,
-          // total number of items
-          itemBuilder: (context, index) {
-           final bool isDiscountAvailable = products[index].discountPercentage != 0 &&
-               products[index].discountPercentage != null;
-            return InkWell(
-              onTap: () {
-                context.router.push(
-                    ProductScreenAppRouter(productEntity: products[index]));
-              },
-              child: Card(
-                  child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    SizedBox(
-                        height: 135,
-                        child: ImageBuilder(
-                            imageUrl: products[index].image ?? "")),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    SizedBox(
-                      height: 30,
-                      child: TextView(
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        text: products[index].name ?? "",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(fontWeight: FontWeight.bold),
-                        textAlignment: TextAlign.center,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Visibility(
-                          visible: isDiscountAvailable,
-                          child: TextView(
-                            text: products[index].priceLabelAfterDiscount,
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall!
-                                .copyWith(
-
-
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                                color:
-                                Theme.of(context).colorScheme.primary),
-                            textAlignment: TextAlign.center,
-
-                          ),
-                        ),  const SizedBox(width: 16,),
-                        TextView(
-                          text: products[index].priceLabel,
-                          style: Theme.of(context)
-                              .textTheme
-                              .displaySmall!
-                              .copyWith(
-                              decoration:isDiscountAvailable? TextDecoration.lineThrough:null,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: isDiscountAvailable ?Colors.grey:Theme.of(context).colorScheme.primary),
-                          textAlignment: TextAlign.center,
-                        ),
-
-
-                      ],
-                    ),
-                  ],
-                ),
-              )),
-            );
-          },
         );
       });
     });

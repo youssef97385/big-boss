@@ -57,7 +57,7 @@ class ImageBuilder extends StatelessWidget {
           borderRadius: BorderRadius.circular(2.0),
           image: DecorationImage(
             image: imageProvider,
-            fit: BoxFit.fill,
+            fit: fit??BoxFit.fill,
           ),
         ),
       ),

@@ -19,34 +19,37 @@ class SlidesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SlidesCubit, SlidesState>(builder: (context, state) {
-      return state.maybeWhen(orElse: () {
-        return const SizedBox();
-      }, error: (String error) {
-        return ErrorView(error: error, onRefresh: () {});
-      }, success: (List<SlideEntity> slides) {
-        return CarouselSlider(
-          options: CarouselOptions(
-            autoPlay: true,
-            aspectRatio: 2.0,
-            enlargeCenterPage: true,
-          ),
-          items: slides
-              .map((item) => Container(
-                    child: ClipRRect(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(5.0)),
-                      child: ImageBuilder(
-                          imageUrl: item.image ?? "",
-                          fit: BoxFit.fill,
-                          width: 1000.0),
-                    ),
-                  ))
-              .toList(),
-        );
-      }, loading: () {
-        return LoadingView();
-      });
-    });
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+      child: BlocBuilder<SlidesCubit, SlidesState>(builder: (context, state) {
+        return state.maybeWhen(orElse: () {
+          return const SizedBox();
+        }, error: (String error) {
+          return ErrorView(error: error, onRefresh: () {});
+        }, success: (List<SlideEntity> slides) {
+          return CarouselSlider(
+            options: CarouselOptions(
+              autoPlay: true,
+              aspectRatio: 2.0,
+              enlargeCenterPage: true,
+            ),
+            items: slides
+                .map((item) => Container(
+                      child: ClipRRect(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(5.0)),
+                        child: ImageBuilder(
+                            imageUrl: item.image ?? "",
+                            fit: BoxFit.fill,
+                            width: 1000.0),
+                      ),
+                    ))
+                .toList(),
+          );
+        }, loading: () {
+          return LoadingView();
+        });
+      }),
+    );
   }
 }

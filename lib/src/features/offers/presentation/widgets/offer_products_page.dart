@@ -22,10 +22,11 @@ class OfferProductsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: PreferredSize(
         preferredSize: const Size(double.infinity, 60),
         child: AppBarView(
-          appBarTitle: 'products'.tr(),
+          appBarTitle: "",
         ),
       ),
       body: BlocProvider(

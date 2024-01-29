@@ -30,15 +30,32 @@ class CountriesWidget extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextView(
-              text: "Countries".tr(),
-              style: Theme.of(context).textTheme.headlineMedium,
+            Row(
+              children: [
+                TextView(
+                  text: "Find Suppliers by Country".tr(),
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineMedium!
+                      .copyWith(fontWeight: FontWeight.bold,fontSize: 20),
+                ),
+                const SizedBox(
+                  width: 8,
+                ),
+                TextView(
+                  text: "Countries".tr(),
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineMedium!
+                      .copyWith(color: Theme.of(context).colorScheme.primary,fontSize: 20,fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
             const SizedBox(
-              height: 16,
+              height: 32,
             ),
             SizedBox(
-              height: 104,
+              height: 55,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
@@ -51,34 +68,23 @@ class CountriesWidget extends StatelessWidget {
                             id: entity[index].id ?? 0,
                             productCatsEnum: ProductCatsEnum.country));
                       },
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 80.0,
-                            width: 80.0,
-                            margin:
-                                const EdgeInsets.only(left: 5.0, right: 5.0),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100.0),
-                              border: Border.all(
-                                  width: 1.0,
-                                  style: BorderStyle.solid,
-                                  color: Colors.black),
-                              image: DecorationImage(
-                                fit: BoxFit.fill,
-                                image: NetworkImage(
-                                  entity[index].image ?? "",
-                                ),
-                              ),
+                      child: Container(
+                        height: 45.0,
+                        width: 70.0,
+                        margin:
+                            const EdgeInsets.only(left: 5.0, right: 5.0),
+                        decoration: BoxDecoration(
+
+
+                          image: DecorationImage(
+
+                            fit: BoxFit.fill,
+                            image: NetworkImage(
+                              entity[index].image ?? "",
+
                             ),
                           ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          TextView(
-                              text: "${entity[index].name}",
-                              style: Theme.of(context).textTheme.titleMedium),
-                        ],
+                        ),
                       ),
                     );
                     return Padding(

@@ -26,15 +26,32 @@ class BrandsWidget extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextView(
-              text: "Brands".tr(),
-              style: Theme.of(context).textTheme.headlineMedium,
+            Row(
+              children: [
+                TextView(
+                  text: "Find Suppliers by Country".tr(),
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineMedium!
+                      .copyWith(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                const SizedBox(
+                  width: 8,
+                ),
+                TextView(
+                  text: "Brand".tr(),
+                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                      color: Theme.of(context).colorScheme.primary,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
             const SizedBox(
-              height: 16,
+              height: 32,
             ),
             SizedBox(
-              height: 160,
+              height: 80,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
@@ -43,34 +60,28 @@ class BrandsWidget extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: SizedBox(
-                        width: 140,
-                        child: CardView(
-                            onTap: () {
-                              context.router.push(ProductsPageAppRouter(
-                                  id: brands[index].id ?? 0,
-                                  productCatsEnum: ProductCatsEnum.brand));
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                      height: 120,
-                                      child: ImageBuilder(
-                                        imageUrl: "${brands[index].image}",
-                                      )),
-                                  const SizedBox(
-                                    height: 12,
-                                  ),
-                                  TextView(
-                                      text: "${brands[index].name}",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium),
-                                ],
-                              ),
-                            )),
+                      child: InkWell(
+                        onTap: () {
+                          context.router.push(ProductsPageAppRouter(
+                              id: brands[index].id ?? 0,
+                              productCatsEnum: ProductCatsEnum.brand));
+                        },
+                        child: SizedBox(
+                          width: 140,
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                    height: 70,
+                                    child: ImageBuilder(
+                                      fit: BoxFit.cover,
+                                      imageUrl: "${brands[index].image}",
+                                    )),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
                     );
                   }),

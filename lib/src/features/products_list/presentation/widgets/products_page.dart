@@ -22,6 +22,7 @@ class ProductsPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => serviceLocator<ProductsListCubit>(),
       child: Scaffold(
+        backgroundColor:Colors.white,
         appBar:  PreferredSize(
           preferredSize: const Size(double.infinity, 60),
           child:  AppBarView(

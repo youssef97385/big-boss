@@ -17,9 +17,10 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
+
         create: (context) => serviceLocator<SearchCubit>(),
         child: Scaffold(
-
+backgroundColor: Colors.white,
           body: SearchBody(
 
           ),

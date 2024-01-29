@@ -45,6 +45,7 @@ class ProductEntity extends Equatable {
   final double? discountPercentage;
   late String priceLabelAfterDiscount;
 
+  final String? remark;
   ProductEntity({
     this.id,
     required String enName,
@@ -65,6 +66,7 @@ class ProductEntity extends Equatable {
     required this.isOffer,
     this.qty,
     required this.discountPercentage,
+    this.remark,
   }) {
     final selectedLang = serviceLocator<AppSettings>().selectedLanguage;
     if (selectedLang.id == 1) {

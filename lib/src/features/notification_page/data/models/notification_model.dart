@@ -8,11 +8,12 @@ class NotificationModel extends Equatable {
   final String? title;
 
   final String? notificationText;
+  final DateTime? timestamp;
 
   const NotificationModel({
     this.title,
     this.notificationText,
-
+    this.timestamp,
   });
 
   factory NotificationModel.fromJson(Map<String, dynamic> json) {
@@ -23,8 +24,8 @@ class NotificationModel extends Equatable {
 
   @override
   List<Object?> get props => [
-    title,
-    notificationText,
-
-  ];
+        title,
+        notificationText,
+        timestamp,
+      ];
 }

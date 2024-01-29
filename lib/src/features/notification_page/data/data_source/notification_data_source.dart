@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:bigboss/src/features/notification_page/data/models/notification_model.dart';
 import 'package:dio/dio.dart';
 
@@ -23,6 +24,8 @@ class NotificationDataSourceImpl implements NotificationDataSource {
       path: "/Notifications/GetAll?userId=$userId",
       method: HttpMethods.Get,
     );
+
+    log("notifications res $response");
 
     List<dynamic> jsonData = json.decode(response.data);
 

@@ -16,6 +16,12 @@ OfferModel _$OfferModelFromJson(Map<String, dynamic> json) => OfferModel(
       arDescritpion: json['aR_Descritpion'] as String?,
       krDescription: json['kR_Description'] as String?,
       enDescription: json['eN_Description'] as String?,
+      startDate: json['startDate'] == null
+          ? null
+          : DateTime.parse(json['startDate'] as String),
+      endDate: json['endDate'] == null
+          ? null
+          : DateTime.parse(json['endDate'] as String),
     )
       ..name = json['name'] as String?
       ..description = json['description'] as String?;
@@ -33,4 +39,6 @@ Map<String, dynamic> _$OfferModelToJson(OfferModel instance) =>
       'netTotal': instance.netTotal,
       'name': instance.name,
       'description': instance.description,
+      'startDate': instance.startDate?.toIso8601String(),
+      'endDate': instance.endDate?.toIso8601String(),
     };

@@ -5,13 +5,13 @@ class AppTheme {
   late String _fontName;
 
   AppTheme() {
-    _fontName = "Rabar";
+    _fontName = "Montserrat";
     _textHeight = 1;
   }
 
   ThemeData getDarkThemeData() {
     final ThemeData themeData = ThemeData(
-      colorSchemeSeed: const Color(0xff2d8144),
+      colorSchemeSeed: const Color(0xFF538560),
       useMaterial3: true,
       brightness: Brightness.dark,
       navigationBarTheme: NavigationBarThemeData(
@@ -65,12 +65,12 @@ class AppTheme {
         errorStyle: TextStyle(
           height: _textHeight,
           fontSize: 16,
-          fontFamily: '${_fontName}Book',
+          fontFamily: '${_fontName}',
         ),
         hintStyle: TextStyle(
           height: _textHeight,
           fontSize: 16,
-          fontFamily: '${_fontName}Book',
+          fontFamily: '${_fontName}',
         ),
       ),
       textTheme: getTextTheme(Colors.white),
@@ -81,7 +81,7 @@ class AppTheme {
 
   ThemeData getLightThemeData() {
     final ThemeData themeData = ThemeData(
-      colorSchemeSeed: const Color(0xff2d8144),
+      colorSchemeSeed: const Color(0xFF538560),
       useMaterial3: true,
       brightness: Brightness.light,
       navigationBarTheme: NavigationBarThemeData(
@@ -132,12 +132,12 @@ class AppTheme {
           height: _textHeight,
           fontSize: 16,
           color: Colors.red,
-          fontFamily: '${_fontName}Book',
+          fontFamily: '${_fontName}',
         ),
         hintStyle: TextStyle(
           height: _textHeight,
           fontSize: 16,
-          fontFamily: '${_fontName}Book',
+          fontFamily: '${_fontName}',
         ),
       ),
       textTheme: getTextTheme(Colors.black),
@@ -151,60 +151,60 @@ class AppTheme {
       displayLarge: TextStyle(
         height: _textHeight,
         fontSize: 24,
-        fontFamily: '${_fontName}Bold',
+        fontFamily: '${_fontName}',
         color: color,
       ),
       displayMedium: TextStyle(
         height: _textHeight,
         fontSize: 18,
-        fontFamily: '${_fontName}Bold',
+        fontFamily: '${_fontName}',
         color: color,
       ),
       displaySmall: TextStyle(
         height: _textHeight,
         fontSize: 18,
-        fontFamily: '${_fontName}Medium',
+        fontFamily: '${_fontName}',
         color: color,
       ),
       headlineMedium: TextStyle(
         height: _textHeight,
         fontSize: 18,
-        fontFamily: '${_fontName}Book',
+        fontFamily: '${_fontName}',
         color: color,
       ),
       titleMedium: TextStyle(
         height: _textHeight,
         fontSize: 14,
-        fontFamily: '${_fontName}Medium',
+        fontFamily: '${_fontName}',
         color: color,
       ),
       titleSmall: TextStyle(
         height: _textHeight,
         fontSize: 14,
-        fontFamily: '${_fontName}Book',
+        fontFamily: '${_fontName}',
         color: color,
       ),
       bodyLarge: TextStyle(
         height: _textHeight,
         fontSize: 12,
-        fontFamily: '${_fontName}Medium',
+        fontFamily: '${_fontName}',
         color: color,
       ),
       bodyMedium: TextStyle(
         height: _textHeight,
         fontSize: 12,
-        fontFamily: '${_fontName}Book',
+        fontFamily: '${_fontName}',
         color: color,
       ),
       bodySmall: TextStyle(
         height: _textHeight,
         fontSize: 10,
-        fontFamily: '${_fontName}Book',
+        fontFamily: '${_fontName}',
         color: color,
       ),
       labelLarge: TextStyle(
         fontSize: 14,
-        fontFamily: '${_fontName}Bold',
+        fontFamily: '${_fontName}',
         color: Colors.white,
       ),
     );

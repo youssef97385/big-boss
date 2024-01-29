@@ -36,6 +36,7 @@ class ProductModel extends Equatable {
   final List<PriceModel>? priceLists;
 
   final double? discountPercentage;
+  final String? remark;
 
   const ProductModel({
     this.id,
@@ -55,7 +56,7 @@ class ProductModel extends Equatable {
     this.weight,
     this.inStock,
     this.priceLists,
-    this.discountPercentage,
+    this.discountPercentage,this.remark,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
@@ -83,6 +84,6 @@ class ProductModel extends Equatable {
         weight,
         inStock,
         discountPercentage,
-        priceLists,
+        priceLists,remark,
       ];
 }

@@ -8,10 +8,12 @@ import 'package:bigboss/src/features/home_page/data/home_source/home_data_source
 import 'package:bigboss/src/features/home_page/data/models/slide_model.dart';
 import 'package:bigboss/src/features/home_page/data/models/slides_response_model.dart';
 import 'package:bigboss/src/features/home_page/domain/entities/slide_entity.dart';
+import 'package:bigboss/src/features/products_list/domain/entiities/product_endtity.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/common/data/models/error_model/error_model.dart';
 import '../../../../core/utils/helpers/error_parser.dart';
+import '../../../products_list/data/models/product_model.dart';
 import '../../domain/repository/home_repository.dart';
 
 class HomeRepositoryImpl implements HomeRepository {
@@ -55,7 +57,6 @@ class HomeRepositoryImpl implements HomeRepository {
 
       final List<GenericEntity> brands = [];
 
-
       for (GenericModel model in data ?? []) {
         brands.add(GenericEntity(
           id: model.id,
@@ -63,7 +64,6 @@ class HomeRepositoryImpl implements HomeRepository {
           enName: model.enName ?? "",
           krName: model.krName ?? "",
           arName: model.arName ?? "",
-
         ));
       }
 
@@ -74,20 +74,17 @@ class HomeRepositoryImpl implements HomeRepository {
   }
 
   @override
-  Future<Either<ErrorModel, List<GenericEntity>>> getCategories()  async {
+  Future<Either<ErrorModel, List<GenericEntity>>> getCategories() async {
     try {
       final data = await categoriesDataSource.getCategories();
 
       final List<GenericEntity> brands = [];
 
-
-
-
       for (GenericModel model in data ?? []) {
-        print("CATEGORIES are ${model.enName} the subs are:==> ${model.subCategories}");
+        print(
+            "CATEGORIES are ${model.enName} the subs are:==> ${model.subCategories}");
         final List<GenericEntity> subCats = [];
         for (GenericModel sub in model.subCategories ?? []) {
-
           subCats.add(GenericEntity(
             id: sub.id,
             image: sub.link,
@@ -113,9 +110,8 @@ class HomeRepositoryImpl implements HomeRepository {
     }
   }
 
-
   @override
-  Future<Either<ErrorModel, List<GenericEntity>>> getCountries()  async {
+  Future<Either<ErrorModel, List<GenericEntity>>> getCountries() async {
     try {
       final data = await countriesDataSource.getCountries();
 
@@ -135,8 +131,10 @@ class HomeRepositoryImpl implements HomeRepository {
     } catch (error, stackTrace) {
       return Left(errorParse(error, stackTrace));
     }
-  }  @override
-  Future<Either<ErrorModel, List<GenericEntity>>> getAccounts()  async {
+  }
+
+  @override
+  Future<Either<ErrorModel, List<GenericEntity>>> getAccounts() async {
     try {
       final data = await accountsDataSource.getAccounts();
 
@@ -155,6 +153,44 @@ class HomeRepositoryImpl implements HomeRepository {
       return Right(accounts);
     } catch (error, stackTrace) {
       return Left(errorParse(error, stackTrace));
+    }
+  }
+
+  @override
+  Future<Either<ErrorModel, List<ProductEntity>>> getNewProducts() async {
+    try {
+      final result = await homeDataSource.getNewProducts();
+
+      List<ProductEntity> products = [];
+      for (ProductModel model in result ?? []) {
+        String link = "";
+        if (model.link?.isNotEmpty ?? false) {
+          link = model.link?[0] ?? "";
+        }
+        products.add(ProductEntity(
+          isOffer: false,
+          id: model.id,
+          image: link,
+          enName: model.enName ?? "",
+          krName: model.krName ?? "",
+          arName: model.arName ?? "",
+          krDiscription: model.krDescription ?? "",
+          arDescription: model.arDescription ?? "",
+          enDescription: model.enDescription ?? "",
+          enShippingDetails: model.enShippingDetails ?? "",
+          arShippingDetails: model.arShippingDetails ?? "",
+          krShippingDetails: model.krShippingDetails ?? "",
+          prices: model.priceLists ?? [],
+          stringColors: model.colors ?? "",
+          stringSizes: model.sizes ?? "",
+          productImages: model.link,
+          discountPercentage: model.discountPercentage,
+        ));
+      }
+
+      return Right(products);
+    } catch (e, stackTrace) {
+      return Left(errorParse(e, stackTrace));
     }
   }
 }
